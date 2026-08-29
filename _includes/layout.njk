@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or site.nombre }}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=Work+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo-link">
+      <img src="/logo/icono.svg" alt="" class="logo-icono">
+      <span class="logo-texto">{{ site.nombre }}</span>
+    </a>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <section class="redes">
+    <a href="{{ site.redes.tiktok }}" class="boton-red" target="_blank" rel="noopener">TikTok</a>
+    <a href="{{ site.redes.instagram }}" class="boton-red" target="_blank" rel="noopener">Instagram</a>
+    <a href="{{ site.redes.facebook }}" class="boton-red" target="_blank" rel="noopener">Facebook</a>
+  </section>
+
+  <section class="telegram-cta">
+    <h2>Recibe los chollos antes que nadie</h2>
+    <p>Únete al canal y entérate de las ofertas en cuanto salen.</p>
+    <a href="{{ site.telegram }}" class="boton-cta" target="_blank" rel="noopener">Unirme a Telegram</a>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; {% anioActual %} {{ site.nombre }}</p>
+  </footer>
+</body>
+</html>
