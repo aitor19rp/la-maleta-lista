@@ -1,6 +1,14 @@
+const { utmLink, civitatisUrl, buscarFechasUrl, opcionesValidas } = require('./filters.js');
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
   eleventyConfig.addPassthroughCopy("logo");
+
+  eleventyConfig.addFilter("utmLink", utmLink);
+  eleventyConfig.addFilter("civitatisUrl", civitatisUrl);
+  eleventyConfig.addFilter("buscarFechasUrl", buscarFechasUrl);
+  eleventyConfig.addFilter("opcionesValidas", opcionesValidas);
+  eleventyConfig.addShortcode("anioActual", () => new Date().getFullYear());
 
   return {
     dir: {
