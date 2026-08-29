@@ -1,4 +1,7 @@
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("style.css");
+  eleventyConfig.addPassthroughCopy("logo");
+
   return {
     dir: {
       input: ".",
