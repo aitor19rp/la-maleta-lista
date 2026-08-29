@@ -1,0 +1,28 @@
+---
+layout: layout.njk
+---
+<article class="oferta">
+  <header class="oferta-cabecera" style="background-image: url('{{ imagen_cabecera }}');">
+    <h1>{{ destino }}</h1>
+  </header>
+
+  <ul class="opciones-lista">
+    {% for opcion in opciones | opcionesValidas %}
+    <li>
+      <span>{{ opcion.salida }}</span>
+      <span>{{ opcion.fecha }}</span>
+      <span>{{ opcion.precio }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ link_afiliado | utmLink(destino) }}" class="cta-principal" target="_blank" rel="noopener sponsored">Ver oferta</a>
+
+  <a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" class="buscar-fechas" target="_blank" rel="noopener">¿No te encajan estas fechas? Busca otras fechas para {{ destino }} →</a>
+
+  <section class="extras">
+    <a href="{{ afiliados.seguro | utmLink(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Seguro de viaje</a>
+    <a href="{{ afiliados.coche | utmLink(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Alquiler de coche</a>
+    <a href="{{ civitatis_url | civitatisUrl(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}</a>
+  </section>
+</article>

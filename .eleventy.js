@@ -3,6 +3,7 @@ const { utmLink, civitatisUrl, buscarFechasUrl, opcionesValidas } = require('./f
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
   eleventyConfig.addPassthroughCopy("logo");
+  eleventyConfig.addPassthroughCopy("img");
 
   eleventyConfig.addFilter("utmLink", utmLink);
   eleventyConfig.addFilter("civitatisUrl", civitatisUrl);
