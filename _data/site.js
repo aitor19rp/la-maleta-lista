@@ -2,11 +2,11 @@ module.exports = {
   nombre: "La Maleta Lista",
   tagline: "Cada semana busco las mejores ofertas de vuelos, hoteles y escapadas por Europa para que tú solo tengas que hacer la maleta.",
   redes: {
-    tiktok: "https://www.tiktok.com/@TU_USUARIO_TIKTOK",
-    instagram: "https://www.instagram.com/TU_USUARIO_INSTAGRAM",
-    facebook: "https://www.facebook.com/TU_PAGINA_FACEBOOK"
+    tiktok: "https://www.tiktok.com/@lamaletalistachollos",
+    instagram: "https://www.instagram.com/lamaletalistachollos",
+    facebook: "https://www.facebook.com/share/1C9fTiMq9F/"
   },
-  telegram: "https://t.me/TU_CANAL_TELEGRAM",
+  telegram: "https://t.me/lamaletalista",
   clarityId: "",
   gaId: "G-DC7HPFJ7EG"
 };

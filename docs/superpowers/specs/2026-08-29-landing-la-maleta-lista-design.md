@@ -117,3 +117,4 @@ Los links de **seguro** y **coche** no van en cada archivo: viven una vez en `_d
 - Listado de ofertas en home (agregador tipo ViajerosPiratas): añadir cuando haya 5-10 ofertas reales publicadas.
 - Dominio propio: comprar si la prueba avanza; por ahora subdominio gratuito del hosting.
 - Chat IA, comparador propio, buscador integrado, newsletter más allá de Telegram: fuera de alcance, considerados "ruido/hype" en la fase actual del proyecto.
+- Aviso de cookies / banner de consentimiento RGPD: pendiente de añadir antes de tener tráfico en volumen (ahora mismo GA4 y Clarity están activos sin banner de consentimiento).
