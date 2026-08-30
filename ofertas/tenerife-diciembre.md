@@ -8,6 +8,7 @@ opciones:
   - salida: "Barcelona"
     fecha: "22-29 diciembre"
     precio: "97€"
+precio_verificado: "30 de agosto de 2026"
 link_afiliado: "https://www.edreams.es/viajes/tenerife?TU_ID_AFILIADO"
 civitatis_url: ""
 buscar_fechas_url: ""

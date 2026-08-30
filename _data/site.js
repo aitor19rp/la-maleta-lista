@@ -6,5 +6,6 @@ module.exports = {
     instagram: "https://www.instagram.com/TU_USUARIO_INSTAGRAM",
     facebook: "https://www.facebook.com/TU_PAGINA_FACEBOOK"
   },
-  telegram: "https://t.me/TU_CANAL_TELEGRAM"
+  telegram: "https://t.me/TU_CANAL_TELEGRAM",
+  clarityId: ""
 };

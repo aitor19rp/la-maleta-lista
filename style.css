@@ -149,42 +149,61 @@ h2 {
 .cta-principal {
   display: block;
   text-align: center;
-  margin: 24px auto;
-  max-width: 320px;
-  padding: 16px 24px;
-  background: var(--azul-vuelo);
+  margin: 28px auto 0;
+  max-width: 360px;
+  padding: 20px 28px;
+  background: var(--coral-atardecer);
   color: #ffffff;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
+  box-shadow: 0 4px 14px rgba(255, 107, 74, 0.35);
+}
+
+.precio-verificado {
+  text-align: center;
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--verde-brujula);
 }
 
 .buscar-fechas {
   display: block;
   text-align: center;
-  margin: 12px auto 32px;
-  color: var(--azul-vuelo);
+  margin: 16px auto 40px;
+  color: var(--verde-brujula);
+  font-size: 14px;
+}
+
+.extras-label {
+  text-align: center;
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--verde-brujula);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .extras {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 0 20px 20px;
   max-width: 720px;
   margin: 0 auto;
 }
 
 .extra-card {
-  background: #ffffff;
-  border: 1px solid var(--verde-brujula);
-  border-radius: 12px;
-  padding: 20px;
+  background: transparent;
+  border: 1px solid #d8d0c0;
+  border-radius: 10px;
+  padding: 12px 16px;
   text-align: center;
   text-decoration: none;
-  color: var(--tinta-noche);
+  color: var(--verde-brujula);
+  font-size: 14px;
   flex: 1;
-  min-width: 160px;
+  min-width: 140px;
 }
