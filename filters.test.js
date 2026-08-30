@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const { slugify, utmLink, civitatisUrl, buscarFechasUrl, opcionesValidas } = require('./filters.js');
+const { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, opcionesValidas } = require('./filters.js');
 
 test('slugify removes accents and spaces', () => {
   assert.strictEqual(slugify('Praga'), 'praga');
@@ -23,6 +23,42 @@ test('utmLink appends utm params with & when base already has a query string', (
 
 test('utmLink returns # when baseUrl is missing', () => {
   assert.strictEqual(utmLink('', 'Praga'), '#');
+});
+
+test('clickrefLink appends clickref with ? when base has no query string', () => {
+  assert.strictEqual(
+    clickrefLink('https://www.edreams.es/viajes/praga', 'Praga'),
+    'https://www.edreams.es/viajes/praga?clickref=praga'
+  );
+});
+
+test('clickrefLink appends clickref with & when base already has a query string', () => {
+  assert.strictEqual(
+    clickrefLink('https://www.edreams.es/viajes/praga?TU_ID_AFILIADO', 'Praga'),
+    'https://www.edreams.es/viajes/praga?TU_ID_AFILIADO&clickref=praga'
+  );
+});
+
+test('clickrefLink returns # when baseUrl is missing', () => {
+  assert.strictEqual(clickrefLink('', 'Praga'), '#');
+});
+
+test('sidLink appends sid with ? when base has no query string', () => {
+  assert.strictEqual(
+    sidLink('https://www.booking.com', 'Praga'),
+    'https://www.booking.com?sid=praga'
+  );
+});
+
+test('sidLink appends sid with & when base already has a query string', () => {
+  assert.strictEqual(
+    sidLink('https://www.booking.com?aid=123', 'Praga'),
+    'https://www.booking.com?aid=123&sid=praga'
+  );
+});
+
+test('sidLink returns # when baseUrl is missing', () => {
+  assert.strictEqual(sidLink('', 'Praga'), '#');
 });
 
 test('civitatisUrl uses the override when provided', () => {

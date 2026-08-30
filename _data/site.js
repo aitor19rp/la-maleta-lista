@@ -7,5 +7,6 @@ module.exports = {
     facebook: "https://www.facebook.com/TU_PAGINA_FACEBOOK"
   },
   telegram: "https://t.me/TU_CANAL_TELEGRAM",
-  clarityId: ""
+  clarityId: "",
+  gaId: ""
 };
