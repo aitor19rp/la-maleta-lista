@@ -51,6 +51,33 @@ h2 {
   font-size: 18px;
 }
 
+.ofertas-simple {
+  max-width: 480px;
+  margin: 0 auto 32px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.ofertas-lista-simple {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ofertas-lista-simple a {
+  display: block;
+  padding: 14px 20px;
+  background: #ffffff;
+  border: 1px solid var(--verde-brujula);
+  border-radius: 8px;
+  color: var(--azul-vuelo);
+  text-decoration: none;
+  font-weight: 500;
+}
+
 .redes {
   display: flex;
   justify-content: center;
