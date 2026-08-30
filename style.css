@@ -24,22 +24,13 @@ body {
 }
 
 .logo-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: inline-block;
   text-decoration: none;
 }
 
-.logo-icono {
-  width: 40px;
-  height: 40px;
-}
-
-.logo-texto {
-  font-family: var(--font-titulares);
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--azul-vuelo);
+.logo-horizontal {
+  max-width: 280px;
+  height: auto;
 }
 
 .hero {
