@@ -1,6 +1,6 @@
 ---
 destino: "Tenerife"
-imagen_cabecera: "/img/tenerife-hero.svg"
+imagen_cabecera: "/img/tenerife-hero.jpg"
 opciones:
   - salida: "Madrid"
     fecha: "20-27 diciembre"

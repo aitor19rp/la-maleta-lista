@@ -1,6 +1,6 @@
 ---
 destino: "Marrakech"
-imagen_cabecera: "/img/marrakech-hero.svg"
+imagen_cabecera: "/img/marrakech-hero.jpg"
 opciones:
   - salida: "Madrid"
     fecha: "5-8 diciembre"

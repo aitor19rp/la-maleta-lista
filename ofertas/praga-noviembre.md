@@ -1,6 +1,6 @@
 ---
 destino: "Praga"
-imagen_cabecera: "/img/praga-hero.svg"
+imagen_cabecera: "/img/praga-hero.jpg"
 opciones:
   - salida: "Madrid"
     fecha: "12-15 noviembre"
