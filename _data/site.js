@@ -8,5 +8,5 @@ module.exports = {
   },
   telegram: "https://t.me/TU_CANAL_TELEGRAM",
   clarityId: "",
-  gaId: ""
+  gaId: "G-DC7HPFJ7EG"
 };
