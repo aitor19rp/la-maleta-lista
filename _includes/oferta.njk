@@ -16,6 +16,10 @@ layout: layout.njk
     {% endfor %}
   </ul>
 
+  {% if content %}
+  <div class="oferta-nota">{{ content | safe }}</div>
+  {% endif %}
+
   <a href="{{ link_afiliado | clickrefLink(destino) }}" class="cta-principal" target="_blank" rel="noopener sponsored">Ver oferta</a>
   <p class="precio-verificado">Precio comprobado el {{ precio_verificado }}</p>
 
