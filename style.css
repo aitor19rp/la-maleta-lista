@@ -33,6 +33,12 @@ body {
   height: auto;
 }
 
+.hero-imagen {
+  height: 260px;
+  background-size: cover;
+  background-position: center;
+}
+
 .hero {
   max-width: 640px;
   margin: 0 auto;
@@ -88,7 +94,9 @@ h2 {
 
 .boton-red,
 .boton-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 12px 24px;
   border-radius: 8px;
   background: var(--coral-atardecer);
