@@ -23,7 +23,9 @@ layout: layout.njk
 
   <p class="extras-label">También te puede interesar</p>
   <section class="extras">
+    {% if afiliados.seguroActivo %}
     <a href="{{ afiliados.seguro | utmLink(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Seguro de viaje</a>
+    {% endif %}
     <a href="{{ afiliados.coche | utmLink(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Alquiler de coche</a>
     <a href="{{ civitatis_url | civitatisUrl(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}</a>
   </section>
