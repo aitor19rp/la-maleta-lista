@@ -24,6 +24,17 @@ Formato: cada candidato se apunta aquí mientras se compara, con estado final (�
 
 ---
 
+## Berlín — 12-17 noviembre 2026 🔍 CANDIDATO FUERTE (solo vuelo)
+
+- **Origen**: Barcelona (BCN)
+- **Google Flights**: ruta marcada como "precios bajos"
+- **Opción recomendada (100% Vueling)**: ida y vuelta Vueling, directo, ~2h40. **110€/persona (precio normal, sin Prime)**.
+- **Opción más barata (mixta)**: ida Easyjet, vuelta Vueling. 97€/persona (precio normal, sin Prime) — vendida directamente por eDreams, sin el riesgo de Ryanair.
+- **Formato**: solo vuelo, NO vuelo+hotel — los hoteles en Berlín con 4+/5 salían 277-373€/persona, muy por encima de lo razonable para un chollo; no compensaba forzar el paquete.
+- **Pendiente**: elegir foto de cabecera, redactar oferta, decidir entre las dos opciones de vuelo (recomendada: 100% Vueling por seguridad).
+
+---
+
 ## Roma — 23-27 enero 2027 ✅ USADO (publicado 1 sept 2026)
 
 - **Origen**: Madrid
