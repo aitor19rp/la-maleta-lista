@@ -43,6 +43,13 @@ test('clickrefLink returns # when baseUrl is missing', () => {
   assert.strictEqual(clickrefLink('', 'Praga'), '#');
 });
 
+test('clickrefLink leaves the URL untouched when it already has a clickref param', () => {
+  assert.strictEqual(
+    clickrefLink('https://www.awin1.com/cread.php?awinmid=1&clickref=Roma-23-27-enero-2027&ued=x', 'Roma'),
+    'https://www.awin1.com/cread.php?awinmid=1&clickref=Roma-23-27-enero-2027&ued=x'
+  );
+});
+
 test('sidLink appends sid with ? when base has no query string', () => {
   assert.strictEqual(
     sidLink('https://www.booking.com', 'Praga'),

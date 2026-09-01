@@ -19,6 +19,7 @@ function utmLink(baseUrl, destino) {
 // this is what shows up as a filterable column in the Awin dashboard, unlike generic UTM tags.
 function clickrefLink(baseUrl, destino) {
   if (!baseUrl) return '#';
+  if (baseUrl.includes('clickref=')) return baseUrl;
   const separator = baseUrl.includes('?') ? '&' : '?';
   return `${baseUrl}${separator}clickref=${slugify(destino)}`;
 }
