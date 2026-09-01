@@ -36,9 +36,16 @@ function civitatisUrl(civitatisUrlOverride, destino) {
   return `https://www.civitatis.com/es/${slugify(destino)}/`;
 }
 
+// eDreams' own Awin merchant/affiliate IDs, reused to build tracked deep links
+// to a destination's generic (non-session-bound) search page.
+const EDREAMS_AWIN_MID = '10573';
+const EDREAMS_AWIN_AFFID = '1692815';
+
 function buscarFechasUrl(buscarFechasUrlOverride, destino) {
   if (buscarFechasUrlOverride && buscarFechasUrlOverride.trim() !== '') return buscarFechasUrlOverride;
-  return `https://www.google.com/travel/flights?q=${encodeURIComponent('Vuelos a ' + destino)}`;
+  const destinoUrl = `https://www.edreams.es/viajes/${slugify(destino)}/`;
+  const clickref = `${slugify(destino)}-otras-fechas`;
+  return `https://www.awin1.com/cread.php?awinmid=${EDREAMS_AWIN_MID}&awinaffid=${EDREAMS_AWIN_AFFID}&clickref=${clickref}&ued=${encodeURIComponent(destinoUrl)}`;
 }
 
 function opcionesValidas(opciones) {

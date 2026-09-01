@@ -76,10 +76,15 @@ test('civitatisUrl falls back to a slugified city page when empty', () => {
   assert.strictEqual(civitatisUrl('', 'Praga'), 'https://www.civitatis.com/es/praga/');
 });
 
-test('buscarFechasUrl falls back to a Google Flights search when empty', () => {
+test('buscarFechasUrl uses the override when provided', () => {
+  assert.strictEqual(buscarFechasUrl('https://tuenlace.com/custom', 'Praga'), 'https://tuenlace.com/custom');
+});
+
+test('buscarFechasUrl falls back to a tracked eDreams destination search when empty', () => {
+  const destinoUrl = encodeURIComponent('https://www.edreams.es/viajes/praga/');
   assert.strictEqual(
     buscarFechasUrl('', 'Praga'),
-    'https://www.google.com/travel/flights?q=' + encodeURIComponent('Vuelos a Praga')
+    `https://www.awin1.com/cread.php?awinmid=10573&awinaffid=1692815&clickref=praga-otras-fechas&ued=${destinoUrl}`
   );
 });
 
