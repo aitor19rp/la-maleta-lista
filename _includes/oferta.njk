@@ -24,6 +24,7 @@ layout: layout.njk
   <p class="precio-verificado">Precio comprobado el {{ precio_verificado }} — puede subir rápido, no esperes mucho para reservar</p>
 
   <a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" class="buscar-fechas" target="_blank" rel="noopener">¿No te encajan estas fechas? Busca otras fechas para {{ destino }} →</a>
+  <a href="{{ buscar_aeropuertos_url | buscarAeropuertosUrl(destino) }}" class="buscar-fechas" target="_blank" rel="noopener">¿Sales desde otra ciudad? Busca otros aeropuertos para {{ destino }} →</a>
 
   <p class="extras-label">También te puede interesar</p>
   <section class="extras">

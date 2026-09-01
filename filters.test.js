@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, opcionesValidas } = require('./filters.js');
+const { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas } = require('./filters.js');
 
 test('slugify removes accents and spaces', () => {
   assert.strictEqual(slugify('Praga'), 'praga');
@@ -85,6 +85,18 @@ test('buscarFechasUrl falls back to a tracked eDreams destination search when em
   assert.strictEqual(
     buscarFechasUrl('', 'Praga'),
     `https://www.awin1.com/cread.php?awinmid=10573&awinaffid=1692815&clickref=praga-otras-fechas&ued=${destinoUrl}`
+  );
+});
+
+test('buscarAeropuertosUrl uses the override when provided', () => {
+  assert.strictEqual(buscarAeropuertosUrl('https://tuenlace.com/custom', 'Praga'), 'https://tuenlace.com/custom');
+});
+
+test('buscarAeropuertosUrl falls back to a tracked eDreams destination search when empty', () => {
+  const destinoUrl = encodeURIComponent('https://www.edreams.es/viajes/praga/');
+  assert.strictEqual(
+    buscarAeropuertosUrl('', 'Praga'),
+    `https://www.awin1.com/cread.php?awinmid=10573&awinaffid=1692815&clickref=praga-otros-aeropuertos&ued=${destinoUrl}`
   );
 });
 

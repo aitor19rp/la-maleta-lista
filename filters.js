@@ -48,9 +48,16 @@ function buscarFechasUrl(buscarFechasUrlOverride, destino) {
   return `https://www.awin1.com/cread.php?awinmid=${EDREAMS_AWIN_MID}&awinaffid=${EDREAMS_AWIN_AFFID}&clickref=${clickref}&ued=${encodeURIComponent(destinoUrl)}`;
 }
 
+function buscarAeropuertosUrl(buscarAeropuertosUrlOverride, destino) {
+  if (buscarAeropuertosUrlOverride && buscarAeropuertosUrlOverride.trim() !== '') return buscarAeropuertosUrlOverride;
+  const destinoUrl = `https://www.edreams.es/viajes/${slugify(destino)}/`;
+  const clickref = `${slugify(destino)}-otros-aeropuertos`;
+  return `https://www.awin1.com/cread.php?awinmid=${EDREAMS_AWIN_MID}&awinaffid=${EDREAMS_AWIN_AFFID}&clickref=${clickref}&ued=${encodeURIComponent(destinoUrl)}`;
+}
+
 function opcionesValidas(opciones) {
   if (!Array.isArray(opciones)) return [];
   return opciones.filter((o) => o && o.salida && o.fecha && o.precio);
 }
 
-module.exports = { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, opcionesValidas };
+module.exports = { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas };
