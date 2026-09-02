@@ -24,14 +24,14 @@ Formato: cada candidato se apunta aquí mientras se compara, con estado final (�
 
 ---
 
-## Berlín — 12-17 noviembre 2026 🔍 CANDIDATO FUERTE (solo vuelo)
+## Berlín — 9-13 noviembre 2026 ✅ USADO (publicado 2 sept 2026)
 
 - **Origen**: Barcelona (BCN)
-- **Google Flights**: ruta marcada como "precios bajos"
-- **Opción recomendada (100% Vueling)**: ida y vuelta Vueling, directo, ~2h40. **110€/persona (precio normal, sin Prime)**.
-- **Opción más barata (mixta)**: ida Easyjet, vuelta Vueling. 97€/persona (precio normal, sin Prime) — vendida directamente por eDreams, sin el riesgo de Ryanair.
-- **Formato**: solo vuelo, NO vuelo+hotel — los hoteles en Berlín con 4+/5 salían 277-373€/persona, muy por encima de lo razonable para un chollo; no compensaba forzar el paquete.
-- **Pendiente**: elegir foto de cabecera, redactar oferta, decidir entre las dos opciones de vuelo (recomendada: 100% Vueling por seguridad).
+- **Google Flights**: ruta marcada como "precios bajos" (75€ más baratos de lo normal), Vueling directo 66€/persona i/v
+- **Formato**: vuelo + hotel (paquete eDreams)
+- **Hotel destacado**: SORAT Hotel Berlin 4★, 4,5/5, 1,18 km del centro — **236€/persona** (precio normal, sin Prime)
+- **Alternativa**: Scandic Berlin Kurfürstendamm 4★, 4,3/5, 1,73 km — 242€/persona
+- **Estado**: segunda oferta publicada en la web
 
 ---
 
