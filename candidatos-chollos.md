@@ -4,6 +4,20 @@ Formato: cada candidato se apunta aquí mientras se compara, con estado final (�
 
 ---
 
+## Múnich — 11-14 diciembre 2026 🔍 EN EVALUACIÓN
+
+- **Origen**: Madrid (MAD)
+- **Motivo de búsqueda**: réplica de un vídeo de referencia del usuario (mercadillos navideños de Europa, gancho "Quedan X domingos para que Europa se vea así", CTA de paquete genérico por 270€). Se buscó un destino real y verificable con ese mismo concepto.
+- **Vuelo**: Iberia (operado por Air Nostrum), directo, MAD-MUC, 2h35min, **150€ i/v** — confirmado en Google Flights con etiqueta "precios bajos". Pendiente re-confirmar en eDreams (el buscador de Vuelo+Hotel de eDreams tuvo un bug de UI el 3 sept 2026: un carrusel de anuncios superpuesto bloqueaba los clics en el calendario — revisar si sigue pasando).
+- **Hotel**: Best Western Hotel Arabellapark München, 4,4★ (882 reseñas), 3km del Jardín Inglés / 5km de la Residencia de Múnich, cert. ecológica. 77€/noche (doble clásica, vía Booking) → 231€ las 3 noches para 2 personas.
+- **Precio total estimado**: vuelo 150€ + hotel ~115€/persona = **~265€/persona** — casi idéntico a los 270€ del vídeo de referencia.
+- **Motivo del destino**: mercadillo navideño de Múnich (Christkindlmarkt, Marienplatz), tema directamente relacionado con el formato del vídeo de referencia.
+- **Otros candidatos descartados en la misma búsqueda**: Budapest (50€ pero Ryanair/Wizz Air, no vendibles), Dublín (Ryanair), París (Ryanair a Beauvais), Lisboa (Ryanair, Air Europa no confirmado como oferta), Agrigento (Ryanair), Atenas (precios "normales", no bajos), Chisináu (TAROM con escala, destino poco práctico para el embudo).
+
+**Pendiente antes de publicar**: reconfirmar el precio exacto del paquete en eDreams (Vuelo+Hotel), decidir el gancho/guion final del vídeo.
+
+---
+
 ## Bruselas — 16-18 enero 2027 🔍 EN EVALUACIÓN (riesgo detectado)
 
 - **Origen**: Barcelona (BCN)
