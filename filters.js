@@ -55,9 +55,22 @@ function buscarAeropuertosUrl(buscarAeropuertosUrlOverride, destino) {
   return `https://www.awin1.com/cread.php?awinmid=${EDREAMS_AWIN_MID}&awinaffid=${EDREAMS_AWIN_AFFID}&clickref=${clickref}&ued=${encodeURIComponent(destinoUrl)}`;
 }
 
+// For offers that are hotel-only (e.g. sourced from Trivago), this points readers to
+// eDreams' Vuelo+Hotel landing page for the destination (same page as buscarFechasUrl) —
+// it has a "Vuelos" tab where the destination is prefilled and the reader fills their own
+// origin/dates. eDreams has no static per-destination flights-only URL (/vuelos/{slug}/
+// 404s), and its live flights results page needs internal numeric city IDs that can't be
+// derived from a slug, so this landing page is the only reliable destination-prefilled entry point.
+function buscarVuelosUrl(buscarVuelosUrlOverride, destino) {
+  if (buscarVuelosUrlOverride && buscarVuelosUrlOverride.trim() !== '') return buscarVuelosUrlOverride;
+  const destinoUrl = `https://www.edreams.es/viajes/${slugify(destino)}/`;
+  const clickref = `${slugify(destino)}-vuelos`;
+  return `https://www.awin1.com/cread.php?awinmid=${EDREAMS_AWIN_MID}&awinaffid=${EDREAMS_AWIN_AFFID}&clickref=${clickref}&ued=${encodeURIComponent(destinoUrl)}`;
+}
+
 function opcionesValidas(opciones) {
   if (!Array.isArray(opciones)) return [];
   return opciones.filter((o) => o && o.salida && o.fecha && o.precio);
 }
 
-module.exports = { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas };
+module.exports = { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };
