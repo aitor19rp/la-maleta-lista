@@ -3,7 +3,7 @@ date: 2026-09-09
 destino: "Roma"
 emoji: "⛲"
 subtitulo: "Hotel Fontana"
-imagen_cabecera: "/img/roma-hero.jpg"
+imagen_cabecera: "/img/roma-trevi-hero.jpg"
 opciones:
   - salida: "Hotel Fontana"
     fecha: "22-23 noviembre"
