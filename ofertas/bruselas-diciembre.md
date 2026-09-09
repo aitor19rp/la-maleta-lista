@@ -1,5 +1,7 @@
 ---
 destino: "Bruselas"
+emoji: "🎆"
+subtitulo: "Fin de año"
 imagen_cabecera: "/img/bruselas-hero.jpg"
 opciones:
   - salida: "Barcelona"

@@ -13,7 +13,7 @@ title: La Maleta Lista — Ofertas de viaje por Europa
   <h2>Ofertas activas</h2>
   <ul class="ofertas-lista-simple">
     {% for oferta in collections.ofertas %}
-    <li><a href="{{ oferta.url }}">{{ oferta.data.destino }}</a></li>
+    <li><a href="{{ oferta.url }}">{{ oferta.data.emoji }} {{ oferta.data.destino }}{% if oferta.data.subtitulo %}<span class="oferta-subtitulo"> — {{ oferta.data.subtitulo }}</span>{% endif %}</a></li>
     {% endfor %}
   </ul>
 </section>

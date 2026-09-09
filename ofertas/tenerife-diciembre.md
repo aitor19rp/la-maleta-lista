@@ -1,5 +1,7 @@
 ---
 destino: "Tenerife"
+emoji: "🌴"
+subtitulo: "Navidad en la playa"
 imagen_cabecera: "/img/tenerife-hero.jpg"
 opciones:
   - salida: "Madrid"

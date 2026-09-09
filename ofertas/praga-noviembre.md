@@ -1,5 +1,7 @@
 ---
 destino: "Praga"
+emoji: "🌉"
+subtitulo: "Escapada barata"
 imagen_cabecera: "/img/praga-hero.jpg"
 opciones:
   - salida: "Madrid"

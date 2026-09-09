@@ -1,5 +1,7 @@
 ---
 destino: "Berlín"
+emoji: "🐻"
+subtitulo: "SORAT Hotel Berlin"
 imagen_cabecera: "/img/berlin-hero.jpg"
 opciones:
   - salida: "Barcelona"

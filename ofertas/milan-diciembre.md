@@ -1,5 +1,7 @@
 ---
 destino: "Milán"
+emoji: "🏰"
+subtitulo: "Puente de diciembre"
 imagen_cabecera: "/img/milan-hero.jpg"
 opciones:
   - salida: "Barcelona"

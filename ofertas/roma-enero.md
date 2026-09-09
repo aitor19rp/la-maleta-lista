@@ -1,5 +1,7 @@
 ---
 destino: "Roma"
+emoji: "🏛️"
+subtitulo: "Vaticano · 4 noches"
 imagen_cabecera: "/img/roma-hero.jpg"
 opciones:
   - salida: "Madrid"

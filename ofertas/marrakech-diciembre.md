@@ -1,5 +1,7 @@
 ---
 destino: "Marrakech"
+emoji: "🐪"
+subtitulo: "Puente de diciembre"
 imagen_cabecera: "/img/marrakech-hero.jpg"
 opciones:
   - salida: "Madrid"

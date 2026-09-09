@@ -1,5 +1,7 @@
 ---
 destino: "Roma"
+emoji: "⛲"
+subtitulo: "Hotel Fontana"
 imagen_cabecera: "/img/roma-hero.jpg"
 opciones:
   - salida: "Hotel Fontana"

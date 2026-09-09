@@ -1,5 +1,7 @@
 ---
 destino: "Múnich"
+emoji: "🎄"
+subtitulo: "Mercadillo navideño"
 imagen_cabecera: "/img/munich-hero.jpg"
 opciones:
   - salida: "Madrid"
