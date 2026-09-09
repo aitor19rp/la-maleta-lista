@@ -1,4 +1,5 @@
 ---
+date: 2026-08-30
 destino: "Praga"
 emoji: "🌉"
 subtitulo: "Escapada barata"

@@ -1,4 +1,5 @@
 ---
+date: 2026-09-07
 destino: "Bruselas"
 emoji: "🎆"
 subtitulo: "Fin de año"

@@ -1,4 +1,5 @@
 ---
+date: 2026-08-30
 destino: "Tenerife"
 emoji: "🌴"
 subtitulo: "Navidad en la playa"

@@ -1,4 +1,5 @@
 ---
+date: 2026-08-30
 destino: "Marrakech"
 emoji: "🐪"
 subtitulo: "Puente de diciembre"

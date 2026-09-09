@@ -1,4 +1,5 @@
 ---
+date: 2026-09-08
 destino: "Milán"
 emoji: "🏰"
 subtitulo: "Puente de diciembre"

@@ -1,4 +1,5 @@
 ---
+date: 2026-09-02
 destino: "Berlín"
 emoji: "🐻"
 subtitulo: "SORAT Hotel Berlin"

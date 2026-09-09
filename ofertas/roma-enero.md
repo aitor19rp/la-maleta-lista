@@ -1,4 +1,5 @@
 ---
+date: 2026-09-01
 destino: "Roma"
 emoji: "🏛️"
 subtitulo: "Vaticano · 4 noches"

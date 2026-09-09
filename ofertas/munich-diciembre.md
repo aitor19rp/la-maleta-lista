@@ -1,4 +1,5 @@
 ---
+date: 2026-09-03
 destino: "Múnich"
 emoji: "🎄"
 subtitulo: "Mercadillo navideño"
