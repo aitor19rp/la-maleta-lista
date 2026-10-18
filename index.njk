@@ -73,7 +73,7 @@ bodyClass: home
   </div>
   {% endif %}
 
-  <ul class="chollos-lista" id="chollos-lista">
+  <ul class="chollos-lista{% if ofertasOrdenadas.length < 3 %} pocas{% endif %}" id="chollos-lista">
     {% for oferta in ofertasOrdenadas %}
     {% set opciones = oferta.data.opciones | opcionesValidas %}
     {% set primera = opciones | first %}

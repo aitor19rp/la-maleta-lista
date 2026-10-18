@@ -142,6 +142,17 @@ eleventyComputed:
       hace.textContent = dias === 0 ? ' (hoy)' : dias === 1 ? ' (hace 1 día)' : ' (hace ' + dias + ' días)';
     }
   }
+  var barra = document.querySelector('.of-barra');
+  var cta = document.querySelector('.of-cta');
+  if (barra && cta) {
+    var revisarBarra = function () {
+      var r = cta.getBoundingClientRect();
+      barra.classList.toggle('oculta', r.top < window.innerHeight && r.bottom > 0);
+    };
+    window.addEventListener('scroll', revisarBarra, { passive: true });
+    window.addEventListener('resize', revisarBarra);
+    revisarBarra();
+  }
   var btn = document.getElementById('compartir');
   var estado = document.getElementById('compartir-estado');
   if (!btn) return;
