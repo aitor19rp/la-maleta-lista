@@ -33,60 +33,10 @@ body {
   height: auto;
 }
 
-.hero-imagen {
-  height: 260px;
-  background-size: cover;
-  background-position: center;
-}
-
-.hero {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.hero h1,
 h2 {
   font-family: var(--font-titulares);
   font-weight: 600;
   color: var(--azul-vuelo);
-}
-
-.tagline {
-  font-size: 18px;
-}
-
-.ofertas-simple {
-  max-width: 480px;
-  margin: 0 auto 32px;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.ofertas-lista-simple {
-  list-style: none;
-  margin: 12px 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.ofertas-lista-simple a {
-  display: block;
-  padding: 14px 20px;
-  background: #ffffff;
-  border: 1px solid var(--verde-brujula);
-  border-radius: 8px;
-  color: var(--azul-vuelo);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.oferta-subtitulo {
-  font-weight: 400;
-  color: #6b7280;
 }
 
 .redes {
@@ -289,7 +239,8 @@ html { scroll-behavior: smooth; }
 }
 .home .logo-horizontal { max-width: 200px; }
 
-:focus-visible { outline: 3px solid var(--coral-atardecer); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--azul-vuelo); outline-offset: 3px; }
+.portada :focus-visible, .metodo :focus-visible { outline-color: #fff; }
 
 .btn {
   display: inline-flex;
@@ -307,8 +258,6 @@ html { scroll-behavior: smooth; }
 .btn:active { transform: scale(.98); }
 .btn-coral { background: var(--coral-atardecer); color: #1a0e0a; }
 .btn-coral:hover { background: #ff7d60; }
-.btn:focus-visible { outline-color: var(--azul-vuelo); outline-offset: 3px; box-shadow: 0 0 0 3px #fff; }
-.btn-fantasma:focus-visible { outline-color: #fff; box-shadow: none; }
 .btn-fantasma { color: #fff; border-color: rgba(255,255,255,.6); }
 .btn-fantasma:hover { background: rgba(255,255,255,.12); }
 
