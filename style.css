@@ -441,7 +441,6 @@ h2 {
 .chollo-datos em { font-style: normal; color: var(--verde-brujula); font-weight: 600; }
 .chollo-comprobado { font-size: 13px; color: var(--azul-vuelo); margin-top: 8px; padding-top: 8px; border-top: 1px solid #e6dfd2; font-weight: 500; }
 .chollo-comprobado .hace { font-weight: 600; color: var(--coral-oscuro, #b8391c); }
-.chollo-aviso { font-size: 13px; color: var(--suave); }
 .ultimo-comprobado { grid-column: 1 / -1; font-size: 12px; margin-top: 8px; color: var(--suave); }
 .ultimo-comprobado .hace { font-weight: 600; color: #b8391c; }
 

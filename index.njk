@@ -28,7 +28,7 @@ bodyClass: home
         {% if ultima.data.subtitulo %}<span class="ultimo-sub">{{ ultima.data.subtitulo }}</span>{% endif %}
         {% if ultimaOpcion %}<span class="ultimo-fecha">{% if "Hotel" in ultimaOpcion.salida %}Solo hotel{% else %}Sale de {{ ultimaOpcion.salida }}{% endif %} · {{ ultimaOpcion.fecha }}</span>{% endif %}
       </span>
-      <span class="ultimo-comprobado" data-fecha="{{ ultima.date.toISOString() | truncate(10, true, '') }}">Comprobado el {{ ultima.data.precio_verificado }}<b class="hace"></b></span>
+      <span class="ultimo-comprobado" data-fecha="{{ ultima.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ ultima.data.precio_verificado }}<b class="hace"></b></span>
       {% if ultimaOpcion %}<span class="ultimo-precio">{{ ultimaOpcion.precio | precioCorto }}</span>{% endif %}
     </a>
     {% endif %}
@@ -85,8 +85,7 @@ bodyClass: home
           {% if primera %}
           <span class="chollo-datos">{% if "Hotel" in primera.salida %}Solo hotel{% else %}Sale de {{ primera.salida }}{% endif %} · {{ primera.fecha }}{% if opciones.length > 1 %} <em>+{{ opciones.length - 1 }} salida{% if opciones.length > 2 %}s{% endif %}</em>{% endif %}</span>
           {% endif %}
-          <span class="chollo-comprobado" data-fecha="{{ oferta.date.toISOString() | truncate(10, true, '') }}">Precio comprobado el {{ oferta.data.precio_verificado }}<b class="hace"></b></span>
-          <span class="chollo-aviso">Puede haber cambiado: míralo antes de reservar.</span>
+          <span class="chollo-comprobado" data-fecha="{{ oferta.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ oferta.data.precio_verificado }}<b class="hace"></b></span>
         </span>
       </a>
     </li>
