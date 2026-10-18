@@ -1,38 +1,152 @@
 ---
 layout: layout.njk
+bodyClass: home pagina-oferta
+eleventyComputed:
+  title: "Chollo a {{ destino }}{% if subtitulo %} · {{ subtitulo }}{% endif %} | La Maleta Lista"
 ---
-<article class="oferta">
-  <header class="oferta-cabecera" style="background-image: url('{{ imagen_cabecera }}');">
-    <h1>{{ destino }}</h1>
+{% set validas = opciones | opcionesValidas %}
+{% set barata = validas | masBarata %}
+{% set enlace = link_afiliado | clickrefLink(destino) %}
+{% set meses_nombres = [["ene","Ene"],["feb","Feb"],["mar","Mar"],["abr","Abr"],["may","May"],["jun","Jun"],["jul","Jul"],["ago","Ago"],["sep","Sep"],["oct","Oct"],["nov","Nov"],["dic","Dic"]] %}
+
+<article class="of">
+  <header class="of-portada" style="background-image: url('{{ imagen_cabecera }}');">
+    <a href="/#chollos" class="of-btn-icono of-volver" aria-label="Volver a los chollos">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </a>
+    <button type="button" class="of-btn-icono of-compartir" id="compartir" aria-label="Compartir esta oferta">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 12v7h14v-7"/></svg>
+    </button>
+    <div class="of-titulo">
+      <h1>{{ destino }}</h1>
+      {% if subtitulo %}<p>{{ subtitulo }}</p>{% endif %}
+    </div>
   </header>
 
-  <ul class="opciones-lista">
-    {% for opcion in opciones | opcionesValidas %}
-    <li>
-      <span>{{ opcion.salida }}</span>
-      <span>{{ opcion.fecha }}</span>
-      <span>{{ opcion.precio }}</span>
-    </li>
-    {% endfor %}
-  </ul>
+  <div class="of-cuerpo">
+    <p class="of-publicado" data-fecha="{{ page.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ precio_verificado }}<b class="hace"></b></p>
 
-  {% if content %}
-  <div class="oferta-nota">{{ content | safe }}</div>
-  {% endif %}
-
-  <a href="{{ link_afiliado | clickrefLink(destino) }}" class="cta-principal" target="_blank" rel="noopener sponsored">Ver oferta</a>
-  <p class="precio-verificado">Precio comprobado el {{ precio_verificado }} — puede subir rápido, no esperes mucho para reservar</p>
-
-  <a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" class="buscar-fechas" target="_blank" rel="noopener">¿No te encajan estas fechas? Busca otras fechas para {{ destino }} →</a>
-  <a href="{{ buscar_aeropuertos_url | buscarAeropuertosUrl(destino) }}" class="buscar-fechas" target="_blank" rel="noopener">¿Sales desde otra ciudad? Busca otros aeropuertos para {{ destino }} →</a>
-  <a href="{{ buscar_vuelos_url | buscarVuelosUrl(destino) }}" class="buscar-fechas" target="_blank" rel="noopener">¿Necesitas vuelo? Busca vuelos a {{ destino }} para tus fechas →</a>
-
-  <p class="extras-label">También te puede interesar</p>
-  <section class="extras">
-    {% if afiliados.seguroActivo %}
-    <a href="{{ afiliados.seguro | utmLink(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Seguro de viaje</a>
+    {% if etiquetas %}
+    <ul class="of-etiquetas" aria-label="A destacar">
+      {% for e in etiquetas %}<li>{{ e }}</li>{% endfor %}
+    </ul>
     {% endif %}
-    <a href="{{ afiliados.coche | utmLink(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Alquiler de coche</a>
-    <a href="{{ civitatis_url | civitatisUrl(destino) }}" class="extra-card" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}</a>
-  </section>
+
+    {% set mes_salida = mes or ((validas | first).fecha | mesSalida if validas.length else "") %}
+    {% if mes_salida %}
+    <section aria-labelledby="of-meses">
+      <h2 id="of-meses">Mes de salida</h2>
+      <ul class="of-meses">
+        {% for m in meses_nombres %}
+        <li{% if m[0] == mes_salida %} class="activo" aria-label="{{ m[1] }}: mes de salida"{% endif %}>{{ m[1] }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    <section aria-labelledby="of-fechas">
+      <h2 id="of-fechas">Fechas y precios</h2>
+      <ul class="of-fechas">
+        {% for opcion in validas %}
+        <li{% if opcion == barata and validas.length > 1 %} class="barata"{% endif %}>
+          <span class="of-fecha-datos">
+            <span class="of-fecha-fecha">{{ opcion.fecha }}</span>
+            <span class="of-fecha-salida">{{ opcion.salida }}{% if opcion.nota %} · {{ opcion.nota }}{% endif %}</span>
+          </span>
+          <span class="of-fecha-precio">{{ opcion.precio }}{% if opcion == barata and validas.length > 1 %}<em>La más barata</em>{% endif %}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      <p class="of-sujeto">Precio sujeto a fecha: puede haber cambiado desde que se publicó. Confírmalo en la web de reserva.</p>
+      <a href="#of-pasos" class="of-ir-pasos">Cómo reservar</a>
+    </section>
+
+    {% if content %}
+    <section class="of-info" aria-labelledby="of-info">
+      <h2 id="of-info">Sobre la oferta</h2>
+      <div>{{ content | safe }}</div>
+    </section>
+    {% endif %}
+
+    <section aria-labelledby="of-pasos">
+      <h2 id="of-pasos">Cómo reservar</h2>
+      <p class="of-pasos-intro">Reservas directamente en la web{% if proveedor %} de {{ proveedor }}{% else %} del proveedor{% endif %}. Esta página solo te lleva hasta allí con el precio que he comprobado.</p>
+      <ol class="of-pasos">
+        <li>
+          <strong>Pulsa «Ver oferta»</strong>
+          <span>Se abre la web{% if proveedor %} de {{ proveedor }}{% else %} de reserva{% endif %} en otra pestaña. Esta página se queda abierta por si quieres volver.</span>
+        </li>
+        <li>
+          <strong>Pon tus fechas y personas</strong>
+          <span>Las fechas de arriba son ejemplos con precio. Si las tuyas son otras, cámbialas en el buscador y pulsa Buscar. El precio puede variar de un día a otro.</span>
+        </li>
+        <li>
+          <strong>Elige la opción y revisa qué incluye</strong>
+          <span>Mira el precio final, el equipaje, el desayuno y si se puede cancelar antes de seguir.</span>
+        </li>
+        <li>
+          <strong>Completa la reserva allí</strong>
+          <span>Pagas y recibes la confirmación del proveedor, no de La Maleta Lista. Si algo falla con la reserva, se lo tienes que decir a ellos.</span>
+        </li>
+      </ol>
+      {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
+      <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">Ver oferta</a>
+      <p class="of-afiliado">Este enlace es de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
+    </section>
+
+    <section aria-labelledby="of-mas">
+      <h2 id="of-mas">Si esto no te encaja</h2>
+      <ul class="of-mas">
+        <li><a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar otras fechas para {{ destino }}</a></li>
+        <li><a href="{{ buscar_aeropuertos_url | buscarAeropuertosUrl(destino) }}" target="_blank" rel="noopener sponsored">Salir desde otro aeropuerto</a></li>
+        <li><a href="{{ buscar_vuelos_url | buscarVuelosUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar vuelos a {{ destino }}</a></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="of-extras">
+      <h2 id="of-extras">También te puede interesar</h2>
+      <div class="of-extras">
+        {% if afiliados.seguroActivo %}
+        <a href="{{ afiliados.seguro | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Seguro de viaje</a>
+        {% endif %}
+        <a href="{{ afiliados.coche | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Alquiler de coche</a>
+        <a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="of-barra">
+    <div class="of-barra-interior">
+      <p class="of-barra-precio">
+        <span>{% if validas.length > 1 %}Desde{% else %}Precio{% endif %}</span>
+        <strong>{{ (barata or (validas | first)).precio | precioCorto }}</strong>
+      </p>
+      <a href="{{ enlace }}" class="btn btn-coral" target="_blank" rel="noopener sponsored">Ver oferta</a>
+    </div>
+  </div>
 </article>
+
+<script>
+(function () {
+  var p = document.querySelector('[data-fecha]');
+  if (p) {
+    var dias = Math.floor((Date.now() - new Date(p.dataset.fecha + 'T12:00:00').getTime()) / 86400000);
+    var hace = p.querySelector('.hace');
+    if (hace && !isNaN(dias) && dias >= 0) {
+      hace.textContent = dias === 0 ? ' (hoy)' : dias === 1 ? ' (hace 1 día)' : ' (hace ' + dias + ' días)';
+    }
+  }
+  var btn = document.getElementById('compartir');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var datos = { title: document.title, url: location.href };
+    if (navigator.share) { navigator.share(datos).catch(function () {}); return; }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(location.href).then(function () {
+        btn.setAttribute('aria-label', 'Enlace copiado');
+        btn.classList.add('copiado');
+      }).catch(function () {});
+    }
+  });
+})();
+</script>

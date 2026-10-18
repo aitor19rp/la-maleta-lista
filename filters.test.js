@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const { precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas } = require('./filters.js');
+const { mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas } = require('./filters.js');
 
 test('slugify removes accents and spaces', () => {
   assert.strictEqual(slugify('Praga'), 'praga');
@@ -119,4 +119,26 @@ test('precioCorto keeps only the amount', () => {
   assert.strictEqual(precioCorto('Desde 236€/persona'), '236€');
   assert.strictEqual(precioCorto('49€'), '49€');
   assert.strictEqual(precioCorto(''), '');
+});
+
+test('masBarata returns the option with the lowest amount', () => {
+  const opciones = [{ precio: '65€' }, { precio: 'Desde 58€/persona' }, { precio: '97€' }];
+  assert.strictEqual(masBarata(opciones), opciones[1]);
+});
+
+test('masBarata returns null when there is nothing to compare', () => {
+  assert.strictEqual(masBarata([]), null);
+  assert.strictEqual(masBarata(undefined), null);
+  assert.strictEqual(masBarata([{ precio: 'consultar' }]), null);
+});
+
+test('mesSalida returns the first month named in the date text', () => {
+  assert.strictEqual(mesSalida('22-23 noviembre'), 'nov');
+  assert.strictEqual(mesSalida('30 diciembre - 1 enero'), 'dic');
+  assert.strictEqual(mesSalida('Septiembre 2026'), 'sep');
+});
+
+test('mesSalida returns an empty string when no month is found', () => {
+  assert.strictEqual(mesSalida('próximo puente'), '');
+  assert.strictEqual(mesSalida(undefined), '');
 });

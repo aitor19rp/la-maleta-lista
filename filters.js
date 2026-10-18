@@ -79,4 +79,32 @@ function precioCorto(precio) {
   return match ? match[0].replace(/\s/g, '') : (precio || '');
 }
 
-module.exports = { precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };
+// Returns the option with the lowest price (first one on ties), or null when none has a parseable amount.
+function masBarata(opciones) {
+  if (!Array.isArray(opciones)) return null;
+  let mejor = null;
+  let mejorPrecio = Infinity;
+  for (const opcion of opciones) {
+    const match = ((opcion && opcion.precio) || '').match(/\d+(?:[.,]\d+)?/);
+    if (!match) continue;
+    const valor = parseFloat(match[0].replace(',', '.'));
+    if (valor < mejorPrecio) { mejorPrecio = valor; mejor = opcion; }
+  }
+  return mejor;
+}
+
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+// First month named in a date text ("30 diciembre - 1 enero" -> "dic"); this is the departure month.
+function mesSalida(fecha) {
+  const texto = (fecha || '').toString().toLowerCase();
+  let mejor = -1;
+  let mejorPos = Infinity;
+  MESES.forEach((mes, i) => {
+    const pos = texto.indexOf(mes);
+    if (pos !== -1 && pos < mejorPos) { mejorPos = pos; mejor = i; }
+  });
+  return mejor === -1 ? '' : MESES[mejor].slice(0, 3);
+}
+
+module.exports = { mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };
