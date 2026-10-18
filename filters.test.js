@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas } = require('./filters.js');
+const { precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas } = require('./filters.js');
 
 test('slugify removes accents and spaces', () => {
   assert.strictEqual(slugify('Praga'), 'praga');
@@ -113,4 +113,10 @@ test('opcionesValidas filters out rows missing salida, fecha, or precio', () => 
 
 test('opcionesValidas returns an empty array when opciones is not an array', () => {
   assert.deepStrictEqual(opcionesValidas(undefined), []);
+});
+
+test('precioCorto keeps only the amount', () => {
+  assert.strictEqual(precioCorto('Desde 236€/persona'), '236€');
+  assert.strictEqual(precioCorto('49€'), '49€');
+  assert.strictEqual(precioCorto(''), '');
 });

@@ -73,4 +73,10 @@ function opcionesValidas(opciones) {
   return opciones.filter((o) => o && o.salida && o.fecha && o.precio);
 }
 
-module.exports = { slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };
+// Extracts just the amount ("Desde 236€/persona" -> "236€") for compact price badges.
+function precioCorto(precio) {
+  const match = (precio || '').match(/\d+(?:[.,]\d+)?\s?€/);
+  return match ? match[0].replace(/\s/g, '') : (precio || '');
+}
+
+module.exports = { precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };

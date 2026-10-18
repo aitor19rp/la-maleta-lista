@@ -1,19 +1,153 @@
 ---
 layout: layout.njk
-title: La Maleta Lista — Ofertas de viaje por Europa
+title: La Maleta Lista — Chollos de vuelos y escapadas desde España
+bodyClass: home
 ---
-<header class="hero-imagen" style="background-image: url('/img/hero-viajes.jpg');"></header>
+{% set ofertasOrdenadas = collections.ofertas | reverse %}
+{% set ultima = ofertasOrdenadas | first %}
+{% set ultimaOpcion = (ultima.data.opciones | opcionesValidas) | first %}
 
-<section class="hero">
-  <h1>{{ site.nombre }}</h1>
-  <p class="tagline">{{ site.tagline }}</p>
+<section class="portada">
+  <div class="portada-foto" style="background-image: url('/img/hero-viajes.jpg');" role="img" aria-label="Ala de un avión al amanecer vista desde la ventanilla"></div>
+  <div class="portada-contenido">
+    <div class="portada-texto">
+      <h1>Precios que parecen un error.</h1>
+      <p class="portada-sub">Un chollo de vuelo o escapada desde España cada día. Compruebo el precio a mano antes de publicarlo.</p>
+      <div class="portada-acciones">
+        <a href="#chollos" class="btn btn-coral">Ver los chollos</a>
+        <a href="{{ site.telegram }}" class="btn btn-fantasma" target="_blank" rel="noopener">Avisarme por Telegram</a>
+      </div>
+    </div>
+
+    {% if ultima %}
+    <a href="{{ ultima.url }}" class="ultimo" aria-label="Último chollo: {{ ultima.data.destino }}">
+      <span class="ultimo-etiqueta">Último chollo comprobado</span>
+      <span class="ultimo-foto" style="background-image: url('{{ ultima.data.imagen_cabecera }}');"></span>
+      <span class="ultimo-datos">
+        <span class="ultimo-destino">{{ ultima.data.destino }}</span>
+        {% if ultima.data.subtitulo %}<span class="ultimo-sub">{{ ultima.data.subtitulo }}</span>{% endif %}
+        {% if ultimaOpcion %}<span class="ultimo-fecha">{% if "Hotel" in ultimaOpcion.salida %}Solo hotel{% else %}Sale de {{ ultimaOpcion.salida }}{% endif %} · {{ ultimaOpcion.fecha }}</span>{% endif %}
+      </span>
+      <span class="ultimo-comprobado" data-fecha="{{ ultima.date.toISOString() | truncate(10, true, '') }}">Comprobado el {{ ultima.data.precio_verificado }}<b class="hace"></b></span>
+      {% if ultimaOpcion %}<span class="ultimo-precio">{{ ultimaOpcion.precio | precioCorto }}</span>{% endif %}
+    </a>
+    {% endif %}
+  </div>
 </section>
 
-<section class="ofertas-simple">
-  <h2>Ofertas activas</h2>
-  <ul class="ofertas-lista-simple">
-    {% for oferta in collections.ofertas | reverse %}
-    <li><a href="{{ oferta.url }}">{{ oferta.data.emoji }} {{ oferta.data.destino }}{% if oferta.data.subtitulo %}<span class="oferta-subtitulo"> — {{ oferta.data.subtitulo }}</span>{% endif %}</a></li>
+<section class="confianza" aria-label="Cómo trabajo">
+  <ul>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      <strong>Precio comprobado</strong>
+      <span>Con fecha, en cada oferta</span>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-7-6 16-3-7z"/></svg>
+      <strong>Salidas desde España</strong>
+      <span>Madrid, Barcelona, Málaga…</span>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+      <strong>Todo a la vista</strong>
+      <span>Fechas, aerolínea y qué incluye</span>
+    </li>
+    <li>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l18-8-3 17-6-5-3 4v-6z"/></svg>
+      <strong>Aviso en Telegram</strong>
+      <span>En cuanto sale uno nuevo</span>
+    </li>
+  </ul>
+</section>
+
+<section class="chollos" id="chollos">
+  <div class="chollos-cabecera">
+    <h2>Chollos activos</h2>
+    <div class="filtros" id="filtros" role="group" aria-label="Filtrar por ciudad de salida" hidden></div>
+  </div>
+
+  {% if not ultima %}
+  <p class="chollos-vacio">Ahora mismo no hay chollos activos. Únete al canal de Telegram y te aviso en cuanto salga el siguiente.</p>
+  {% endif %}
+
+  <ul class="chollos-lista" id="chollos-lista">
+    {% for oferta in ofertasOrdenadas %}
+    {% set opciones = oferta.data.opciones | opcionesValidas %}
+    {% set primera = opciones | first %}
+    <li class="chollo" data-salidas="{% for o in opciones %}{% if "Hotel" not in o.salida %}{{ o.salida }}|{% endif %}{% endfor %}">
+      <a href="{{ oferta.url }}">
+        <span class="chollo-foto" style="background-image: url('{{ oferta.data.imagen_cabecera }}');">
+          {% if primera %}<span class="chollo-precio">{{ primera.precio | precioCorto }}</span>{% endif %}
+        </span>
+        <span class="chollo-cuerpo">
+          <span class="chollo-destino">{{ oferta.data.destino }}</span>
+          {% if oferta.data.subtitulo %}<span class="chollo-sub">{{ oferta.data.subtitulo }}</span>{% endif %}
+          {% if primera %}
+          <span class="chollo-datos">{% if "Hotel" in primera.salida %}Solo hotel{% else %}Sale de {{ primera.salida }}{% endif %} · {{ primera.fecha }}{% if opciones.length > 1 %} <em>+{{ opciones.length - 1 }} salida{% if opciones.length > 2 %}s{% endif %}</em>{% endif %}</span>
+          {% endif %}
+          <span class="chollo-comprobado" data-fecha="{{ oferta.date.toISOString() | truncate(10, true, '') }}">Precio comprobado el {{ oferta.data.precio_verificado }}<b class="hace"></b></span>
+          <span class="chollo-aviso">Puede haber cambiado: míralo antes de reservar.</span>
+        </span>
+      </a>
+    </li>
     {% endfor %}
   </ul>
 </section>
+
+<section class="metodo">
+  <div class="metodo-interior">
+    <div class="metodo-texto">
+      <h2>Cada chollo se comprueba antes de publicarlo</h2>
+      <p>Miro el precio, la aerolínea y el alojamiento en la web de reserva. Si el precio cambia, lo que cuenta es la fecha de comprobación que ves en cada oferta.</p>
+      <p class="metodo-nota">Si reservas desde mis enlaces puedo recibir una comisión. A ti no te cuesta nada más.</p>
+    </div>
+    <ol class="metodo-pasos">
+      <li><strong>Ves el chollo</strong> en un vídeo o aquí en la web.</li>
+      <li><strong>Abres la oferta</strong> y revisas fechas, precio y qué incluye.</li>
+      <li><strong>Reservas</strong> en la web del proveedor, con su precio final.</li>
+    </ol>
+  </div>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('[data-fecha]').forEach(function (el) {
+    var d = new Date(el.dataset.fecha + 'T12:00:00');
+    var dias = Math.floor((Date.now() - d.getTime()) / 86400000);
+    var hace = el.querySelector('.hace');
+    if (!hace || isNaN(dias) || dias < 0) return;
+    hace.textContent = dias === 0 ? ' (hoy)' : dias === 1 ? ' (hace 1 día)' : ' (hace ' + dias + ' días)';
+  });
+})();
+(function () {
+  var cont = document.getElementById('filtros');
+  var items = Array.prototype.slice.call(document.querySelectorAll('#chollos-lista .chollo'));
+  if (!cont || !items.length) return;
+  var ciudades = [];
+  items.forEach(function (li) {
+    li.dataset.salidas.split('|').forEach(function (c) {
+      if (c && ciudades.indexOf(c) === -1) ciudades.push(c);
+    });
+  });
+  if (ciudades.length < 2) return;
+  function pintar(activa) {
+    items.forEach(function (li) {
+      var ok = !activa || li.dataset.salidas.split('|').indexOf(activa) !== -1;
+      li.hidden = !ok;
+    });
+    Array.prototype.forEach.call(cont.children, function (b) {
+      b.setAttribute('aria-pressed', String((b.dataset.ciudad || '') === (activa || '')));
+    });
+  }
+  [''].concat(ciudades).forEach(function (c) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = c || 'Todas';
+    b.dataset.ciudad = c;
+    b.addEventListener('click', function () { pintar(c); });
+    cont.appendChild(b);
+  });
+  cont.hidden = false;
+  pintar('');
+})();
+</script>

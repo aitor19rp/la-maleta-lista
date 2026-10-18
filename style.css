@@ -243,3 +243,254 @@ h2 {
   flex: 1;
   min-width: 140px;
 }
+
+/* ===== Landing (home) ===== */
+.home {
+  --tinta: #14202B;
+  --suave: #5a6672;
+  --radio: 18px;
+}
+.home .site-header {
+  padding: 14px 20px;
+  background: var(--arena-calida);
+}
+.home .logo-horizontal { max-width: 200px; }
+
+:focus-visible { outline: 3px solid var(--coral-atardecer); outline-offset: 3px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.btn:active { transform: scale(.98); }
+.btn-coral { background: var(--coral-atardecer); color: #1a0e0a; }
+.btn-coral:hover { background: #ff7d60; }
+.btn-fantasma { color: #fff; border-color: rgba(255,255,255,.6); }
+.btn-fantasma:hover { background: rgba(255,255,255,.12); }
+
+/* Portada */
+.portada {
+  position: relative;
+  color: #fff;
+  background: #0d1a24;
+  isolation: isolate;
+}
+.portada-foto {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-size: cover;
+  background-position: 62% center;
+}
+.portada-foto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(10,22,32,.88) 0%, rgba(10,22,32,.55) 55%, rgba(10,22,32,.25) 100%),
+              linear-gradient(0deg, rgba(10,22,32,.6) 0%, transparent 40%);
+}
+.portada-contenido {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 20px 110px;
+  display: grid;
+  gap: 40px;
+  align-items: end;
+}
+.portada h1 {
+  font-family: var(--font-titulares);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+  color: #fff;
+  max-width: 11ch;
+}
+.portada-sub {
+  font-size: 1.15rem;
+  max-width: 34ch;
+  margin: 0 0 28px;
+  color: rgba(255,255,255,.92);
+}
+.portada-acciones { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.ultimo {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  gap: 4px 16px;
+  align-items: center;
+  max-width: 440px;
+  padding: 36px 16px 16px;
+  background: var(--arena-calida);
+  color: var(--tinta);
+  border-radius: var(--radio);
+  text-decoration: none;
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  transition: transform .2s ease;
+}
+.ultimo:hover { transform: translateY(-3px); }
+.ultimo-etiqueta {
+  position: absolute;
+  top: 12px; left: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--verde-brujula);
+}
+.ultimo-foto {
+  grid-row: 1;
+  width: 96px; height: 96px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+}
+.ultimo-datos { display: flex; flex-direction: column; min-width: 0; }
+.ultimo-destino { font-family: var(--font-titulares); font-weight: 700; font-size: 1.6rem; line-height: 1.1; }
+.ultimo-sub { font-size: 14px; color: var(--suave); }
+.ultimo-fecha { font-size: 13px; margin-top: 6px; }
+.ultimo-precio {
+  font-family: var(--font-titulares);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--azul-vuelo);
+  align-self: end;
+}
+
+/* Franja de confianza */
+.confianza {
+  max-width: 1040px;
+  margin: -64px auto 0;
+  padding: 0 20px;
+  position: relative;
+}
+.confianza ul {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 16px;
+  background: #fff;
+  border-radius: var(--radio);
+  box-shadow: 0 12px 30px rgba(27,75,102,.14);
+}
+.confianza li { display: flex; flex-direction: column; gap: 2px; font-size: 13px; color: var(--suave); line-height: 1.35; }
+.confianza strong { font-size: 15px; color: var(--azul-vuelo); }
+.confianza svg {
+  width: 32px; height: 32px; padding: 6px; margin-bottom: 6px;
+  border-radius: 50%;
+  background: #e3efec;
+  fill: none; stroke: var(--verde-brujula); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Chollos */
+.chollos { max-width: 1120px; margin: 0 auto; padding: 56px 20px 24px; }
+.chollos-cabecera { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-bottom: 24px; }
+.chollos h2, .metodo h2 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.1; letter-spacing: -0.01em; }
+.filtros { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtros[hidden] { display: none; }
+.filtros button {
+  min-height: 44px; padding: 0 18px;
+  border-radius: 999px;
+  border: 1.5px solid var(--azul-vuelo);
+  background: transparent; color: var(--azul-vuelo);
+  font: 500 15px var(--font-cuerpo);
+  cursor: pointer;
+}
+.filtros button[aria-pressed="true"] { background: var(--azul-vuelo); color: #fff; }
+
+.chollos-lista {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 20px;
+}
+.chollo[hidden] { display: none; }
+.chollos-vacio { margin: 0; padding: 28px 24px; background: #fff; border-radius: var(--radio); max-width: 56ch; }
+.chollo a {
+  display: flex; flex-direction: column; height: 100%;
+  background: #fff; border-radius: var(--radio); overflow: hidden;
+  color: var(--tinta); text-decoration: none;
+  box-shadow: 0 2px 10px rgba(27,75,102,.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.chollo a:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(27,75,102,.18); }
+.chollo-foto {
+  position: relative; display: block; aspect-ratio: 4 / 3;
+  background-size: cover; background-position: center 40%;
+}
+.chollo-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,22,32,.5), transparent 45%); }
+.chollo-precio {
+  position: absolute; right: 12px; bottom: 12px; z-index: 1;
+  padding: 4px 14px; border-radius: 999px;
+  background: var(--coral-atardecer); color: #1a0e0a;
+  font-family: var(--font-titulares); font-weight: 700; font-size: 1.5rem;
+}
+.chollo-cuerpo { display: flex; flex-direction: column; gap: 2px; padding: 16px 18px 18px; }
+.chollo-destino { font-family: var(--font-titulares); font-weight: 700; font-size: 1.5rem; line-height: 1.15; color: var(--azul-vuelo); }
+.chollo-sub { font-size: 15px; color: var(--suave); }
+.chollo-datos { font-size: 14px; margin-top: 8px; }
+.chollo-datos em { font-style: normal; color: var(--verde-brujula); font-weight: 600; }
+.chollo-comprobado { font-size: 13px; color: var(--azul-vuelo); margin-top: 8px; padding-top: 8px; border-top: 1px solid #e6dfd2; font-weight: 500; }
+.chollo-comprobado .hace { font-weight: 600; color: var(--coral-oscuro, #b8391c); }
+.chollo-aviso { font-size: 13px; color: var(--suave); }
+.ultimo-comprobado { grid-column: 1 / -1; font-size: 12px; margin-top: 8px; color: var(--suave); }
+.ultimo-comprobado .hace { font-weight: 600; color: #b8391c; }
+
+/* Método */
+.metodo { padding: 32px 20px 56px; }
+.metodo-interior {
+  max-width: 1120px; margin: 0 auto; padding: 40px 24px;
+  display: grid; gap: 32px;
+  background: var(--azul-vuelo); color: #fff;
+  border-radius: 24px;
+}
+.metodo h2 { color: #fff; margin-bottom: 14px; }
+.metodo p { margin: 0 0 12px; max-width: 52ch; }
+.metodo-nota { font-size: 14px; color: rgba(255,255,255,.8); }
+.metodo-pasos { margin: 0; padding: 0; list-style: none; counter-reset: paso; display: grid; gap: 14px; align-content: center; }
+.metodo-pasos li {
+  counter-increment: paso;
+  position: relative; padding: 14px 16px 14px 60px;
+  background: rgba(255,255,255,.08); border-radius: 14px;
+}
+.metodo-pasos li::before {
+  content: counter(paso);
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--coral-atardecer); color: #1a0e0a;
+  font-family: var(--font-titulares); font-weight: 700;
+}
+
+/* Redes, Telegram y pie dentro de la home */
+.home .redes { padding: 8px 20px 24px; }
+.home .boton-red { border-radius: 999px; background: var(--azul-vuelo); }
+.home .telegram-cta { max-width: 640px; margin: 0 20px 40px; border: 0; border-radius: 24px; background: #e3efec; padding: 32px 24px; }
+.home .telegram-cta h2 { margin-top: 0; }
+.home .boton-cta { border-radius: 999px; background: var(--coral-atardecer); color: #1a0e0a; font-weight: 600; min-height: 52px; }
+
+@media (min-width: 720px) {
+  .home .telegram-cta { margin: 0 auto 40px; }
+  .home .logo-horizontal { max-width: 230px; }
+  .portada-contenido { grid-template-columns: 1.2fr 1fr; padding: 96px 32px 150px; }
+  .ultimo { justify-self: end; }
+  .confianza ul { grid-template-columns: repeat(4, 1fr); padding: 24px 28px; }
+  .chollos-lista { grid-template-columns: repeat(2, 1fr); }
+  .metodo-interior { grid-template-columns: 1.1fr 1fr; padding: 56px 48px; gap: 48px; }
+}
+@media (min-width: 1040px) {
+  .chollos-lista { grid-template-columns: repeat(3, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .ultimo, .chollo a { transition: none; }
+  .ultimo:hover, .chollo a:hover { transform: none; }
+}
