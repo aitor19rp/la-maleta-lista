@@ -15,14 +15,14 @@ bodyClass: home
       <p class="portada-sub">Un chollo de vuelo o escapada desde España cada día. Compruebo el precio a mano antes de publicarlo.</p>
       <div class="portada-acciones">
         <a href="#chollos" class="btn btn-coral">Ver los chollos</a>
-        <a href="{{ site.telegram }}" class="btn btn-fantasma" target="_blank" rel="noopener">Avisarme por Telegram</a>
+        <a href="{{ site.telegram }}" class="btn btn-fantasma" target="_blank" rel="noopener">Avisarme por Telegram<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
       </div>
     </div>
 
     {% if ultima and ofertasOrdenadas.length > 1 %}
     <a href="{{ ultima.url }}" class="ultimo" aria-label="Último chollo: {{ ultima.data.destino }}">
       <span class="ultimo-etiqueta">Último chollo publicado</span>
-      <span class="ultimo-foto" style="background-image: url('{{ ultima.data.imagen_cabecera }}');"></span>
+      <span class="ultimo-foto">{% imagen ultima.data.imagen_cabecera, "", "96px", [96, 192], false %}</span>
       <span class="ultimo-datos">
         <span class="ultimo-destino">{{ ultima.data.destino }}</span>
         {% if ultima.data.subtitulo %}<span class="ultimo-sub">{{ ultima.data.subtitulo }}</span>{% endif %}
@@ -69,7 +69,7 @@ bodyClass: home
   {% if not ultima %}
   <div class="chollos-vacio">
     <p>Ahora mismo no hay chollos activos. Únete al canal de Telegram y te aviso en cuanto salga el siguiente.</p>
-    <a href="{{ site.telegram }}" class="btn" target="_blank" rel="noopener">Unirme a Telegram</a>
+    <a href="{{ site.telegram }}" class="btn" target="_blank" rel="noopener">Unirme a Telegram<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
   </div>
   {% endif %}
 
@@ -79,7 +79,8 @@ bodyClass: home
     {% set primera = opciones | first %}
     <li class="chollo" data-salidas="{% for o in opciones %}{% if "Hotel" not in o.salida %}{{ o.salida }}|{% endif %}{% endfor %}">
       <a href="{{ oferta.url }}">
-        <span class="chollo-foto" style="background-image: url('{{ oferta.data.imagen_cabecera }}');">
+        <span class="chollo-foto">
+          {% imagen oferta.data.imagen_cabecera, "", "(min-width: 1040px) 360px, (min-width: 720px) 50vw, 100vw", [400, 800], false %}
           {% if primera %}<span class="chollo-precio">{{ primera.precio | precioCorto }}</span>{% endif %}
         </span>
         <span class="chollo-cuerpo">

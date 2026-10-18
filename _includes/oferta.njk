@@ -2,6 +2,7 @@
 layout: layout.njk
 bodyClass: home pagina-oferta
 eleventyComputed:
+  descripcion: "{{ destino }}{% if subtitulo %} · {{ subtitulo }}{% endif %}: oferta publicada el {{ precio_verificado }}. Mira fechas, precio y cómo reservar."
   title: "Chollo a {{ destino }}{% if subtitulo %} · {{ subtitulo }}{% endif %} | La Maleta Lista"
 ---
 {% set validas = opciones | opcionesValidas %}
@@ -11,11 +12,12 @@ eleventyComputed:
 {% set meses_nombres = [["ene","Ene"],["feb","Feb"],["mar","Mar"],["abr","Abr"],["may","May"],["jun","Jun"],["jul","Jul"],["ago","Ago"],["sep","Sep"],["oct","Oct"],["nov","Nov"],["dic","Dic"]] %}
 
 <article class="of">
-  <header class="of-portada" style="background-image: url('{{ imagen_cabecera }}');">
+  <header class="of-portada">
+    {% imagen imagen_cabecera, "Foto de " + destino, "(min-width: 720px) 720px, 100vw", [640, 1280], true %}
     <a href="/#chollos" class="of-btn-icono of-volver" aria-label="Volver a los chollos">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
     </a>
-    <a href="/" class="of-logo" aria-label="La Maleta Lista, inicio"><img src="/logo/horizontal.png" alt="La Maleta Lista"></a>
+    <a href="/" class="of-logo"><img src="/logo/horizontal.png" alt="La Maleta Lista, inicio"></a>
     <button type="button" class="of-btn-icono of-compartir" id="compartir" aria-label="Compartir esta oferta" hidden>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 12v7h14v-7"/></svg>
     </button>
@@ -41,7 +43,7 @@ eleventyComputed:
       <h2 id="of-meses">Mes de salida</h2>
       <ul class="of-meses">
         {% for m in meses_nombres %}
-        <li{% if m[0] == mes_salida %} class="activo" aria-label="{{ m[1] }}: mes de salida"{% endif %}>{{ m[1] }}</li>
+        <li{% if m[0] == mes_salida %} class="activo"{% endif %}>{{ m[1] }}{% if m[0] == mes_salida %}<span class="solo-lectores"> (mes de salida)</span>{% endif %}</li>
         {% endfor %}
       </ul>
     </section>
@@ -97,21 +99,21 @@ eleventyComputed:
         </li>
       </ol>
       {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
-      <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">Ver oferta</a>
+      <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">Ver oferta<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
       <p class="of-afiliado">Este enlace es de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
     </section>
 
     <details class="of-mas">
       <summary>Más opciones si esto no te encaja</summary>
       <ul>
-        <li><a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar otras fechas para {{ destino }}</a></li>
-        <li><a href="{{ buscar_aeropuertos_url | buscarAeropuertosUrl(destino) }}" target="_blank" rel="noopener sponsored">Salir desde otro aeropuerto</a></li>
-        <li><a href="{{ buscar_vuelos_url | buscarVuelosUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar vuelos a {{ destino }}</a></li>
+        <li><a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar otras fechas para {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
+        <li><a href="{{ buscar_aeropuertos_url | buscarAeropuertosUrl(destino) }}" target="_blank" rel="noopener sponsored">Salir desde otro aeropuerto<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
+        <li><a href="{{ buscar_vuelos_url | buscarVuelosUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar vuelos a {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
         {% if afiliados.seguroActivo %}
-        <li><a href="{{ afiliados.seguro | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Seguro de viaje</a></li>
+        <li><a href="{{ afiliados.seguro | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Seguro de viaje<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
         {% endif %}
-        <li><a href="{{ afiliados.coche | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Alquiler de coche</a></li>
-        <li><a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}</a></li>
+        <li><a href="{{ afiliados.coche | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Alquiler de coche<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
+        <li><a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
       </ul>
     </details>
   </div>
@@ -127,7 +129,7 @@ eleventyComputed:
         <span>Consulta el precio</span>
         {% endif %}
       </p>
-      <a href="{{ enlace }}" class="btn btn-coral" target="_blank" rel="noopener sponsored">Ver oferta</a>
+      <a href="{{ enlace }}" class="btn btn-coral" target="_blank" rel="noopener sponsored">Ver oferta<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
     </div>
   </div>
 </article>

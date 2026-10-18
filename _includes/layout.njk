@@ -1,65 +1,113 @@
+{%- set ogFoto = imagen_cabecera or "/img/hero-viajes.jpg" -%}
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title or site.nombre }}</title>
+  <meta name="description" content="{{ descripcion or site.descripcion }}">
+  <meta name="theme-color" content="#1B4B66">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="{{ site.nombre }}">
+  <meta property="og:title" content="{{ title or site.nombre }}">
+  <meta property="og:description" content="{{ descripcion or site.descripcion }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}{% imagenCompartir ogFoto %}">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/logo/icono.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/style.css">
-  {% if site.gaId %}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gaId }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{ site.gaId }}');
-  </script>
-  {% endif %}
-  {% if site.clarityId %}
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "{{ site.clarityId }}");
-  </script>
-  {% endif %}
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+  <a href="#contenido" class="saltar">Saltar al contenido</a>
+
   <header class="site-header">
     <a href="/" class="logo-link">
       <img src="/logo/horizontal.png" alt="{{ site.nombre }}" class="logo-horizontal">
     </a>
   </header>
 
-  <main>
+  <main id="contenido">
     {{ content | safe }}
   </main>
 
   <section class="redes">
     <a href="{{ site.redes.tiktok }}" class="boton-red" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82c-.9-.78-1.46-1.9-1.6-3.14h-3.14v13.4a3.16 3.16 0 1 1-2.24-3.03V9.7a6.3 6.3 0 1 0 5.38 6.24V9.06a8.4 8.4 0 0 0 4.9 1.56V7.5a5.1 5.1 0 0 1-3.3-1.68z"/></svg>
-      TikTok
+      TikTok<span class="solo-lectores"> (se abre en una pestaña nueva)</span>
     </a>
     <a href="{{ site.redes.instagram }}" class="boton-red" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-      Instagram
+      Instagram<span class="solo-lectores"> (se abre en una pestaña nueva)</span>
     </a>
     <a href="{{ site.redes.facebook }}" class="boton-red" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5h1.65V3.7C15.9 3.6 15 3.5 13.9 3.5c-2.2 0-3.7 1.35-3.7 3.8v2.6H7.5v3.1h2.7v8h3.3z"/></svg>
-      Facebook
+      Facebook<span class="solo-lectores"> (se abre en una pestaña nueva)</span>
     </a>
   </section>
 
   <section class="telegram-cta">
     <h2>Recibe los chollos antes que nadie</h2>
     <p>Únete al canal y entérate de las ofertas en cuanto salen.</p>
-    <a href="{{ site.telegram }}" class="boton-cta" target="_blank" rel="noopener">Unirme a Telegram</a>
+    <a href="{{ site.telegram }}" class="boton-cta" target="_blank" rel="noopener">Unirme a Telegram<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
   </section>
 
   <footer class="site-footer">
     <p>&copy; {% anioActual %} {{ site.nombre }}</p>
   </footer>
+
+  {% if site.gaId or site.clarityId %}
+  <div class="cookies" id="cookies" role="dialog" aria-labelledby="cookies-titulo" hidden>
+    <p id="cookies-titulo"><strong>¿Aceptas las cookies de analítica?</strong></p>
+    <p>Las uso para saber qué ofertas se visitan más. Si las rechazas, la web funciona igual.</p>
+    <div class="cookies-botones">
+      <button type="button" class="btn btn-coral" id="cookies-si">Aceptar</button>
+      <button type="button" class="btn btn-borde" id="cookies-no">Rechazar</button>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var clave = 'cookies-analitica';
+    var guardado = null;
+    try { guardado = localStorage.getItem(clave); } catch (e) {}
+
+    function cargarAnalitica() {
+      {% if site.gaId %}
+      var g = document.createElement('script');
+      g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.gaId }}';
+      document.head.appendChild(g);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', '{{ site.gaId }}');
+      {% endif %}
+      {% if site.clarityId %}
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', '{{ site.clarityId }}');
+      {% endif %}
+    }
+
+    function decidir(acepta) {
+      try { localStorage.setItem(clave, acepta ? 'si' : 'no'); } catch (e) {}
+      document.getElementById('cookies').hidden = true;
+      if (acepta) cargarAnalitica();
+    }
+
+    if (guardado === 'si') { cargarAnalitica(); return; }
+    if (guardado === 'no') return;
+    document.getElementById('cookies').hidden = false;
+    document.getElementById('cookies-si').addEventListener('click', function () { decidir(true); });
+    document.getElementById('cookies-no').addEventListener('click', function () { decidir(false); });
+  })();
+  </script>
+  {% endif %}
 </body>
 </html>
