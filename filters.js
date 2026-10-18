@@ -93,6 +93,12 @@ function masBarata(opciones) {
   return mejor;
 }
 
+// Text after the amount ("Desde 91€/persona" -> "por persona"), or "" when there is none.
+function precioUnidad(precio) {
+  const match = (precio || '').match(/\d+(?:[.,]\d+)?\s?€\s*\/\s*([^\s]+(?:\s+[^\s]+)*)/);
+  return match ? `por ${match[1].trim()}` : '';
+}
+
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
 // First month named in a date text ("30 diciembre - 1 enero" -> "dic"); this is the departure month.
@@ -107,4 +113,4 @@ function mesSalida(fecha) {
   return mejor === -1 ? '' : MESES[mejor].slice(0, 3);
 }
 
-module.exports = { mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };
+module.exports = { precioUnidad, mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };

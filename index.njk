@@ -19,9 +19,9 @@ bodyClass: home
       </div>
     </div>
 
-    {% if ultima %}
+    {% if ultima and ofertasOrdenadas.length > 1 %}
     <a href="{{ ultima.url }}" class="ultimo" aria-label="Último chollo: {{ ultima.data.destino }}">
-      <span class="ultimo-etiqueta">Último chollo comprobado</span>
+      <span class="ultimo-etiqueta">Último chollo publicado</span>
       <span class="ultimo-foto" style="background-image: url('{{ ultima.data.imagen_cabecera }}');"></span>
       <span class="ultimo-datos">
         <span class="ultimo-destino">{{ ultima.data.destino }}</span>
@@ -44,8 +44,8 @@ bodyClass: home
     </li>
     <li>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-7-6 16-3-7z"/></svg>
-      <strong>Salidas desde España</strong>
-      <span>Madrid, Barcelona, Málaga…</span>
+      <strong>Desde España</strong>
+      <span>Vuelos y escapadas que salen de aquí</span>
     </li>
     <li>
       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
@@ -67,7 +67,10 @@ bodyClass: home
   </div>
 
   {% if not ultima %}
-  <p class="chollos-vacio">Ahora mismo no hay chollos activos. Únete al canal de Telegram y te aviso en cuanto salga el siguiente.</p>
+  <div class="chollos-vacio">
+    <p>Ahora mismo no hay chollos activos. Únete al canal de Telegram y te aviso en cuanto salga el siguiente.</p>
+    <a href="{{ site.telegram }}" class="btn" target="_blank" rel="noopener">Unirme a Telegram</a>
+  </div>
   {% endif %}
 
   <ul class="chollos-lista" id="chollos-lista">

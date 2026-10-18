@@ -6,6 +6,7 @@ eleventyComputed:
 ---
 {% set validas = opciones | opcionesValidas %}
 {% set barata = validas | masBarata %}
+{% set precio_barra = barata or (validas | first) %}
 {% set enlace = link_afiliado | clickrefLink(destino) %}
 {% set meses_nombres = [["ene","Ene"],["feb","Feb"],["mar","Mar"],["abr","Abr"],["may","May"],["jun","Jun"],["jul","Jul"],["ago","Ago"],["sep","Sep"],["oct","Oct"],["nov","Nov"],["dic","Dic"]] %}
 
@@ -14,9 +15,11 @@ eleventyComputed:
     <a href="/#chollos" class="of-btn-icono of-volver" aria-label="Volver a los chollos">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
     </a>
-    <button type="button" class="of-btn-icono of-compartir" id="compartir" aria-label="Compartir esta oferta">
+    <a href="/" class="of-logo" aria-label="La Maleta Lista, inicio"><img src="/logo/horizontal.png" alt="La Maleta Lista"></a>
+    <button type="button" class="of-btn-icono of-compartir" id="compartir" aria-label="Compartir esta oferta" hidden>
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 12v7h14v-7"/></svg>
     </button>
+    <span class="of-estado" id="compartir-estado" role="status" aria-live="polite"></span>
     <div class="of-titulo">
       <h1>{{ destino }}</h1>
       {% if subtitulo %}<p>{{ subtitulo }}</p>{% endif %}
@@ -46,6 +49,7 @@ eleventyComputed:
 
     <section aria-labelledby="of-fechas">
       <h2 id="of-fechas">Fechas y precios</h2>
+      {% if validas.length %}
       <ul class="of-fechas">
         {% for opcion in validas %}
         <li{% if opcion == barata and validas.length > 1 %} class="barata"{% endif %}>
@@ -57,6 +61,9 @@ eleventyComputed:
         </li>
         {% endfor %}
       </ul>
+      {% else %}
+      <p class="of-sujeto">Esta oferta aún no tiene fechas con precio. Pulsa «Ver oferta» para consultarlo en la web de reserva.</p>
+      {% endif %}
       <p class="of-sujeto">Precio sujeto a fecha: puede haber cambiado desde que se publicó. Confírmalo en la web de reserva.</p>
       <a href="#of-pasos" class="of-ir-pasos">Cómo reservar</a>
     </section>
@@ -94,32 +101,31 @@ eleventyComputed:
       <p class="of-afiliado">Este enlace es de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
     </section>
 
-    <section aria-labelledby="of-mas">
-      <h2 id="of-mas">Si esto no te encaja</h2>
-      <ul class="of-mas">
+    <details class="of-mas">
+      <summary>Más opciones si esto no te encaja</summary>
+      <ul>
         <li><a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar otras fechas para {{ destino }}</a></li>
         <li><a href="{{ buscar_aeropuertos_url | buscarAeropuertosUrl(destino) }}" target="_blank" rel="noopener sponsored">Salir desde otro aeropuerto</a></li>
         <li><a href="{{ buscar_vuelos_url | buscarVuelosUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar vuelos a {{ destino }}</a></li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="of-extras">
-      <h2 id="of-extras">También te puede interesar</h2>
-      <div class="of-extras">
         {% if afiliados.seguroActivo %}
-        <a href="{{ afiliados.seguro | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Seguro de viaje</a>
+        <li><a href="{{ afiliados.seguro | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Seguro de viaje</a></li>
         {% endif %}
-        <a href="{{ afiliados.coche | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Alquiler de coche</a>
-        <a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}</a>
-      </div>
-    </section>
+        <li><a href="{{ afiliados.coche | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Alquiler de coche</a></li>
+        <li><a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}</a></li>
+      </ul>
+    </details>
   </div>
 
   <div class="of-barra">
     <div class="of-barra-interior">
       <p class="of-barra-precio">
+        {% if precio_barra %}
         <span>{% if validas.length > 1 %}Desde{% else %}Precio{% endif %}</span>
-        <strong>{{ (barata or (validas | first)).precio | precioCorto }}</strong>
+        <strong>{{ precio_barra.precio | precioCorto }}</strong>
+        {% if precio_barra.precio | precioUnidad %}<small>{{ precio_barra.precio | precioUnidad }}</small>{% endif %}
+        {% else %}
+        <span>Consulta el precio</span>
+        {% endif %}
       </p>
       <a href="{{ enlace }}" class="btn btn-coral" target="_blank" rel="noopener sponsored">Ver oferta</a>
     </div>
@@ -137,16 +143,22 @@ eleventyComputed:
     }
   }
   var btn = document.getElementById('compartir');
+  var estado = document.getElementById('compartir-estado');
   if (!btn) return;
+  if (!navigator.share && !(navigator.clipboard && navigator.clipboard.writeText)) return;
+  btn.hidden = false;
+  function avisar(texto) {
+    estado.textContent = texto;
+    setTimeout(function () { estado.textContent = ''; }, 2500);
+  }
   btn.addEventListener('click', function () {
     var datos = { title: document.title, url: location.href };
     if (navigator.share) { navigator.share(datos).catch(function () {}); return; }
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(location.href).then(function () {
-        btn.setAttribute('aria-label', 'Enlace copiado');
-        btn.classList.add('copiado');
-      }).catch(function () {});
-    }
+    navigator.clipboard.writeText(location.href).then(function () {
+      avisar('Enlace copiado');
+    }).catch(function () {
+      avisar('No se pudo copiar el enlace');
+    });
   });
 })();
 </script>

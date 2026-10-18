@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const { mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas } = require('./filters.js');
+const { precioUnidad, mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, opcionesValidas } = require('./filters.js');
 
 test('slugify removes accents and spaces', () => {
   assert.strictEqual(slugify('Praga'), 'praga');
@@ -141,4 +141,14 @@ test('mesSalida returns the first month named in the date text', () => {
 test('mesSalida returns an empty string when no month is found', () => {
   assert.strictEqual(mesSalida('próximo puente'), '');
   assert.strictEqual(mesSalida(undefined), '');
+});
+
+test('precioUnidad turns "/persona" into "por persona"', () => {
+  assert.strictEqual(precioUnidad('Desde 91€/persona'), 'por persona');
+  assert.strictEqual(precioUnidad('120€ / noche'), 'por noche');
+});
+
+test('precioUnidad returns an empty string when the price has no unit', () => {
+  assert.strictEqual(precioUnidad('49€'), '');
+  assert.strictEqual(precioUnidad(undefined), '');
 });

@@ -1,4 +1,4 @@
-const { mesSalida, masBarata, precioCorto, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas } = require('./filters.js');
+const { precioUnidad, mesSalida, masBarata, precioCorto, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas } = require('./filters.js');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("style.css");
@@ -8,6 +8,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("precioCorto", precioCorto);
   eleventyConfig.addFilter("masBarata", masBarata);
   eleventyConfig.addFilter("mesSalida", mesSalida);
+  eleventyConfig.addFilter("precioUnidad", precioUnidad);
   eleventyConfig.addFilter("utmLink", utmLink);
   eleventyConfig.addFilter("clickrefLink", clickrefLink);
   eleventyConfig.addFilter("sidLink", sidLink);
