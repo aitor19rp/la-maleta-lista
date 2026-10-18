@@ -79,7 +79,7 @@ bodyClass: home
     {% set primera = opciones | first %}
     <li class="chollo" data-salidas="{% for o in opciones %}{% if "Hotel" not in o.salida %}{{ o.salida }}|{% endif %}{% endfor %}">
       <a href="{{ oferta.url }}">
-        <span class="chollo-foto">
+        <span class="chollo-foto" style="view-transition-name: foto-{{ oferta.fileSlug }};">
           {% imagen oferta.data.imagen_cabecera, "", "(min-width: 1040px) 360px, (min-width: 720px) 50vw, 100vw", [400, 800], false %}
           {% if primera %}<span class="chollo-precio">{{ primera.precio | precioCorto }}</span>{% endif %}
         </span>
@@ -133,7 +133,14 @@ bodyClass: home
     });
   });
   if (ciudades.length < 2) return;
-  function pintar(activa) {
+  var lista = document.getElementById('chollos-lista');
+  function pintar(activa, animar) {
+    if (animar) {
+      lista.classList.remove('filtrando');
+      void lista.offsetWidth;
+      lista.classList.add('filtrando');
+      setTimeout(function () { lista.classList.remove('filtrando'); }, 400);
+    }
     items.forEach(function (li) {
       var ok = !activa || li.dataset.salidas.split('|').indexOf(activa) !== -1;
       li.hidden = !ok;
@@ -147,7 +154,7 @@ bodyClass: home
     b.type = 'button';
     b.textContent = c || 'Todas';
     b.dataset.ciudad = c;
-    b.addEventListener('click', function () { pintar(c); });
+    b.addEventListener('click', function () { pintar(c, true); });
     cont.appendChild(b);
   });
   cont.hidden = false;

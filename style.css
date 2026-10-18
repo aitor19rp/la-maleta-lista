@@ -528,6 +528,22 @@ html { scroll-behavior: smooth; }
 @media (min-width: 1040px) {
   .chollos-lista { grid-template-columns: repeat(3, 1fr); }
 }
+/* Movimiento: solo responde a acciones. Con "reducir movimiento" todo aparece al instante. */
+@media (prefers-reduced-motion: no-preference) {
+  /* La foto de la tarjeta viaja hasta la portada de la oferta (y vuelve). */
+  @view-transition { navigation: auto; }
+  .chollo-foto, .of-portada { view-transition-class: foto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .2s; }
+  ::view-transition-group(.foto) { animation-duration: .5s; animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
+  ::view-transition-old(.foto), ::view-transition-new(.foto) { height: 100%; object-fit: cover; }
+
+  @keyframes entrar { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+  .cookies:not([hidden]) { animation: entrar .35s cubic-bezier(.16, 1, .3, 1); }
+  .chollos-lista.filtrando .chollo:not([hidden]) { animation: aparecer .25s ease-out; }
+  .of-estado { animation: aparecer .15s ease-out; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn, .ultimo, .chollo a, .of-barra { transition: none; }
   .ultimo:hover, .chollo a:hover { transform: none; }

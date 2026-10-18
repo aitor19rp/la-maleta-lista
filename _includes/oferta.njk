@@ -12,7 +12,7 @@ eleventyComputed:
 {% set meses_nombres = [["ene","Ene"],["feb","Feb"],["mar","Mar"],["abr","Abr"],["may","May"],["jun","Jun"],["jul","Jul"],["ago","Ago"],["sep","Sep"],["oct","Oct"],["nov","Nov"],["dic","Dic"]] %}
 
 <article class="of">
-  <header class="of-portada">
+  <header class="of-portada" style="view-transition-name: foto-{{ page.fileSlug }};">
     {% imagen imagen_cabecera, "Foto de " + destino, "(min-width: 720px) 720px, 100vw", [640, 1280], true %}
     <a href="/#chollos" class="of-btn-icono of-volver" aria-label="Volver a los chollos">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
