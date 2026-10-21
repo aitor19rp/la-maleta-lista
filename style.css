@@ -205,6 +205,8 @@ html { scroll-behavior: smooth; }
 }
 .of-cta { display: flex; width: 100%; font-size: 18px; }
 .of-afiliado { margin: 10px 0 0; font-size: 15px; color: var(--suave); }
+.of-widget { margin-top: 14px; min-height: 120px; padding: 12px; background: var(--papel); border-radius: 14px; }
+.of-widget[hidden] { display: none; }
 
 .of-mas { margin-top: 28px; border-top: 1px solid var(--linea); }
 .of-mas summary {

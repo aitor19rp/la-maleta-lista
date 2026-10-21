@@ -103,12 +103,17 @@ eleventyComputed:
       <p class="of-afiliado">Este enlace es de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
     </section>
 
+    <section aria-labelledby="of-otras">
+      <h2 id="of-otras">¿Otras fechas u otro origen?</h2>
+      <p class="of-pasos-intro">Busca vuelos directos desde tu ciudad y para tus fechas con el buscador de Kiwi.com.</p>
+      <button type="button" class="btn btn-borde" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
+      <div class="of-widget" id="widget-kiwi" hidden></div>
+      <p class="of-afiliado">Al abrirlo se carga el buscador de Kiwi.com, que puede usar sus propias cookies. Es un enlace de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
+    </section>
+
     <details class="of-mas">
       <summary>Más opciones si esto no te encaja</summary>
       <ul>
-        <li><a href="{{ buscar_fechas_url | buscarFechasUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar otras fechas para {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
-        <li><a href="{{ buscar_aeropuertos_url | buscarAeropuertosUrl(destino) }}" target="_blank" rel="noopener sponsored">Salir desde otro aeropuerto<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
-        <li><a href="{{ buscar_vuelos_url | buscarVuelosUrl(destino) }}" target="_blank" rel="noopener sponsored">Buscar vuelos a {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
         {% if afiliados.seguroActivo %}
         <li><a href="{{ afiliados.seguro | utmLink(destino) }}" target="_blank" rel="noopener sponsored">Seguro de viaje<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
         {% endif %}
@@ -154,6 +159,23 @@ eleventyComputed:
     window.addEventListener('scroll', revisarBarra, { passive: true });
     window.addEventListener('resize', revisarBarra);
     revisarBarra();
+  }
+  var abrir = document.getElementById('widget-abrir');
+  var contenedor = document.getElementById('widget-kiwi');
+  if (abrir && contenedor) {
+    abrir.addEventListener('click', function () {
+      if (!contenedor.hasChildNodes()) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.charset = 'utf-8';
+        s.src = 'https://tpemb.com/content?currency=eur&trs=588032&shmarker=772596.widget-{{ page.fileSlug }}&locale=es&stops=0&show_hotels=true&powered_by=true&border_radius=0&plain=true&color_button=%231B4B66ff&color_button_text=%23ffffff&promo_id=3414&campaign_id=111';
+        contenedor.appendChild(s);
+      }
+      var visible = contenedor.hidden;
+      contenedor.hidden = !visible;
+      abrir.setAttribute('aria-expanded', visible ? 'true' : 'false');
+      abrir.textContent = visible ? 'Cerrar el buscador' : 'Abrir el buscador de vuelos';
+    });
   }
   var btn = document.getElementById('compartir');
   var estado = document.getElementById('compartir-estado');
