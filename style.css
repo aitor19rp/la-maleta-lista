@@ -36,6 +36,7 @@ body {
 
 .logo-link {
   display: inline-block;
+  padding: 8px 4px;
   text-decoration: none;
 }
 
@@ -173,7 +174,7 @@ h2 {
 .of-fecha-fecha { font-weight: 600; color: var(--azul-vuelo); }
 .of-fecha-salida { font-size: 15px; color: var(--suave); }
 .of-fecha-precio { display: flex; flex-direction: column; align-items: flex-end; text-align: right; font-family: var(--font-titulares); font-weight: 700; font-size: 1.25rem; color: var(--azul-vuelo); }
-.of-fecha-precio em { font-family: var(--font-cuerpo); font-style: normal; font-size: 13px; font-weight: 600; color: var(--verde-profundo); }
+.of-fecha-precio em { font-family: var(--font-cuerpo); font-style: normal; font-size: 14px; font-weight: 600; color: var(--verde-profundo); }
 .of-sujeto { margin: 12px 0 0; font-size: 15px; color: var(--suave); }
 .of-ir-pasos {
   display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; padding: 0 20px;
@@ -252,7 +253,7 @@ html { scroll-behavior: smooth; }
   --radio: 18px;
 }
 .home .site-header {
-  padding: 12px 20px;
+  padding: 4px 20px;
   background: var(--arena-calida);
 }
 .home .logo-horizontal { height: 30px; width: auto; max-width: none; }
@@ -372,7 +373,7 @@ html { scroll-behavior: smooth; }
 .ultimo-etiqueta {
   position: absolute;
   top: 12px; left: 16px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--verde-texto);
 }
@@ -391,7 +392,7 @@ html { scroll-behavior: smooth; }
 .ultimo-datos { display: flex; flex-direction: column; min-width: 0; }
 .ultimo-destino { font-family: var(--font-titulares); font-weight: 700; font-size: 1.6rem; line-height: 1.1; }
 .ultimo-sub { font-size: 14px; color: var(--suave); }
-.ultimo-fecha { font-size: 13px; margin-top: 6px; }
+.ultimo-fecha { font-size: 14px; margin-top: 6px; }
 .ultimo-precio {
   font-family: var(--font-titulares);
   font-weight: 700;
@@ -418,7 +419,7 @@ html { scroll-behavior: smooth; }
   border-radius: var(--radio);
   box-shadow: 0 12px 30px rgba(27,75,102,.14);
 }
-.confianza li { display: flex; flex-direction: column; gap: 2px; font-size: 13px; color: var(--suave); line-height: 1.35; }
+.confianza li { display: flex; flex-direction: column; gap: 2px; font-size: 14px; color: var(--suave); line-height: 1.35; }
 .confianza strong { font-size: 15px; color: var(--azul-vuelo); }
 .confianza svg {
   width: 32px; height: 32px; padding: 6px; margin-bottom: 6px;
@@ -477,7 +478,7 @@ html { scroll-behavior: smooth; }
 .chollo-datos em { font-style: normal; color: var(--verde-texto); font-weight: 600; }
 .chollo-comprobado { font-size: 14px; color: var(--azul-vuelo); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--linea); font-weight: 500; }
 .chollo-comprobado .hace { font-weight: 600; color: var(--coral-oscuro, var(--coral-oscuro)); }
-.ultimo-comprobado { grid-column: 1 / -1; font-size: 13px; margin-top: 8px; color: var(--suave); }
+.ultimo-comprobado { grid-column: 1 / -1; font-size: 14px; margin-top: 8px; color: var(--suave); }
 .ultimo-comprobado .hace { font-weight: 600; color: var(--coral-oscuro); }
 
 /* Método */

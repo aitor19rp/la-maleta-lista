@@ -6,6 +6,7 @@ bodyClass: home
 {% set ofertasOrdenadas = collections.ofertas | reverse %}
 {% set ultima = ofertasOrdenadas | first %}
 {% set ultimaOpcion = (ultima.data.opciones | opcionesValidas) | first %}
+{% set ultimaEsHotel = (ultima.data.tipo == "hotel") or (not ultima.data.tipo and ultimaOpcion and ("Hotel" in ultimaOpcion.salida)) %}
 
 <section class="portada">
   <div class="portada-foto" style="background-image: url('/img/hero-viajes.jpg');" role="img" aria-label="Ala de un avión al amanecer vista desde la ventanilla"></div>
@@ -26,7 +27,7 @@ bodyClass: home
       <span class="ultimo-datos">
         <span class="ultimo-destino">{{ ultima.data.destino }}</span>
         {% if ultima.data.subtitulo %}<span class="ultimo-sub">{{ ultima.data.subtitulo }}</span>{% endif %}
-        {% if ultimaOpcion %}<span class="ultimo-fecha">{% if "Hotel" in ultimaOpcion.salida %}Solo hotel{% else %}Sale de {{ ultimaOpcion.salida }}{% endif %} · {{ ultimaOpcion.fecha }}</span>{% endif %}
+        {% if ultimaOpcion %}<span class="ultimo-fecha">{% if ultimaEsHotel %}Solo hotel{% else %}Sale de {{ ultimaOpcion.salida }}{% endif %} · {{ ultimaOpcion.fecha }}</span>{% endif %}
       </span>
       <span class="ultimo-comprobado" data-fecha="{{ ultima.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ ultima.data.precio_verificado }}<b class="hace"></b></span>
       {% if ultimaOpcion %}<span class="ultimo-precio">{{ ultimaOpcion.precio | precioCorto }}</span>{% endif %}
@@ -77,7 +78,8 @@ bodyClass: home
     {% for oferta in ofertasOrdenadas %}
     {% set opciones = oferta.data.opciones | opcionesValidas %}
     {% set primera = opciones | first %}
-    <li class="chollo" data-salidas="{% for o in opciones %}{% if "Hotel" not in o.salida %}{{ o.salida }}|{% endif %}{% endfor %}">
+    {% set esHotel = (oferta.data.tipo == "hotel") or (not oferta.data.tipo and primera and ("Hotel" in primera.salida)) %}
+    <li class="chollo" data-salidas="{% if not esHotel %}{% for o in opciones %}{% if "Hotel" not in o.salida %}{{ o.salida }}|{% endif %}{% endfor %}{% endif %}">
       <a href="{{ oferta.url }}">
         <span class="chollo-foto" style="view-transition-name: foto-{{ oferta.fileSlug }};">
           {% imagen oferta.data.imagen_cabecera, "", "(min-width: 1040px) 360px, (min-width: 720px) 50vw, 100vw", [400, 800], false %}
@@ -87,7 +89,7 @@ bodyClass: home
           <span class="chollo-destino">{{ oferta.data.destino }}</span>
           {% if oferta.data.subtitulo %}<span class="chollo-sub">{{ oferta.data.subtitulo }}</span>{% endif %}
           {% if primera %}
-          <span class="chollo-datos">{% if "Hotel" in primera.salida %}Solo hotel{% else %}Sale de {{ primera.salida }}{% endif %} · {{ primera.fecha }}{% if opciones.length > 1 %} <em>+{{ opciones.length - 1 }} salida{% if opciones.length > 2 %}s{% endif %}</em>{% endif %}</span>
+          <span class="chollo-datos">{% if esHotel %}Solo hotel{% else %}Sale de {{ primera.salida }}{% endif %} · {{ primera.fecha }}{% if opciones.length > 1 %} <em>+{{ opciones.length - 1 }} salida{% if opciones.length > 2 %}s{% endif %}</em>{% endif %}</span>
           {% endif %}
           <span class="chollo-comprobado" data-fecha="{{ oferta.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ oferta.data.precio_verificado }}<b class="hace"></b></span>
         </span>

@@ -9,6 +9,7 @@ eleventyComputed:
 {% set barata = validas | masBarata %}
 {% set precio_barra = barata or (validas | first) %}
 {% set enlace = link_afiliado | clickrefLink(destino) %}
+{% set esHotel = (tipo == "hotel") or (not tipo and validas.length and ("Hotel" in (validas | first).salida)) %}
 {% set meses_nombres = [["ene","Ene"],["feb","Feb"],["mar","Mar"],["abr","Abr"],["may","May"],["jun","Jun"],["jul","Jul"],["ago","Ago"],["sep","Sep"],["oct","Oct"],["nov","Nov"],["dic","Dic"]] %}
 
 <article class="of">
@@ -103,6 +104,7 @@ eleventyComputed:
       <p class="of-afiliado">Este enlace es de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
     </section>
 
+    {% if not esHotel %}
     <section aria-labelledby="of-otras">
       <h2 id="of-otras">¿Otras fechas u otro origen?</h2>
       <p class="of-pasos-intro">Busca vuelos directos desde tu ciudad y para tus fechas con el buscador de Kiwi.com.</p>
@@ -110,6 +112,7 @@ eleventyComputed:
       <div class="of-widget" id="widget-kiwi" hidden></div>
       <p class="of-afiliado">Al abrirlo se carga el buscador de Kiwi.com, que puede usar sus propias cookies. Es un enlace de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
     </section>
+    {% endif %}
 
     <details class="of-mas">
       <summary>Más opciones si esto no te encaja</summary>
