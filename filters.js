@@ -113,4 +113,20 @@ function mesSalida(fecha) {
   return mejor === -1 ? '' : MESES[mejor].slice(0, 3);
 }
 
-module.exports = { precioUnidad, mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };
+// Trivago deep link (TradeTracker) for the same hotel on other dates: swaps the
+// "dr-AAAAMMDD-AAAAMMDD" segment inside the encoded search. Dates are "AAAA-MM-DD".
+function fechasTrivago(baseUrl, desde, hasta) {
+  if (!baseUrl || !desde || !hasta) return baseUrl || '#';
+  const sinGuiones = (d) => String(d).replace(/-/g, '');
+  return baseUrl.replace(/dr-\d{8}-\d{8}/, `dr-${sinGuiones(desde)}-${sinGuiones(hasta)}`);
+}
+
+// "2026-11-05" -> "5 nov"
+function fechaCorta(d) {
+  const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(d));
+  if (!m) return '';
+  return `${Number(m[3])} ${meses[Number(m[2]) - 1]}`;
+}
+
+module.exports = { fechasTrivago, fechaCorta, precioUnidad, mesSalida, masBarata, precioCorto, slugify, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas };

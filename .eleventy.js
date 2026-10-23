@@ -1,4 +1,4 @@
-const { precioUnidad, mesSalida, masBarata, precioCorto, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas } = require('./filters.js');
+const { precioUnidad, mesSalida, masBarata, precioCorto, utmLink, clickrefLink, sidLink, civitatisUrl, buscarFechasUrl, buscarAeropuertosUrl, buscarVuelosUrl, opcionesValidas, fechasTrivago, fechaCorta } = require('./filters.js');
 
 const Image = require('@11ty/eleventy-img');
 
@@ -30,6 +30,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("buscarAeropuertosUrl", buscarAeropuertosUrl);
   eleventyConfig.addFilter("buscarVuelosUrl", buscarVuelosUrl);
   eleventyConfig.addFilter("opcionesValidas", opcionesValidas);
+  eleventyConfig.addFilter("fechasTrivago", fechasTrivago);
+  eleventyConfig.addFilter("fechaCorta", fechaCorta);
   eleventyConfig.addAsyncShortcode("imagen", async (src, alt, sizes, widths, prioritaria) => {
     const metadata = await generar(src, widths, ['webp', 'jpeg']);
     return Image.generateHTML(metadata, {

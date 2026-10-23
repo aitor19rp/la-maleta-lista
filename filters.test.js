@@ -152,3 +152,15 @@ test('precioUnidad returns an empty string when the price has no unit', () => {
   assert.strictEqual(precioUnidad('49€'), '');
   assert.strictEqual(precioUnidad(undefined), '');
 });
+
+test('fechasTrivago swaps the dates of a Trivago search and keeps the rest', () => {
+  const { fechasTrivago, fechaCorta } = require('./filters.js');
+  const base = 'https://tc.tradetracker.net/?c=14416&m=12&a=478638&r=x&u=%2Fes%2Flm%2Fh%3Fsearch%3D100-1%3Bdr-20261119-20261120%3Bdrs-23%3Brc-1-2';
+  assert.equal(
+    fechasTrivago(base, '2026-11-05', '2026-11-06'),
+    'https://tc.tradetracker.net/?c=14416&m=12&a=478638&r=x&u=%2Fes%2Flm%2Fh%3Fsearch%3D100-1%3Bdr-20261105-20261106%3Bdrs-23%3Brc-1-2'
+  );
+  assert.equal(fechasTrivago('', '2026-11-05', '2026-11-06'), '#');
+  assert.equal(fechaCorta('2026-11-05'), '5 nov');
+  assert.equal(fechaCorta('basura'), '');
+});

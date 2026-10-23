@@ -38,13 +38,30 @@ eleventyComputed:
     </ul>
     {% endif %}
 
+    {% if galeria and galeria.length %}
+    <section aria-labelledby="of-fotos">
+      <h2 id="of-fotos">Fotos</h2>
+      <ul class="of-galeria">
+        {% for foto in galeria %}
+        <li><button type="button" class="of-foto" data-grande="{{ foto }}" aria-label="Ampliar la foto {{ loop.index }} de {{ galeria.length }}">{% imagen foto, "Foto " + loop.index + " de " + destino, "160px", [160, 320], false %}</button></li>
+        {% endfor %}
+      </ul>
+    </section>
+    <dialog class="of-visor" id="visor" aria-label="Fotos de {{ destino }}">
+      <img src="" alt="" id="visor-img">
+      <button type="button" class="of-visor-btn of-visor-cerrar" id="visor-cerrar" aria-label="Cerrar">&times;</button>
+      <button type="button" class="of-visor-btn of-visor-ant" id="visor-ant" aria-label="Foto anterior">&lsaquo;</button>
+      <button type="button" class="of-visor-btn of-visor-sig" id="visor-sig" aria-label="Foto siguiente">&rsaquo;</button>
+    </dialog>
+    {% endif %}
+
     {% set mes_salida = mes or ((validas | first).fecha | mesSalida if validas.length else "") %}
     {% if mes_salida %}
     <section aria-labelledby="of-meses">
-      <h2 id="of-meses">Mes de salida</h2>
+      <h2 id="of-meses">{% if esHotel %}Mes de la estancia{% else %}Mes de salida{% endif %}</h2>
       <ul class="of-meses">
         {% for m in meses_nombres %}
-        <li{% if m[0] == mes_salida %} class="activo"{% endif %}>{{ m[1] }}{% if m[0] == mes_salida %}<span class="solo-lectores"> (mes de salida)</span>{% endif %}</li>
+        <li{% if m[0] == mes_salida %} class="activo"{% endif %}>{{ m[1] }}{% if m[0] == mes_salida %}<span class="solo-lectores"> ({% if esHotel %}mes de la estancia{% else %}mes de salida{% endif %})</span>{% endif %}</li>
         {% endfor %}
       </ul>
     </section>
@@ -70,6 +87,18 @@ eleventyComputed:
       <p class="of-sujeto">Precio sujeto a fecha: puede haber cambiado desde que se publicó. Confírmalo en la web de reserva.</p>
       <a href="#of-pasos" class="of-ir-pasos">Cómo reservar</a>
     </section>
+
+    {% if esHotel and otras_fechas and otras_fechas.length %}
+    <section aria-labelledby="of-otras-fechas">
+      <h2 id="of-otras-fechas">Otras fechas</h2>
+      <p class="of-pasos-intro">Mismo hotel, otras noches. Cada botón abre Trivago con esas fechas para que veas el precio de ese día.</p>
+      <ul class="of-otras-fechas">
+        {% for f in otras_fechas %}
+        <li><a href="{{ link_afiliado | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
 
     {% if content %}
     <section class="of-info" aria-labelledby="of-info">
@@ -162,6 +191,24 @@ eleventyComputed:
     window.addEventListener('scroll', revisarBarra, { passive: true });
     window.addEventListener('resize', revisarBarra);
     revisarBarra();
+  }
+  var visor = document.getElementById('visor');
+  if (visor && visor.showModal) {
+    var fotos = Array.prototype.slice.call(document.querySelectorAll('.of-foto'));
+    var visorImg = document.getElementById('visor-img');
+    var actual = 0;
+    var mostrar = function (i) {
+      actual = (i + fotos.length) % fotos.length;
+      visorImg.src = fotos[actual].dataset.grande;
+      visorImg.alt = fotos[actual].querySelector('img').alt;
+    };
+    fotos.forEach(function (b, i) {
+      b.addEventListener('click', function () { mostrar(i); visor.showModal(); });
+    });
+    document.getElementById('visor-cerrar').addEventListener('click', function () { visor.close(); });
+    document.getElementById('visor-ant').addEventListener('click', function () { mostrar(actual - 1); });
+    document.getElementById('visor-sig').addEventListener('click', function () { mostrar(actual + 1); });
+    visor.addEventListener('click', function (e) { if (e.target === visor) visor.close(); });
   }
   var abrir = document.getElementById('widget-abrir');
   var contenedor = document.getElementById('widget-kiwi');

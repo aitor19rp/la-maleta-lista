@@ -162,6 +162,23 @@ h2 {
 .of-meses li { padding: 8px 0; text-align: center; border-radius: 999px; color: var(--suave); font-size: 15px; }
 .of-meses li.activo { background: var(--azul-vuelo); color: var(--blanco); font-weight: 600; }
 
+.of-galeria { list-style: none; margin: 0 -20px; padding: 0 20px 6px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+.of-galeria li { flex: 0 0 auto; scroll-snap-align: start; }
+.of-foto { display: block; width: 160px; height: 120px; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: var(--menta); cursor: zoom-in; }
+.of-foto img, .of-foto picture { display: block; width: 100%; height: 100%; object-fit: cover; }
+.of-visor { width: 100%; max-width: 100vw; height: 100%; max-height: 100vh; margin: 0; padding: 0; border: 0; background: rgba(27, 36, 48, 0.94); }
+.of-visor[open] { display: flex; align-items: center; justify-content: center; }
+.of-visor img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.of-visor-btn { position: absolute; width: 48px; height: 48px; border: 0; border-radius: 50%; background: var(--blanco); color: var(--azul-vuelo); font-size: 28px; line-height: 1; cursor: pointer; }
+.of-visor-cerrar { top: 12px; right: 12px; }
+.of-visor-ant { left: 12px; top: 50%; transform: translateY(-50%); }
+.of-visor-sig { right: 12px; top: 50%; transform: translateY(-50%); }
+
+.of-otras-fechas { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.of-otras-fechas a { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 48px; padding: 0 18px; border: 2px solid var(--azul-vuelo); border-radius: 12px; color: var(--azul-vuelo); font-weight: 600; font-size: 16px; text-decoration: none; }
+.of-otras-fechas a:hover { background: var(--azul-vuelo); color: var(--blanco); }
+.of-otras-precio { font-size: 15px; font-weight: 500; }
+
 .of-fechas { list-style: none; margin: 0; padding: 0; }
 .of-fechas li {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
