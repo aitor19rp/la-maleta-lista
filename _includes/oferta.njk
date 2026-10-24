@@ -59,7 +59,6 @@ eleventyComputed:
       </div>
       <a class="btn btn-coral" id="bf-ir" href="{{ link_afiliado }}" target="_blank" rel="noopener sponsored">Ver precio en Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
       <p class="of-sujeto" id="bf-aviso" role="status" hidden></p>
-      <p class="of-afiliado">Es un enlace de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
     </section>
     {% endif %}
 
@@ -121,7 +120,7 @@ eleventyComputed:
       <p class="of-pasos-intro">Busca vuelos directos desde tu ciudad y para tus fechas con el buscador de Kiwi.com.</p>
       <button type="button" class="btn btn-borde" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
       <div class="of-widget" id="widget-kiwi" hidden></div>
-      <p class="of-afiliado">Al abrirlo se carga el buscador de Kiwi.com, que puede usar sus propias cookies. Es un enlace de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
+      <p class="of-afiliado">Al abrirlo se carga el buscador de Kiwi.com, que puede usar sus propias cookies.</p>
     </section>
     {% endif %}
 
@@ -155,7 +154,6 @@ eleventyComputed:
       </ol>
       <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
       {% if link_hotel %}<a href="{{ link_hotel }}" class="btn btn-borde of-cta of-cta-hotel" target="_blank" rel="noopener sponsored">Ver el hotel en {{ proveedor_hotel }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>{% endif %}
-      <p class="of-afiliado">{% if link_hotel %}Estos enlaces son de afiliado{% else %}Este enlace es de afiliado{% endif %}: puedo recibir una comisión sin coste extra para ti.</p>
       <a class="of-duda" href="https://wa.me/{{ site.whatsapp }}?text={{ ("Hola, tengo una duda sobre la oferta de " + destino) | urlencode }}" target="_blank" rel="noopener">¿Dudas? Escríbeme por WhatsApp<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
     </section>
 
@@ -169,6 +167,7 @@ eleventyComputed:
         <li><a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
       </ul>
     </details>
+    <p class="of-aviso-afiliado">Los enlaces de esta página son de afiliado: si reservas, puedo recibir una comisión sin coste extra para ti.</p>
   </div>
 
   <div class="of-barra">
