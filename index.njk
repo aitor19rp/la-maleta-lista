@@ -16,7 +16,8 @@ bodyClass: home
       <p class="portada-sub">Un chollo de vuelo o escapada desde España cada día. Compruebo el precio a mano antes de publicarlo.</p>
       <div class="portada-acciones">
         <a href="#chollos" class="btn btn-coral">Ver los chollos</a>
-        <a href="{{ site.telegram }}" class="btn btn-fantasma" target="_blank" rel="noopener">Avisarme por Telegram<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+        <a href="#buscar" class="btn btn-fantasma">Buscar otro destino</a>
+        <a href="{{ site.telegram }}" class="btn btn-fantasma" target="_blank" rel="noopener">Unirme al canal de Telegram<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
         <a href="https://wa.me/{{ site.whatsapp }}?text={{ "Hola, tengo una pregunta sobre un chollo" | urlencode }}" class="btn btn-fantasma" target="_blank" rel="noopener">Escríbeme por WhatsApp<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
       </div>
     </div>
@@ -100,6 +101,26 @@ bodyClass: home
   </ul>
 </section>
 
+<section class="buscar" id="buscar" aria-labelledby="buscar-titulo">
+  <h2 id="buscar-titulo">¿Buscas otro destino u otras fechas?</h2>
+  <p class="buscar-intro">Si ningún chollo te encaja, busca tú mismo. Pones el destino y las fechas que quieras y comparas precios.</p>
+  <div class="buscar-tarjetas">
+    <div class="buscar-tarjeta">
+      <h3>Vuelos</h3>
+      <p>Busca vuelos desde tu ciudad con el buscador de Kiwi.com.</p>
+      <button type="button" class="btn btn-coral" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
+      <div class="of-widget" id="widget-kiwi" hidden></div>
+      <a class="buscar-enlace" href="{{ afiliados.kiwi }}" target="_blank" rel="noopener sponsored">O ve directamente a Kiwi.com<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+    </div>
+    <div class="buscar-tarjeta">
+      <h3>Hoteles</h3>
+      <p>Compara el precio de un mismo hotel en Booking y otras webs con Trivago.</p>
+      <a class="btn btn-borde" href="{{ afiliados.trivago }}" target="_blank" rel="noopener sponsored">Buscar hotel en Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+    </div>
+  </div>
+  <p class="buscar-nota">Al abrir el buscador de vuelos se carga Kiwi.com, que puede usar sus propias cookies. Son enlaces de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
+</section>
+
 <section class="metodo">
   <div class="metodo-interior">
     <div class="metodo-texto">
@@ -162,5 +183,23 @@ bodyClass: home
   });
   cont.hidden = false;
   pintar('');
+})();
+(function () {
+  var abrir = document.getElementById('widget-abrir');
+  var contenedor = document.getElementById('widget-kiwi');
+  if (!abrir || !contenedor) return;
+  abrir.addEventListener('click', function () {
+    if (!contenedor.hasChildNodes()) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.charset = 'utf-8';
+      s.src = 'https://tpemb.com/content?currency=eur&trs=588032&shmarker=772596.widget-portada&locale=es&stops=0&show_hotels=true&powered_by=true&border_radius=0&plain=true&color_button=%231B4B66ff&color_button_text=%23ffffff&promo_id=3414&campaign_id=111';
+      contenedor.appendChild(s);
+    }
+    var visible = contenedor.hidden;
+    contenedor.hidden = !visible;
+    abrir.setAttribute('aria-expanded', visible ? 'true' : 'false');
+    abrir.textContent = visible ? 'Cerrar el buscador' : 'Abrir el buscador de vuelos';
+  });
 })();
 </script>

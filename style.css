@@ -472,6 +472,16 @@ html { scroll-behavior: smooth; }
 }
 .chollos-lista.pocas { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 400px)); justify-content: center; }
 .chollo[hidden] { display: none; }
+.buscar { max-width: 1120px; margin: 0 auto; padding: 32px 20px 48px; }
+.buscar h2 { margin: 0 0 8px; font-size: clamp(1.6rem, 4.5vw, 2.2rem); line-height: 1.1; }
+.buscar-intro { margin: 0 0 20px; color: var(--suave); max-width: 60ch; }
+.buscar-tarjetas { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.buscar-tarjeta { padding: 20px; background: var(--papel); border-radius: var(--radio); }
+.buscar-tarjeta h3 { margin: 0 0 6px; font-size: 1.3rem; }
+.buscar-tarjeta p { margin: 0 0 14px; color: var(--suave); }
+.buscar-tarjeta .btn { width: 100%; }
+.buscar-enlace { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; color: var(--azul-vuelo); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.buscar-nota { margin: 14px 0 0; font-size: 14px; color: var(--suave); }
 .chollos-vacio { margin: 0 0 20px; padding: 24px; background: var(--papel); border-radius: var(--radio); max-width: 56ch; }
 .chollos-vacio p { margin: 0 0 16px; }
 .chollos-vacio .btn { background: var(--azul-vuelo); color: var(--blanco); }
