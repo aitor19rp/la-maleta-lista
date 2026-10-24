@@ -38,6 +38,20 @@ eleventyComputed:
     </ul>
     {% endif %}
 
+    {% if esHotel and link_afiliado and ("dr-" in link_afiliado) %}
+    <section class="of-buscar" aria-labelledby="of-buscar" id="buscar-fechas" data-base="{{ link_afiliado }}">
+      <h2 id="of-buscar">¿Otras fechas?</h2>
+      <p class="of-pasos-intro">Elige tus noches y mira el precio de este hotel en Trivago.</p>
+      <div class="of-buscar-campos">
+        <label for="bf-entrada">Entrada<input type="date" id="bf-entrada"></label>
+        <label for="bf-salida">Salida<input type="date" id="bf-salida"></label>
+      </div>
+      <a class="btn btn-coral" id="bf-ir" href="{{ link_afiliado }}" target="_blank" rel="noopener sponsored">Ver precio en Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      <p class="of-sujeto" id="bf-aviso" role="status" hidden></p>
+      <p class="of-afiliado">Es un enlace de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
+    </section>
+    {% endif %}
+
     {% if galeria and galeria.length %}
     <section aria-labelledby="of-fotos">
       <h2 id="of-fotos">Fotos</h2>
@@ -218,6 +232,43 @@ eleventyComputed:
     document.getElementById('visor-ant').addEventListener('click', function () { mostrar(actual - 1); });
     document.getElementById('visor-sig').addEventListener('click', function () { mostrar(actual + 1); });
     visor.addEventListener('click', function (e) { if (e.target === visor) visor.close(); });
+  }
+  var buscar = document.getElementById('buscar-fechas');
+  if (buscar) {
+    var base = buscar.dataset.base;
+    var ent = document.getElementById('bf-entrada');
+    var sal = document.getElementById('bf-salida');
+    var ir = document.getElementById('bf-ir');
+    var aviso = document.getElementById('bf-aviso');
+    var f = /dr-(\d{4})(\d{2})(\d{2})-(\d{4})(\d{2})(\d{2})/.exec(base);
+    var hoy = new Date();
+    var iso = function (d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); };
+    ent.min = iso(hoy);
+    if (f) { ent.value = f[1] + '-' + f[2] + '-' + f[3]; sal.value = f[4] + '-' + f[5] + '-' + f[6]; }
+    var actualizar = function () {
+      var ok = ent.value && sal.value && sal.value > ent.value;
+      if (ent.value) {
+        var d = new Date(ent.value + 'T12:00:00');
+        d.setDate(d.getDate() + 1);
+        sal.min = iso(d);
+      }
+      ir.setAttribute('aria-disabled', ok ? 'false' : 'true');
+      ir.classList.toggle('desactivado', !ok);
+      aviso.hidden = ok;
+      aviso.textContent = ok ? '' : 'Elige una fecha de salida posterior a la de entrada.';
+      if (ok) ir.href = base.replace(/dr-\d{8}-\d{8}/, 'dr-' + ent.value.replace(/-/g, '') + '-' + sal.value.replace(/-/g, ''));
+    };
+    ent.addEventListener('change', function () {
+      if (ent.value && (!sal.value || sal.value <= ent.value)) {
+        var d = new Date(ent.value + 'T12:00:00');
+        d.setDate(d.getDate() + 1);
+        sal.value = iso(d);
+      }
+      actualizar();
+    });
+    sal.addEventListener('change', actualizar);
+    ir.addEventListener('click', function (e) { if (ir.getAttribute('aria-disabled') === 'true') e.preventDefault(); });
+    actualizar();
   }
   var abrir = document.getElementById('widget-abrir');
   var contenedor = document.getElementById('widget-kiwi');

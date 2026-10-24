@@ -179,6 +179,11 @@ h2 {
 .of-otras-fechas a:hover { background: var(--azul-vuelo); color: var(--blanco); }
 .of-otras-precio { font-size: 15px; font-weight: 500; }
 
+.of-buscar-campos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin: 14px 0; }
+.of-buscar-campos label { min-width: 0; display: flex; flex-direction: column; gap: 4px; font-size: 14px; font-weight: 600; color: var(--azul-vuelo); }
+.of-buscar-campos input { box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; padding-right: 8px; min-height: 48px; padding: 0 12px; border: 2px solid var(--linea-fuerte); border-radius: 12px; background: var(--blanco); color: var(--tinta-noche); font: inherit; font-size: 16px; }
+.of-buscar .btn.desactivado { opacity: .5; cursor: not-allowed; }
+
 .of-fechas { list-style: none; margin: 0; padding: 0; }
 .of-fechas li {
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
