@@ -38,31 +38,6 @@ eleventyComputed:
     </ul>
     {% endif %}
 
-    {% if esHotel and otras_fechas and otras_fechas.length %}
-    <section aria-labelledby="of-otras-fechas">
-      <h2 id="of-otras-fechas">Otras fechas</h2>
-      <p class="of-pasos-intro">Mismo hotel, otras noches: cada botón abre Trivago con esas fechas.</p>
-      <ul class="of-otras-fechas">
-        {% for f in otras_fechas %}
-        <li><a href="{{ link_afiliado | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
-        {% endfor %}
-      </ul>
-    </section>
-    {% endif %}
-    {% if esHotel and link_afiliado and ("dr-" in link_afiliado) %}
-    <section class="of-buscar" aria-labelledby="of-buscar" id="buscar-fechas" data-base="{{ link_afiliado }}">
-      <h2 id="of-buscar">¿Otra fecha distinta?</h2>
-      <p class="of-pasos-intro">Elige tus noches y mira el precio de este hotel en Trivago.</p>
-      <div class="of-buscar-campos">
-        <label for="bf-entrada">Entrada<input type="date" id="bf-entrada"></label>
-        <label for="bf-salida">Salida<input type="date" id="bf-salida"></label>
-      </div>
-      <a class="btn btn-coral" id="bf-ir" href="{{ link_afiliado }}" target="_blank" rel="noopener sponsored">Ver precio en Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
-      <p class="of-sujeto" id="bf-aviso" role="status" hidden></p>
-    </section>
-    {% endif %}
-
-
     {% if galeria and galeria.length %}
     <section aria-labelledby="of-fotos">
       <h2 id="of-fotos">Fotos</h2>
@@ -113,6 +88,30 @@ eleventyComputed:
       {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
       <a href="#of-pasos" class="of-ir-pasos">Cómo reservar</a>
     </section>
+
+    {% if esHotel and otras_fechas and otras_fechas.length %}
+    <section aria-labelledby="of-otras-fechas">
+      <h2 id="of-otras-fechas">Otras fechas</h2>
+      <p class="of-pasos-intro">Mismo hotel, otras noches: cada botón abre Trivago con esas fechas.</p>
+      <ul class="of-otras-fechas">
+        {% for f in otras_fechas %}
+        <li><a href="{{ link_afiliado | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+    {% if esHotel and link_afiliado and ("dr-" in link_afiliado) %}
+    <section class="of-buscar" aria-labelledby="of-buscar" id="buscar-fechas" data-base="{{ link_afiliado }}">
+      <h2 id="of-buscar">¿Otra fecha distinta?</h2>
+      <p class="of-pasos-intro">Elige tus noches y mira el precio de este hotel en Trivago.</p>
+      <div class="of-buscar-campos">
+        <label for="bf-entrada">Entrada<input type="date" id="bf-entrada"></label>
+        <label for="bf-salida">Salida<input type="date" id="bf-salida"></label>
+      </div>
+      <a class="btn btn-coral" id="bf-ir" href="{{ link_afiliado }}" target="_blank" rel="noopener sponsored">Ver precio en Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      <p class="of-sujeto" id="bf-aviso" role="status" hidden></p>
+    </section>
+    {% endif %}
 
     {% if not esHotel %}
     <section aria-labelledby="of-otras">
