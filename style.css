@@ -222,6 +222,8 @@ html { scroll-behavior: smooth; }
   font-family: var(--font-titulares); font-weight: 700;
 }
 .of-cta { display: flex; width: 100%; font-size: 18px; }
+.of-cta-hotel { margin-top: 10px; }
+.of-duda { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; color: var(--azul-vuelo); font-weight: 600; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
 .of-afiliado { margin: 10px 0 0; font-size: 15px; color: var(--suave); }
 .of-widget { margin-top: 14px; min-height: 120px; padding: 12px; background: var(--papel); border-radius: 14px; }
 .of-widget[hidden] { display: none; }
@@ -257,6 +259,9 @@ html { scroll-behavior: smooth; }
 .of-barra-precio span, .of-barra-precio small { font-size: 14px; color: var(--suave); }
 .of-barra-precio strong { font-family: var(--font-titulares); font-size: 1.9rem; color: var(--azul-vuelo); }
 .of-barra .btn { flex: 1; max-width: 260px; font-size: 18px; }
+.of-barra-botones { flex: 1; display: flex; gap: 8px; justify-content: flex-end; }
+.of-barra-botones .btn { max-width: 160px; padding-left: 12px; padding-right: 12px; }
+.of-barra .btn-borde { background: var(--blanco); }
 
 @media (min-width: 720px) {
   .of-portada { min-height: 420px; border-radius: 0 0 32px 32px; }
@@ -570,3 +575,14 @@ html { scroll-behavior: smooth; }
   .btn, .ultimo, .chollo a, .of-barra { transition: none; }
   .ultimo:hover, .chollo a:hover { transform: none; }
 }
+
+.wa-flotante {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 15;
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #1f8f4e; color: var(--blanco);
+  box-shadow: 0 4px 14px rgba(27, 36, 48, .3);
+}
+.wa-flotante svg { width: 30px; height: 30px; }
+.wa-flotante:hover { background: #197a42; }
+.pagina-oferta .wa-flotante { bottom: calc(88px + env(safe-area-inset-bottom)); }

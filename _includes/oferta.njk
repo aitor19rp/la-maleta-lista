@@ -85,6 +85,7 @@ eleventyComputed:
       <p class="of-sujeto">Esta oferta aún no tiene fechas con precio. Pulsa «Ver oferta» para consultarlo en la web de reserva.</p>
       {% endif %}
       <p class="of-sujeto">Precio sujeto a fecha: puede haber cambiado desde que se publicó. Confírmalo en la web de reserva.</p>
+      {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
       <a href="#of-pasos" class="of-ir-pasos">Cómo reservar</a>
     </section>
 
@@ -100,6 +101,16 @@ eleventyComputed:
     </section>
     {% endif %}
 
+    {% if not esHotel %}
+    <section aria-labelledby="of-otras">
+      <h2 id="of-otras">¿Otras fechas u otro origen?</h2>
+      <p class="of-pasos-intro">Busca vuelos directos desde tu ciudad y para tus fechas con el buscador de Kiwi.com.</p>
+      <button type="button" class="btn btn-borde" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
+      <div class="of-widget" id="widget-kiwi" hidden></div>
+      <p class="of-afiliado">Al abrirlo se carga el buscador de Kiwi.com, que puede usar sus propias cookies. Es un enlace de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
+    </section>
+    {% endif %}
+
     {% if content %}
     <section class="of-info" aria-labelledby="of-info">
       <h2 id="of-info">Sobre la oferta</h2>
@@ -112,8 +123,8 @@ eleventyComputed:
       <p class="of-pasos-intro">Reservas directamente en la web{% if proveedor %} de {{ proveedor }}{% else %} del proveedor{% endif %}. Esta página solo te lleva hasta allí con el precio que he comprobado.</p>
       <ol class="of-pasos">
         <li>
-          <strong>Pulsa «Ver oferta»</strong>
-          <span>Se abre la web{% if proveedor %} de {{ proveedor }}{% else %} de reserva{% endif %} en otra pestaña. Esta página se queda abierta por si quieres volver.</span>
+          <strong>{% if link_hotel %}Pulsa «Ver el vuelo» y «Ver el hotel»{% else %}Pulsa «Ver oferta»{% endif %}</strong>
+          <span>{% if link_hotel %}Se abren {{ proveedor }} y {{ proveedor_hotel }} en otra pestaña. El vuelo y el hotel se reservan por separado.{% else %}Se abre la web{% if proveedor %} de {{ proveedor }}{% else %} de reserva{% endif %} en otra pestaña.{% endif %} Esta página se queda abierta por si quieres volver.</span>
         </li>
         <li>
           <strong>Pon tus fechas y personas</strong>
@@ -128,20 +139,11 @@ eleventyComputed:
           <span>Pagas y recibes la confirmación del proveedor, no de La Maleta Lista. Si algo falla con la reserva, se lo tienes que decir a ellos.</span>
         </li>
       </ol>
-      {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
-      <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">Ver oferta<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
-      <p class="of-afiliado">Este enlace es de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
+      <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      {% if link_hotel %}<a href="{{ link_hotel }}" class="btn btn-borde of-cta of-cta-hotel" target="_blank" rel="noopener sponsored">Ver el hotel en {{ proveedor_hotel }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>{% endif %}
+      <p class="of-afiliado">{% if link_hotel %}Estos enlaces son de afiliado{% else %}Este enlace es de afiliado{% endif %}: puedo recibir una comisión sin coste extra para ti.</p>
+      <a class="of-duda" href="https://wa.me/{{ site.whatsapp }}?text={{ ("Hola, tengo una duda sobre la oferta de " + destino) | urlencode }}" target="_blank" rel="noopener">¿Dudas? Escríbeme por WhatsApp<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
     </section>
-
-    {% if not esHotel %}
-    <section aria-labelledby="of-otras">
-      <h2 id="of-otras">¿Otras fechas u otro origen?</h2>
-      <p class="of-pasos-intro">Busca vuelos directos desde tu ciudad y para tus fechas con el buscador de Kiwi.com.</p>
-      <button type="button" class="btn btn-borde" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
-      <div class="of-widget" id="widget-kiwi" hidden></div>
-      <p class="of-afiliado">Al abrirlo se carga el buscador de Kiwi.com, que puede usar sus propias cookies. Es un enlace de afiliado: puedo recibir una comisión sin coste extra para ti.</p>
-    </section>
-    {% endif %}
 
     <details class="of-mas">
       <summary>Más opciones si esto no te encaja</summary>
@@ -166,7 +168,14 @@ eleventyComputed:
         <span>Consulta el precio</span>
         {% endif %}
       </p>
+      {% if link_hotel %}
+      <div class="of-barra-botones">
+        <a href="{{ enlace }}" class="btn btn-coral" target="_blank" rel="noopener sponsored">Vuelo<span class="solo-lectores"> en {{ proveedor }} (se abre en una pestaña nueva)</span></a>
+        <a href="{{ link_hotel }}" class="btn btn-borde" target="_blank" rel="noopener sponsored">Hotel<span class="solo-lectores"> en {{ proveedor_hotel }} (se abre en una pestaña nueva)</span></a>
+      </div>
+      {% else %}
       <a href="{{ enlace }}" class="btn btn-coral" target="_blank" rel="noopener sponsored">Ver oferta<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      {% endif %}
     </div>
   </div>
 </article>
