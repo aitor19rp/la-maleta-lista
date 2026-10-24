@@ -83,9 +83,9 @@ eleventyComputed:
         {% endfor %}
       </ul>
       {% else %}
-      <p class="of-sujeto">Esta oferta aún no tiene fechas con precio. Pulsa «Ver oferta» para consultarlo en la web de reserva.</p>
+      <p class="of-sujeto">Aún sin fechas con precio. Pulsa «Ver oferta» para consultarlo.</p>
       {% endif %}
-      <p class="of-sujeto">Precio sujeto a fecha: puede haber cambiado desde que se publicó. Confírmalo en la web de reserva.</p>
+      <p class="of-sujeto">El precio puede haber cambiado. Confírmalo al reservar.</p>
       {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
       <a href="#of-pasos" class="of-ir-pasos">Cómo reservar</a>
     </section>
@@ -93,7 +93,7 @@ eleventyComputed:
     {% if hotelBase and otras_fechas and otras_fechas.length %}
     <section aria-labelledby="of-otras-fechas">
       <h2 id="of-otras-fechas">{% if link_hotel %}Otras fechas del hotel{% else %}Otras fechas{% endif %}</h2>
-      <p class="of-pasos-intro">Mismo hotel, otras noches: cada botón abre Trivago con esas fechas.</p>
+      <p class="of-pasos-intro">Mismo hotel, otras noches.</p>
       <ul class="of-otras-fechas">
         {% for f in otras_fechas %}
         <li><a href="{{ hotelBase | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
@@ -104,7 +104,7 @@ eleventyComputed:
     {% if hotelBase and ("dr-" in hotelBase) %}
     <section class="of-buscar" aria-labelledby="of-buscar" id="buscar-fechas" data-base="{{ hotelBase }}">
       <h2 id="of-buscar">{% if link_hotel %}¿Otra fecha para el hotel?{% else %}¿Otra fecha distinta?{% endif %}</h2>
-      <p class="of-pasos-intro">Elige tus noches y mira el precio de este hotel en Trivago.</p>
+      <p class="of-pasos-intro">Elige tus noches y mira el precio.</p>
       <div class="of-buscar-campos">
         <label for="bf-entrada">Entrada<input type="date" id="bf-entrada"></label>
         <label for="bf-salida">Salida<input type="date" id="bf-salida"></label>
@@ -117,10 +117,10 @@ eleventyComputed:
     {% if not esHotel %}
     <section aria-labelledby="of-otras">
       <h2 id="of-otras">¿Otras fechas u otro origen?</h2>
-      <p class="of-pasos-intro">Busca vuelos directos desde tu ciudad y para tus fechas con el buscador de Kiwi.com.</p>
+      <p class="of-pasos-intro">Busca vuelos desde tu ciudad y para tus fechas.</p>
       <button type="button" class="btn btn-borde" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
       <div class="of-widget" id="widget-kiwi" hidden></div>
-      <p class="of-afiliado">Al abrirlo se carga el buscador de Kiwi.com, que puede usar sus propias cookies.</p>
+      <p class="of-afiliado">Carga el buscador de Kiwi.com, con sus propias cookies.</p>
     </section>
     {% endif %}
 
@@ -133,23 +133,23 @@ eleventyComputed:
 
     <section aria-labelledby="of-pasos">
       <h2 id="of-pasos">Cómo reservar</h2>
-      <p class="of-pasos-intro">Reservas directamente en la web{% if proveedor %} de {{ proveedor }}{% else %} del proveedor{% endif %}. Esta página solo te lleva hasta allí con el precio que he comprobado.</p>
+      <p class="of-pasos-intro">Reservas en la web{% if proveedor %} de {{ proveedor }}{% else %} del proveedor{% endif %}. Aquí solo te llevo hasta allí.</p>
       <ol class="of-pasos">
         <li>
           <strong>{% if link_hotel %}Pulsa «Ver el vuelo» y «Ver el hotel»{% else %}Pulsa «Ver oferta»{% endif %}</strong>
-          <span>{% if link_hotel %}Se abren {{ proveedor }} y {{ proveedor_hotel }} en otra pestaña. El vuelo y el hotel se reservan por separado.{% else %}Se abre la web{% if proveedor %} de {{ proveedor }}{% else %} de reserva{% endif %} en otra pestaña.{% endif %} Esta página se queda abierta por si quieres volver.</span>
+          <span>{% if link_hotel %}Se abren {{ proveedor }} y {{ proveedor_hotel }}. Se reservan por separado.{% else %}Se abre{% if proveedor %} {{ proveedor }}{% else %} la web de reserva{% endif %} en otra pestaña.{% endif %}</span>
         </li>
         <li>
           <strong>Pon tus fechas y personas</strong>
-          <span>Las fechas de arriba son ejemplos con precio. Si las tuyas son otras, cámbialas en el buscador y pulsa Buscar. El precio puede variar de un día a otro.</span>
+          <span>Si las tuyas son otras, cámbialas y pulsa Buscar.</span>
         </li>
         <li>
-          <strong>Elige la opción y revisa qué incluye</strong>
-          <span>Mira el precio final, el equipaje, el desayuno y si se puede cancelar antes de seguir.</span>
+          <strong>Revisa qué incluye</strong>
+          <span>Precio final, equipaje, desayuno y cancelación.</span>
         </li>
         <li>
-          <strong>Completa la reserva allí</strong>
-          <span>Pagas y recibes la confirmación del proveedor, no de La Maleta Lista. Si algo falla con la reserva, se lo tienes que decir a ellos.</span>
+          <strong>Reserva allí</strong>
+          <span>Pagas y te confirma el proveedor. Si hay un problema, se lo dices a ellos.</span>
         </li>
       </ol>
       <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
@@ -167,7 +167,7 @@ eleventyComputed:
         <li><a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
       </ul>
     </details>
-    <p class="of-aviso-afiliado">Los enlaces de esta página son de afiliado: si reservas, puedo recibir una comisión sin coste extra para ti.</p>
+    <p class="of-aviso-afiliado">Enlaces de afiliado: si reservas, puedo recibir una comisión sin coste para ti.</p>
   </div>
 
   <div class="of-barra">
@@ -277,7 +277,7 @@ eleventyComputed:
         var s = document.createElement('script');
         s.async = true;
         s.charset = 'utf-8';
-        s.src = 'https://tpemb.com/content?currency=eur&trs=588032&shmarker=772596.widget-{{ page.fileSlug }}&locale=es&stops=0&show_hotels=true&powered_by=true&border_radius=0&plain=true&color_button=%231B4B66ff&color_button_text=%23ffffff&promo_id=3414&campaign_id=111';
+        s.src = 'https://tpemb.com/content?currency=eur&trs=588032&shmarker=772596.widget-{{ page.fileSlug }}&locale=es&stops=0&show_hotels=false&powered_by=true&border_radius=0&plain=true&color_button=%231B4B66ff&color_button_text=%23ffffff&promo_id=3414&campaign_id=111';
         contenedor.appendChild(s);
       }
       var visible = contenedor.hidden;
