@@ -619,3 +619,7 @@ html { scroll-behavior: smooth; }
 
 .btn-tg { gap: 8px; }
 .btn-tg svg { flex: none; }
+
+.of-widget-hoteles { text-align: center; }
+.of-widget-hoteles iframe { display: block; max-width: 100%; margin: 0 auto; border: 0; background: var(--blanco); border-radius: 12px; }
+.of-widget-hoteles p a { display: inline-block; padding: 12px 4px; color: var(--azul-vuelo); font-weight: 600; text-underline-offset: 3px; }

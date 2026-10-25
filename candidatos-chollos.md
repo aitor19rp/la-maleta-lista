@@ -55,3 +55,48 @@ Formato: cada candidato se apunta aquí mientras se compara, con estado final (�
 - **Precio**: desde 200€/persona (vuelo + hotel + desayuno)
 - **Hotel**: Vatican City Holidays, 4,2/5, zona Vaticano
 - **Estado**: primer vídeo publicado con el sistema nuevo
+
+---
+
+## 🗳️ ENCUESTA 25-oct-2026 — candidato 1: París — 3-5 diciembre 2026 (desde Alicante)
+
+Estado: 🗳️ en encuesta (el usuario subió una encuesta para elegir qué oferta montar; cuando acabe dirá cuál). Guardado tal cual pasó el usuario, sin comprobar de nuevo.
+
+- **Origen**: Alicante (ALC) · **Pasajeros**: 2 adultos · **Fechas**: jue 3 dic – sáb 5 dic 2026 (2 noches)
+- **Vuelo** (Kiwi.com, Ryanair, directo, "Verificado por Ryanair"): ida jue 3 dic 12:55 desde ALC (2h15); vuelta sáb 5 dic 20:55 desde **BVA (París-Beauvais)** a ALC (2h10). Equipaje: solo artículo personal (0 de mano, 0 facturado).
+- **Precio vuelo**: **190 €** en el buscador de Kiwi con 2 pasajeros: total de los 2 (confirmado por el usuario), unos 95 €/persona. Fechas vecinas en el calendario de Kiwi: 1-3 dic 206 €, 2-4 dic 276 €, 4-6 dic 251 €, 5-7 dic 212 €.
+- **Hotel** (Trivago): ibis Paris Ornano Montmartre Nord, 3★, valoración **7,3 "Bueno"** (4,5k opiniones), a 4,5 km del centro. 3-5 dic, 2 huéspedes, 1 habitación.
+  - Precio más bajo: **CHECK24, 102 €/noche → 204 € total** (sin cancelación gratuita). Otras: Super.com 92 €/noche, Viajes El Corte Inglés 126 €.
+  - Con cancelación gratuita (antes del 2 dic): **CHECK24 129 €/noche → 258 € total**.
+- **Total estimado por persona**: vuelo ~95 € + hotel ~102 € (204 €/2) = **~197 €/persona** (con cancelación gratuita: ~224 €/persona).
+- ⚠️ **Avisos frente a los criterios de publicación**: (1) vuelo de **Ryanair** (criterio: no Ryanair/easyJet, aunque se aceptó una excepción con Sofía); (2) aterriza en **Beauvais**, a ~85 km de París y con transporte extra al centro; (3) hotel de **7,3** (criterio: ≥ 8,0). En septiembre ya se descartó París (Ryanair a Beauvais) en la entrada de Múnich.
+
+---
+
+## 🗳️ ENCUESTA 25-oct-2026 — candidato 2: Roma — 16-18 enero 2027 (desde Barcelona)
+
+Estado: 🗳️ en encuesta. Guardado tal cual pasó el usuario, sin comprobar de nuevo.
+
+- **Origen**: Barcelona (BCN) · **Pasajeros**: 2 adultos · **Fechas**: sáb 16 ene – lun 18 ene 2027 (2 noches)
+- **Vuelo** (Kiwi.com, directos, "Verificado por Ryanair"):
+  - Ida sáb 16 ene: BCN 17:20 → FCO 19:05 (1h45), **Vueling**.
+  - Vuelta lun 18 ene: FCO 15:40 → BCN 17:30 (1h50), **Ryanair**.
+  - Equipaje: solo artículo personal (0 de mano, 0 facturado).
+  - **96 € para 2 pasajeros** (total de los 2, unos 48 €/persona).
+- **Hotel** (Trivago): Hotel Patria, 3★, valoración **8,0 "Muy bueno"** (4,8k opiniones), a 1,0 km del centro, a pie de la Fontana di Trevi, servicio de consigna de equipaje. 16-18 ene, 2 huéspedes, 1 habitación.
+  - Precio más bajo: **trivago Book & Go, 94 €/noche → 188 € total**. Otras: Viajes El Corte Inglés 115 €/noche, CHECK24 128 €/noche. Cancelación y desayuno: no se ven en la captura.
+  - Búsqueda en Trivago: `trivago.es/es/lm/hotel-patria-roma?search=100-17383;dr-20270116-20270118;drs-40;rc-1-2` (id 100-17383).
+- **Total estimado por persona**: vuelo ~48 € + hotel ~94 € (188 €/2) = **~142 €/persona**.
+- ⚠️ **Avisos frente a los criterios**: la **vuelta es de Ryanair** (criterio: no Ryanair/easyJet; ida con Vueling); hotel justo en el mínimo (8,0); en esta fecha hay que confirmar desayuno y cancelación antes de publicar.
+
+---
+
+## 🗳️ ENCUESTA 25-oct-2026 — candidato 3: AC Hotel Palacio de Santa Ana (Valladolid) — Fin de Año 31 dic – 1 ene
+
+Estado: 🗳️ en encuesta. Guardado tal cual pasó el usuario, sin comprobar de nuevo. **Solo hotel**, sin vuelo.
+
+- **Hotel** (Trivago): AC Hotel Palacio de Santa Ana, **5★**, valoración **8,8 "Excelente"** (4,1k opiniones), en Arroyo de la Encomienda (Valladolid), a 3,2 km del centro de la ciudad. Jardín junto al río con muelle privado, piscina cubierta climatizada.
+- **Fechas**: 31 dic 2026 – 1 ene 2027 (1 noche, Nochevieja), 2 huéspedes, 1 habitación.
+- **Precio**: **84 €** la noche (la habitación) → **~42 €/persona**. Precio más bajo: CHECK24 84 € ("Otra categoría de habitación"); igual precio en Marriott Bonvoy (web oficial) y Hoteles.com (84 €).
+- **Cancelación y desayuno**: no se ven en la captura (confirmar antes de publicar).
+- ⚠️ Es una sola noche de Nochevieja; fecha muy concreta y solo la noche del 31.

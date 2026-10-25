@@ -115,10 +115,12 @@ bodyClass: home
     <div class="buscar-tarjeta">
       <h3>Hoteles</h3>
       <p>Compara el precio de un mismo hotel en Booking y otras webs con Trivago.</p>
-      <a class="btn btn-borde" href="{{ afiliados.trivago }}" target="_blank" rel="noopener sponsored">Buscar hotel en Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      <button type="button" class="btn btn-borde" id="widget-hoteles-abrir" aria-expanded="false" aria-controls="widget-hoteles">Abrir el buscador de hoteles</button>
+      <div class="of-widget of-widget-hoteles" id="widget-hoteles" hidden></div>
+      <a class="buscar-enlace" href="{{ afiliados.trivago }}" target="_blank" rel="noopener sponsored">O ve directamente a Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
     </div>
   </div>
-  <p class="buscar-nota">Al abrir el buscador de vuelos se carga Kiwi.com, que puede usar sus propias cookies.</p>
+  <p class="buscar-nota">Al abrir los buscadores se cargan Kiwi.com o Trivago, que pueden usar sus propias cookies.</p>
 </section>
 
 <section class="metodo">
@@ -200,6 +202,38 @@ bodyClass: home
     contenedor.hidden = !visible;
     abrir.setAttribute('aria-expanded', visible ? 'true' : 'false');
     abrir.textContent = visible ? 'Cerrar el buscador' : 'Abrir el buscador de vuelos';
+  });
+})();
+(function () {
+  var abrirH = document.getElementById('widget-hoteles-abrir');
+  var cajaH = document.getElementById('widget-hoteles');
+  if (!abrirH || !cajaH) return;
+  abrirH.addEventListener('click', function () {
+    if (!cajaH.hasChildNodes()) {
+      var f = document.createElement('iframe');
+      f.src = 'https://ti.tradetracker.net/?c=14416&m=2432403&a=478638&r=portada-hoteles&t=custom';
+      f.title = 'Buscador de hoteles de Trivago';
+      f.width = '300';
+      f.height = '450';
+      f.loading = 'lazy';
+      f.setAttribute('scrolling', 'no');
+      cajaH.appendChild(f);
+      var aviso = document.createElement('p');
+      aviso.className = 'of-sujeto';
+      aviso.appendChild(document.createTextNode('¿No se ve? '));
+      var enl = document.createElement('a');
+      enl.href = f.src;
+      enl.target = '_blank';
+      enl.rel = 'noopener sponsored';
+      enl.textContent = 'Ábrelo en otra pestaña';
+      aviso.appendChild(enl);
+      aviso.appendChild(document.createTextNode('.'));
+      cajaH.appendChild(aviso);
+    }
+    var visible = cajaH.hidden;
+    cajaH.hidden = !visible;
+    abrirH.setAttribute('aria-expanded', visible ? 'true' : 'false');
+    abrirH.textContent = visible ? 'Cerrar el buscador' : 'Abrir el buscador de hoteles';
   });
 })();
 </script>
