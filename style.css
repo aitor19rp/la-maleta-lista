@@ -183,6 +183,13 @@ h2 {
 .of-otras-fechas { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
 .of-otras-fechas a { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 48px; padding: 0 18px; border: 2px solid var(--azul-vuelo); border-radius: 12px; color: var(--azul-vuelo); font-weight: 600; font-size: 16px; text-decoration: none; }
 .of-otras-fechas a:hover { background: var(--azul-vuelo); color: var(--blanco); }
+.of-otras-fechas li.con-vuelo { padding: 14px 16px; border: 2px solid var(--azul-vuelo); border-radius: 12px; }
+.of-ov-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 6px; color: var(--azul-vuelo); font-size: 17px; }
+.of-ov-cab .of-otras-precio { font-family: var(--font-titulares); font-weight: 700; font-size: 1.1rem; }
+.of-ov-linea { margin: 2px 0; font-size: 15px; color: var(--tinta-noche); }
+.of-ov-linea b { color: var(--azul-vuelo); margin-right: 6px; }
+.of-ov-botones { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-top: 12px; }
+.of-ov-botones .btn { justify-content: center; min-height: 44px; font-size: 15px; padding: 0 10px; }
 .of-otras-precio { font-size: 15px; font-weight: 500; }
 
 .of-buscar-campos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin: 14px 0; }
@@ -609,3 +616,6 @@ html { scroll-behavior: smooth; }
 .wa-flotante svg { width: 30px; height: 30px; }
 .wa-flotante:hover { background: #197a42; }
 .pagina-oferta .wa-flotante { bottom: calc(88px + env(safe-area-inset-bottom)); }
+
+.btn-tg { gap: 8px; }
+.btn-tg svg { flex: none; }

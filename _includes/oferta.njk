@@ -99,14 +99,27 @@ eleventyComputed:
 
     {% if hotelBase and otras_fechas and otras_fechas.length %}
     <section aria-labelledby="of-otras-fechas">
-      <h2 id="of-otras-fechas">{% if link_hotel %}Otras fechas del hotel{% else %}Otras fechas{% endif %}</h2>
-      <p class="of-pasos-intro">Mismo hotel, otras noches.</p>
+      <h2 id="of-otras-fechas">{% if link_hotel %}Otras fechas (vuelo + hotel){% else %}Otras fechas{% endif %}</h2>
+      <p class="of-pasos-intro">{% if link_hotel %}Cada fecha lleva el vuelo y el hotel que te propongo.{% else %}Mismo hotel, otras noches.{% endif %}</p>
       <ul class="of-otras-fechas">
         {% for f in otras_fechas %}
+        {% if f.vuelo %}
+        <li class="con-vuelo">
+          <p class="of-ov-cab"><strong>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</strong><span class="of-otras-precio">{{ f.precio }}</span></p>
+          <p class="of-ov-linea"><b>Vuelo directo</b> {{ f.vuelo }}</p>
+          <p class="of-ov-linea"><b>Hotel</b> {{ nombre_hotel }}</p>
+          <div class="of-ov-botones">
+            <a class="btn btn-coral" href="{{ link_afiliado.split('?')[0] }}?sub_id={{ f.sub }}" target="_blank" rel="noopener sponsored">Ver el vuelo<span class="solo-lectores"> en {{ proveedor }} (se abre en una pestaña nueva)</span></a>
+            <a class="btn btn-borde" href="{{ hotelBase | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored">Ver el hotel<span class="solo-lectores"> en {{ proveedor_hotel }} (se abre en una pestaña nueva)</span></a>
+          </div>
+        </li>
+        {% else %}
         <li><a href="{{ hotelBase | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
+        {% endif %}
         {% endfor %}
       </ul>
       {% if otras_fechas_nota %}<p class="of-sujeto">{{ otras_fechas_nota }}</p>{% endif %}
+      {% if link_hotel %}<p class="of-sujeto">En {{ proveedor }} busca esas fechas y elige el vuelo con esos horarios.</p>{% endif %}
     </section>
     {% endif %}
 
