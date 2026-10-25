@@ -139,8 +139,8 @@ bodyClass: home
 <script>
 (function () {
   document.querySelectorAll('[data-fecha]').forEach(function (el) {
-    var d = new Date(el.dataset.fecha + 'T12:00:00');
-    var dias = Math.floor((Date.now() - d.getTime()) / 86400000);
+    var inicioHoy = new Date(); inicioHoy.setHours(0, 0, 0, 0);
+    var dias = Math.round((inicioHoy.getTime() - new Date(el.dataset.fecha + 'T00:00:00').getTime()) / 86400000);
     var hace = el.querySelector('.hace');
     if (!hace || isNaN(dias) || dias < 0) return;
     hace.textContent = dias === 0 ? ' (hoy)' : dias === 1 ? ' (hace 1 día)' : ' (hace ' + dias + ' días)';

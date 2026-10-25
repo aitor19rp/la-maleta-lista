@@ -31,22 +31,18 @@ eleventyComputed:
   </header>
 
   <div class="of-cuerpo">
-    <p class="of-publicado" data-fecha="{{ page.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ precio_verificado }}<b class="hace"></b></p>
-
-    {% if etiquetas %}
-    <ul class="of-etiquetas" aria-label="A destacar">
-      {% for e in etiquetas %}<li>{{ e }}</li>{% endfor %}
-    </ul>
-    {% endif %}
-
     {% if galeria and galeria.length %}
     <section aria-labelledby="of-fotos">
-      <h2 id="of-fotos">Fotos</h2>
-      <ul class="of-galeria">
-        {% for foto in galeria %}
-        <li><button type="button" class="of-foto" data-grande="{{ foto }}" aria-label="Ampliar la foto {{ loop.index }} de {{ galeria.length }}">{% imagen foto, "Foto " + loop.index + " de " + destino, "160px", [160, 320], false %}</button></li>
-        {% endfor %}
-      </ul>
+      <h2 id="of-fotos" class="solo-lectores">Fotos</h2>
+      <div class="of-galeria-caja">
+        <ul class="of-galeria">
+          {% for foto in galeria %}
+          <li><button type="button" class="of-foto" data-grande="{{ foto }}" aria-label="Ampliar la foto {{ loop.index }} de {{ galeria.length }}">{% imagen foto, "Foto " + loop.index + " de " + destino, "160px", [160, 320], false %}</button></li>
+          {% endfor %}
+        </ul>
+        <button type="button" class="of-gal-flecha of-gal-ant" id="gal-ant" aria-label="Fotos anteriores" hidden>&lsaquo;</button>
+        <button type="button" class="of-gal-flecha of-gal-sig" id="gal-sig" aria-label="Más fotos" hidden>&rsaquo;</button>
+      </div>
     </section>
     <dialog class="of-visor" id="visor" aria-label="Fotos de {{ destino }}">
       <img src="" alt="" id="visor-img">
@@ -55,6 +51,15 @@ eleventyComputed:
       <button type="button" class="of-visor-btn of-visor-sig" id="visor-sig" aria-label="Foto siguiente">&rsaquo;</button>
     </dialog>
     {% endif %}
+
+    <p class="of-publicado" data-fecha="{{ page.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ precio_verificado }}<b class="hace"></b></p>
+
+    {% if etiquetas %}
+    <ul class="of-etiquetas" aria-label="A destacar">
+      {% for e in etiquetas %}<li>{{ e }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+
 
     {% set mes_salida = mes or ((validas | first).fecha | mesSalida if validas.length else "") %}
     {% if mes_salida %}
@@ -87,7 +92,9 @@ eleventyComputed:
       {% endif %}
       <p class="of-sujeto">El precio puede haber cambiado. Confírmalo al reservar.</p>
       {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
-      <a href="#of-pasos" class="of-ir-pasos">Cómo reservar</a>
+      <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      {% if link_hotel %}<a href="{{ link_hotel }}" class="btn btn-borde of-cta of-cta-hotel" target="_blank" rel="noopener sponsored">Ver el hotel en {{ proveedor_hotel }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>{% endif %}
+      <a href="#of-pasos" class="btn btn-borde of-cta of-cta-hotel">Cómo reservar</a>
     </section>
 
     {% if hotelBase and otras_fechas and otras_fechas.length %}
@@ -99,8 +106,10 @@ eleventyComputed:
         <li><a href="{{ hotelBase | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
         {% endfor %}
       </ul>
+      {% if otras_fechas_nota %}<p class="of-sujeto">{{ otras_fechas_nota }}</p>{% endif %}
     </section>
     {% endif %}
+
     {% if hotelBase and ("dr-" in hotelBase) %}
     <section class="of-buscar" aria-labelledby="of-buscar" id="buscar-fechas" data-base="{{ hotelBase }}">
       <h2 id="of-buscar">{% if link_hotel %}¿Otra fecha para el hotel?{% else %}¿Otra fecha distinta?{% endif %}</h2>
@@ -144,16 +153,10 @@ eleventyComputed:
           <span>Si las tuyas son otras, cámbialas y pulsa Buscar.</span>
         </li>
         <li>
-          <strong>Revisa qué incluye</strong>
-          <span>Precio final, equipaje, desayuno y cancelación.</span>
-        </li>
-        <li>
-          <strong>Reserva allí</strong>
-          <span>Pagas y te confirma el proveedor. Si hay un problema, se lo dices a ellos.</span>
+          <strong>Revisa y reserva allí</strong>
+          <span>Mira precio final, equipaje, desayuno y cancelación. Pagas y te confirma el proveedor.</span>
         </li>
       </ol>
-      <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
-      {% if link_hotel %}<a href="{{ link_hotel }}" class="btn btn-borde of-cta of-cta-hotel" target="_blank" rel="noopener sponsored">Ver el hotel en {{ proveedor_hotel }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>{% endif %}
       <a class="of-duda" href="https://wa.me/{{ site.whatsapp }}?text={{ ("Hola, tengo una duda sobre la oferta de " + destino) | urlencode }}" target="_blank" rel="noopener">¿Dudas? Escríbeme por WhatsApp<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
     </section>
 
@@ -167,6 +170,7 @@ eleventyComputed:
         <li><a href="{{ civitatis_url | civitatisUrl(destino) }}" target="_blank" rel="noopener sponsored">Actividades en {{ destino }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
       </ul>
     </details>
+
     <p class="of-aviso-afiliado">Enlaces de afiliado: si reservas, puedo recibir una comisión sin coste para ti.</p>
   </div>
 
@@ -197,7 +201,8 @@ eleventyComputed:
 (function () {
   var p = document.querySelector('[data-fecha]');
   if (p) {
-    var dias = Math.floor((Date.now() - new Date(p.dataset.fecha + 'T12:00:00').getTime()) / 86400000);
+    var inicioHoy = new Date(); inicioHoy.setHours(0, 0, 0, 0);
+    var dias = Math.round((inicioHoy.getTime() - new Date(p.dataset.fecha + 'T00:00:00').getTime()) / 86400000);
     var hace = p.querySelector('.hace');
     if (hace && !isNaN(dias) && dias >= 0) {
       hace.textContent = dias === 0 ? ' (hoy)' : dias === 1 ? ' (hace 1 día)' : ' (hace ' + dias + ' días)';
@@ -231,6 +236,22 @@ eleventyComputed:
     document.getElementById('visor-ant').addEventListener('click', function () { mostrar(actual - 1); });
     document.getElementById('visor-sig').addEventListener('click', function () { mostrar(actual + 1); });
     visor.addEventListener('click', function (e) { if (e.target === visor) visor.close(); });
+  }
+  var tira = document.querySelector('.of-galeria');
+  if (tira) {
+    var gAnt = document.getElementById('gal-ant');
+    var gSig = document.getElementById('gal-sig');
+    var estadoTira = function () {
+      var max = tira.scrollWidth - tira.clientWidth;
+      gAnt.hidden = tira.scrollLeft < 8;
+      gSig.hidden = max < 8 || tira.scrollLeft > max - 8;
+    };
+    var mover = function (dir) { tira.scrollBy({ left: dir * Math.max(170, tira.clientWidth * 0.8), behavior: 'smooth' }); };
+    gAnt.addEventListener('click', function () { mover(-1); });
+    gSig.addEventListener('click', function () { mover(1); });
+    tira.addEventListener('scroll', estadoTira, { passive: true });
+    window.addEventListener('resize', estadoTira);
+    estadoTira();
   }
   var buscar = document.getElementById('buscar-fechas');
   if (buscar) {
