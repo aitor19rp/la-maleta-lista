@@ -80,8 +80,14 @@ eleventyComputed:
         {% for opcion in validas %}
         <li{% if opcion == barata and validas.length > 1 %} class="barata"{% endif %}>
           <span class="of-fecha-datos">
+            {% if esHotel %}
             <span class="of-fecha-fecha">{{ opcion.fecha }}</span>
             <span class="of-fecha-salida">{{ opcion.salida }}{% if opcion.nota %} · {{ opcion.nota }}{% endif %}</span>
+            {% else %}
+            <span class="of-fecha-origen"><span class="of-fecha-desde">Sale de</span> {{ opcion.salida }}</span>
+            <span class="of-fecha-fecha">{{ opcion.fecha }}</span>
+            {% if opcion.nota %}<span class="of-fecha-salida">{{ opcion.nota }}</span>{% endif %}
+            {% endif %}
           </span>
           <span class="of-fecha-precio">{{ opcion.precio }}{% if opcion == barata and validas.length > 1 %}<em>La más barata</em>{% endif %}</span>
         </li>

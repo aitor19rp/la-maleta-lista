@@ -207,6 +207,8 @@ h2 {
 .of-fechas li:last-child { border-bottom: 0; }
 .of-fechas li.barata { background: var(--menta); border-radius: 12px; padding-left: 14px; padding-right: 14px; border-bottom-color: transparent; }
 .of-fecha-datos { display: flex; flex-direction: column; min-width: 0; }
+.of-fecha-origen { font-family: var(--font-titulares); font-weight: 700; font-size: 1.3rem; line-height: 1.15; color: var(--azul-vuelo); margin-bottom: 2px; }
+.of-fecha-desde { font-family: var(--font-cuerpo); font-weight: 600; font-size: 14px; color: var(--suave); }
 .of-fecha-fecha { font-weight: 600; color: var(--azul-vuelo); }
 .of-fecha-salida { font-size: 15px; color: var(--suave); }
 .of-fecha-precio { display: flex; flex-direction: column; align-items: flex-end; text-align: right; font-family: var(--font-titulares); font-weight: 700; font-size: 1.25rem; color: var(--azul-vuelo); }
