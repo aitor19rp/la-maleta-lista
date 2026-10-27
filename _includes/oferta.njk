@@ -9,6 +9,7 @@ eleventyComputed:
 {% set barata = validas | masBarata %}
 {% set precio_barra = barata or (validas | first) %}
 {% set conLink = validas | selectattr("link") %}
+{% set conHotel = validas | selectattr("link_hotel") %}
 {% set enlace = link_afiliado | clickrefLink(destino) %}
 {% set hotelBase = link_hotel or (link_afiliado if (tipo == "hotel") else "") %}
 {% set esHotel = (tipo == "hotel") or (not tipo and validas.length and ("Hotel" in (validas | first).salida)) %}
@@ -91,6 +92,7 @@ eleventyComputed:
             <span class="of-fecha-fecha">{{ opcion.fecha }}</span>
             {% if opcion.nota %}<span class="of-fecha-salida">{{ opcion.nota }}</span>{% endif %}
             {% if opcion.link %}<a href="{{ opcion.link }}" class="btn btn-borde of-fecha-ir" target="_blank" rel="noopener sponsored">Ver el vuelo<span class="solo-lectores"> desde {{ opcion.salida }} en {{ proveedor }} (se abre en una pestaña nueva)</span></a>{% endif %}
+            {% if opcion.link_hotel %}<a href="{{ opcion.link_hotel }}" class="btn btn-borde of-fecha-ir" target="_blank" rel="noopener sponsored">Ver el hotel<span class="solo-lectores"> de {{ opcion.salida }} en {{ proveedor_hotel }} (se abre en una pestaña nueva)</span></a>{% endif %}
             {% endif %}
           </span>
           <span class="of-fecha-precio">{{ opcion.precio }}{% if opcion == barata and validas.length > 1 %}<em>La más barata</em>{% endif %}</span>
@@ -106,7 +108,7 @@ eleventyComputed:
       {% if not (not esHotel and conLink.length > 1) %}
       <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
       {% endif %}
-      {% if link_hotel %}<a href="{{ link_hotel }}" class="btn btn-borde of-cta of-cta-hotel" target="_blank" rel="noopener sponsored">Ver el hotel en {{ proveedor_hotel }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>{% endif %}
+      {% if link_hotel and not conHotel.length %}<a href="{{ link_hotel }}" class="btn btn-borde of-cta of-cta-hotel" target="_blank" rel="noopener sponsored">Ver el hotel en {{ proveedor_hotel }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>{% endif %}
       <a href="#of-pasos" class="btn btn-borde of-cta of-cta-hotel">Cómo reservar</a>
     </section>
 
