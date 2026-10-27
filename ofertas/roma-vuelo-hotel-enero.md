@@ -8,7 +8,7 @@ proveedor: "Skyscanner"
 proveedor_hotel: "Trivago"
 tipo: "vuelo"
 etiquetas: ["Vuelo directo", "2 noches", "Desayuno incluido", "Valoración del hotel 8,0/10"]
-consejo_reserva: "El vuelo y el hotel se reservan por separado. Pulsa el botón de tu ciudad para abrir Skyscanner con la búsqueda a Roma del 16 al 18 de enero, para 2 adultos y solo vuelos directos, y ordena por precio. Cuando lo comprobé, el vuelo directo de ida y vuelta costaba esto para los dos (con Ryanair o Wizz Air, sin contar maleta ni extras; mira el equipaje antes de pagar): Barcelona 67 € (ida 10:35, vuelta 5:55), Madrid 79 € (ida 18:05, vuelta 6:00), Valencia 86 € (ida 22:05, vuelta 19:55), Alicante 96 € (ida 17:50, vuelta 12:50) y Bilbao 108 € (ida 12:55, vuelta 9:45). En Trivago verás el Hotel Patria: elige el precio más bajo con desayuno incluido (era Booking.com, 241 € la habitación doble las 2 noches)."
+consejo_reserva: "El vuelo y el hotel se reservan por separado. Pulsa el botón de tu ciudad para abrir Skyscanner con la búsqueda a Roma del 16 al 18 de enero, para 2 adultos y solo vuelos directos, y ordena por precio. Cuando lo comprobé, el vuelo directo de ida y vuelta costaba esto para los dos (con Ryanair o Wizz Air): Barcelona 67 € (ida 10:35, vuelta 5:55), Madrid 79 € (ida 18:05, vuelta 6:00), Valencia 86 € (ida 22:05, vuelta 19:55), Alicante 96 € (ida 17:50, vuelta 12:50) y Bilbao 108 € (ida 12:55, vuelta 9:45). En Trivago verás el Hotel Patria: elige el precio más bajo con desayuno incluido (era Booking.com, 241 € la habitación doble las 2 noches)."
 opciones:
   - salida: "Barcelona"
     fecha: "16-18 enero"
@@ -42,4 +42,4 @@ civitatis_url: ""
 ---
 Escapada de fin de semana a Roma desde Madrid, Valencia, Alicante, Barcelona o Bilbao: vuelo directo de ida y vuelta de unas 2 horas por trayecto y 2 noches en el Hotel Patria, con una valoración de 8,0 sobre 10 en Trivago, en una zona desde la que se llega a pie a la Fontana di Trevi.
 
-El precio por persona sale de dividir entre 2: el vuelo (de 67 € a 108 € los dos según la ciudad, sin maleta ni extras) más unos 120 € del hotel (241 € la habitación doble, 2 noches, con desayuno). Comprobado el 27 de octubre para el 16-18 de enero de 2027.
+El precio por persona sale de dividir entre 2: el vuelo (de 67 € a 108 € los dos según la ciudad) más unos 120 € del hotel (241 € la habitación doble, 2 noches, con desayuno). Comprobado el 27 de octubre para el 16-18 de enero de 2027.
