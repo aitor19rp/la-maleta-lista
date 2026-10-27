@@ -3,7 +3,7 @@ date: 2026-10-27
 destino: "Budapest"
 emoji: "🎄"
 subtitulo: "Vuelo directo + 2 noches en un 4★ junto al centro, en pleno mercadillo navideño"
-imagen_cabecera: "/img/hero-viajes.jpg"
+imagen_cabecera: "/img/budapest-mercadillo-hero.jpg"
 proveedor: "Skyscanner"
 proveedor_hotel: "Trivago"
 tipo: "vuelo"
@@ -28,3 +28,5 @@ civitatis_url: ""
 Escapada a los mercadillos navideños de Budapest desde Madrid o Alicante: vuelo directo de ida y vuelta de unas 2 horas y media por trayecto y 2 noches en el TG Hotel Apartments, un 4 estrellas con una valoración de 9,2 sobre 10 en Trivago, a 100 metros del centro de la ciudad.
 
 El precio por persona sale de dividir entre 2: el vuelo (211 € los dos desde Madrid, 232 € desde Alicante) más 101 € del hotel (202 € la habitación doble, 2 noches). Comprobado el 27 de octubre para el 14-16 de diciembre de 2026, de lunes a miércoles.
+
+Foto: mercadillo de Vörösmarty tér, Budapest, de Elekes Andor ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), vía [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:V%C3%B6r%C3%B6smarty_Christmas_Fair_2023_(28).jpg)).
