@@ -97,6 +97,21 @@
       if (acepta) cargarAnalitica();
     }
 
+    // Clic en un enlace de afiliado. Solo se envía si la analítica está cargada (cookies aceptadas).
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a[rel~="sponsored"]') : null;
+      if (!a || typeof window.gtag !== 'function') return;
+      var host = '';
+      try { host = new URL(a.href).hostname; } catch (err) {}
+      var proveedor = host;
+      if (/pxf\.io|skyscanner/.test(host)) proveedor = 'skyscanner';
+      else if (/trivago|tradetracker|ttrk|tt\d*\.|trvg/.test(host)) proveedor = 'trivago';
+      else if (/awin1/.test(host)) proveedor = 'awin';
+      var posicion = (a.className || '').replace(/\bbtn(-\w+)?\b/g, '').trim().split(/\s+/)[0] || 'enlace';
+      var oferta = location.pathname.replace(/^\/+|\/+$/g, '').replace(/^ofertas\//, '') || 'portada';
+      gtag('event', 'affiliate_click', { provider: proveedor, offer_id: oferta, button_position: posicion, link_domain: host });
+    }, true);
+
     if (guardado === 'si') { cargarAnalitica(); return; }
     if (guardado === 'no') return;
     document.getElementById('cookies').hidden = false;
