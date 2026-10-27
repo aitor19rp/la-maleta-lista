@@ -1,6 +1,6 @@
 module.exports = {
   nombre: "La Maleta Lista",
-  url: "https://la-maleta-lista.pages.dev",
+  url: "https://lamaletalista.site",
   descripcion: "Chollos de vuelos y escapadas que salen de España, con el precio comprobado y la fecha a la vista.",
   tagline: "Cada semana busco las mejores ofertas de vuelos, hoteles y escapadas por Europa para que tú solo tengas que hacer la maleta.",
   redes: {

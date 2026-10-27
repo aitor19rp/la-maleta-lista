@@ -18,7 +18,7 @@ test('el mensaje incluye destino, precio, fecha de comprobación y enlace a la w
   assert.match(texto, /<b>Roma<\/b> — Hotel Fontana/);
   assert.match(texto, /Desde 91€\/persona/);
   assert.match(texto, /Precio comprobado el 9 de septiembre de 2026/);
-  assert.match(texto, /https:\/\/la-maleta-lista\.pages\.dev\/ofertas\/roma-noviembre\//);
+  assert.match(texto, /https:\/\/lamaletalista\.site\/ofertas\/roma-noviembre\//);
 });
 
 test('el mensaje nunca lleva un enlace de afiliado directo', () => {
@@ -32,11 +32,11 @@ test('escapa los caracteres que rompen el HTML de Telegram', () => {
 
 test('sin foto devuelve cadena vacía y con foto devuelve la URL completa', () => {
   assert.strictEqual(urlFoto(''), '');
-  assert.strictEqual(urlFoto('/img/x.jpg'), 'https://la-maleta-lista.pages.dev/img/x.jpg');
+  assert.strictEqual(urlFoto('/img/x.jpg'), 'https://lamaletalista.site/img/x.jpg');
 });
 
 test('la URL de la oferta usa el nombre del archivo', () => {
-  assert.strictEqual(urlOferta('milan-diciembre'), 'https://la-maleta-lista.pages.dev/ofertas/milan-diciembre/');
+  assert.strictEqual(urlOferta('milan-diciembre'), 'https://lamaletalista.site/ofertas/milan-diciembre/');
 });
 
 test('en vuelos no se pone la ciudad de salida; en hoteles sí el nombre del hotel', () => {

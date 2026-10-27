@@ -1,6 +1,6 @@
 const { masBarata } = require('../filters.js');
 
-const BASE_WEB = 'https://la-maleta-lista.pages.dev';
+const BASE_WEB = 'https://lamaletalista.site';
 
 function escaparHtml(texto) {
   return String(texto).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
