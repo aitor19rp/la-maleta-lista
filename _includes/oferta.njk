@@ -100,6 +100,7 @@ eleventyComputed:
       {% endif %}
       <p class="of-sujeto">El precio puede haber cambiado. Confírmalo al reservar.</p>
       {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
+      {% if link_hotel %}<p class="of-sujeto"><strong>Son dos reservas distintas:</strong> primero el vuelo y después el hotel. No pagas en La Maleta Lista.</p>{% endif %}
       {% if not (not esHotel and conLink.length > 1) %}
       <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
       {% endif %}
