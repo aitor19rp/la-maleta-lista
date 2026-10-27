@@ -249,7 +249,6 @@ html { scroll-behavior: smooth; }
 }
 .of-cta { display: flex; width: 100%; font-size: 18px; }
 .of-cta-hotel { margin-top: 10px; }
-.of-duda { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; color: var(--azul-vuelo); font-weight: 600; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
 .of-aviso-afiliado { margin: 28px 0 0; font-size: 14px; color: var(--suave); }
 .of-afiliado { margin: 10px 0 0; font-size: 15px; color: var(--suave); }
 .of-widget { margin-top: 14px; min-height: 120px; padding: 12px; background: var(--papel); border-radius: 14px; }
@@ -612,17 +611,6 @@ html { scroll-behavior: smooth; }
   .btn, .ultimo, .chollo a, .of-barra { transition: none; }
   .ultimo:hover, .chollo a:hover { transform: none; }
 }
-
-.wa-flotante {
-  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 15;
-  display: flex; align-items: center; justify-content: center;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: #1f8f4e; color: var(--blanco);
-  box-shadow: 0 4px 14px rgba(27, 36, 48, .3);
-}
-.wa-flotante svg { width: 30px; height: 30px; }
-.wa-flotante:hover { background: #197a42; }
-.pagina-oferta .wa-flotante { bottom: calc(88px + env(safe-area-inset-bottom)); }
 
 .btn-tg { gap: 8px; }
 .btn-tg svg { flex: none; }
