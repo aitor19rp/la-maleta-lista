@@ -89,7 +89,7 @@ bodyClass: home
           <span class="chollo-destino">{{ oferta.data.destino }}</span>
           {% if oferta.data.subtitulo %}<span class="chollo-sub">{{ oferta.data.subtitulo }}</span>{% endif %}
           {% if primera %}
-          <span class="chollo-datos">{{ primera.fecha }}{% if opciones.length > 1 %} <em>+{{ opciones.length - 1 }} salida{% if opciones.length > 2 %}s{% endif %}</em>{% endif %}</span>
+          <span class="chollo-datos">{{ primera.fecha }}</span>
           {% endif %}
           <span class="chollo-comprobado" data-fecha="{{ oferta.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ oferta.data.precio_verificado }}<b class="hace"></b></span>
         </span>
