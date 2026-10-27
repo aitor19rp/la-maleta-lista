@@ -14,7 +14,7 @@ eleventyComputed:
 {% set esHotel = (tipo == "hotel") or (not tipo and validas.length and ("Hotel" in (validas | first).salida)) %}
 {% set meses_nombres = [["ene","Ene"],["feb","Feb"],["mar","Mar"],["abr","Abr"],["may","May"],["jun","Jun"],["jul","Jul"],["ago","Ago"],["sep","Sep"],["oct","Oct"],["nov","Nov"],["dic","Dic"]] %}
 
-<article class="of">
+<article class="of"{% if caduca %} data-caduca="{{ caduca }}"{% endif %}>
   <header class="of-portada" style="view-transition-name: foto-{{ page.fileSlug }};">
     {% imagen imagen_cabecera, "Foto de " + destino, "(min-width: 720px) 720px, 100vw", [640, 1280], true %}
     <a href="/" class="of-btn-icono of-volver" aria-label="Volver al inicio">
@@ -74,6 +74,8 @@ eleventyComputed:
     </section>
     {% endif %}
 
+    <p class="of-finalizada" id="of-finalizada" role="status" hidden><strong>Esta oferta ya ha finalizado.</strong> Las fechas han pasado. Mira los chollos activos en la <a href="/">portada</a> o únete a Telegram para el próximo.</p>
+
     <section aria-labelledby="of-fechas">
       <h2 id="of-fechas">Fechas y precios</h2>
       {% if validas.length %}
@@ -109,13 +111,13 @@ eleventyComputed:
     </section>
 
     {% if hotelBase and otras_fechas and otras_fechas.length %}
-    <section aria-labelledby="of-otras-fechas">
+    <section aria-labelledby="of-otras-fechas" id="of-otras-wrap">
       <h2 id="of-otras-fechas">{% if link_hotel %}Otras fechas (vuelo + hotel){% else %}Otras fechas{% endif %}</h2>
       <p class="of-pasos-intro">{% if link_hotel %}Cada fecha lleva el vuelo y el hotel que te propongo.{% else %}Mismo hotel, otras noches.{% endif %}</p>
       <ul class="of-otras-fechas">
         {% for f in otras_fechas %}
         {% if f.vuelo %}
-        <li class="con-vuelo">
+        <li class="con-vuelo" data-desde="{{ f.desde }}">
           <p class="of-ov-cab"><strong>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</strong><span class="of-otras-precio">{{ f.precio }}</span></p>
           <p class="of-ov-linea"><b>Vuelo directo</b> {{ f.vuelo }}</p>
           <p class="of-ov-linea"><b>Hotel</b> {{ nombre_hotel }}</p>
@@ -125,7 +127,7 @@ eleventyComputed:
           </div>
         </li>
         {% else %}
-        <li><a href="{{ hotelBase | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
+        <li data-desde="{{ f.desde }}"><a href="{{ hotelBase | fechasTrivago(f.desde, f.hasta) }}" target="_blank" rel="noopener sponsored"><span>{{ f.desde | fechaCorta }} – {{ f.hasta | fechaCorta }}</span><span class="of-otras-precio">{% if f.precio %}{{ f.precio }}{% else %}Ver precio{% endif %}</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></li>
         {% endif %}
         {% endfor %}
       </ul>
@@ -222,6 +224,27 @@ eleventyComputed:
 </article>
 
 <script>
+(function () {
+  // Fechas pasadas: se ocultan al abrir la página, sin esperar a que se reconstruya la web.
+  var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+  var pasada = function (iso) { return iso && new Date(iso + 'T23:59:59') < hoy; };
+  var alternativas = document.querySelectorAll('[data-desde]');
+  var vivas = 0;
+  alternativas.forEach(function (li) {
+    if (new Date(li.dataset.desde + 'T00:00:00') < hoy) li.hidden = true; else vivas++;
+  });
+  var wrap = document.getElementById('of-otras-wrap');
+  if (wrap && alternativas.length && !vivas) wrap.hidden = true;
+  var art = document.querySelector('.of[data-caduca]');
+  if (art && pasada(art.dataset.caduca)) {
+    var aviso = document.getElementById('of-finalizada');
+    if (aviso) aviso.hidden = false;
+    document.querySelectorAll('.of-cta, .of-fecha-ir, .of-barra, .of-ov-botones').forEach(function (el) { el.hidden = true; });
+    var fechas = document.querySelector('.of-fechas');
+    if (fechas) fechas.hidden = true;
+    if (wrap) wrap.hidden = true;
+  }
+})();
 (function () {
   var p = document.querySelector('[data-fecha]');
   if (p) {

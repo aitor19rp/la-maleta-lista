@@ -216,6 +216,9 @@ h2 {
 .of-fecha-precio { display: flex; flex-direction: column; align-items: flex-end; text-align: right; font-family: var(--font-titulares); font-weight: 700; font-size: 1.25rem; color: var(--azul-vuelo); }
 .of-fecha-precio em { font-family: var(--font-cuerpo); font-style: normal; font-size: 14px; font-weight: 600; color: var(--verde-profundo); }
 .of-sujeto { margin: 12px 0 0; font-size: 15px; color: var(--suave); }
+.of-finalizada { margin: 16px 0 0; padding: 12px 14px; border-radius: 12px; background: #fdecea; color: #7a1f16; font-size: 15px; }
+.of-finalizada a { color: inherit; text-decoration: underline; }
+.chollos-vacio[hidden], .of-finalizada[hidden], .of [hidden] { display: none !important; }
 .of-ir-pasos {
   display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; padding: 0 20px;
   border: 2px solid var(--azul-vuelo); border-radius: 999px;

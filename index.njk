@@ -69,19 +69,17 @@ bodyClass: home
     <div class="filtros" id="filtros" role="group" aria-label="Filtrar por ciudad de salida" hidden></div>
   </div>
 
-  {% if not ultima %}
-  <div class="chollos-vacio">
+  <div class="chollos-vacio" id="chollos-vacio"{% if ultima %} hidden{% endif %}>
     <p>Ahora mismo no hay chollos activos. Únete al canal de Telegram y te aviso en cuanto salga el siguiente.</p>
     <a href="{{ site.telegramInvitacion.portada }}" class="btn btn-tg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 18.7 19.2c-.24 1.06-.87 1.32-1.76.82l-4.86-3.58-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.95 9-8.13c.39-.35-.09-.54-.6-.19L6.37 12.9 1.58 11.4c-1.04-.33-1.06-1.04.22-1.54L20.5 2.6c.87-.32 1.63.2 1.4 1.5Z"/></svg>Recibe el próximo chollo gratis<span class="solo-lectores"> en Telegram (se abre en una pestaña nueva)</span></a>
   </div>
-  {% endif %}
 
   <ul class="chollos-lista{% if ofertasOrdenadas.length < 3 %} pocas{% endif %}" id="chollos-lista">
     {% for oferta in ofertasOrdenadas %}
     {% set opciones = oferta.data.opciones | opcionesValidas %}
     {% set primera = opciones | first %}
     {% set esHotel = (oferta.data.tipo == "hotel") or (not oferta.data.tipo and primera and ("Hotel" in primera.salida)) %}
-    <li class="chollo" data-salidas="{% if not esHotel %}{% for o in opciones %}{% if "Hotel" not in o.salida %}{{ o.salida }}|{% endif %}{% endfor %}{% endif %}">
+    <li class="chollo"{% if oferta.data.caduca %} data-caduca="{{ oferta.data.caduca }}"{% endif %} data-salidas="{% if not esHotel %}{% for o in opciones %}{% if "Hotel" not in o.salida %}{{ o.salida }}|{% endif %}{% endfor %}{% endif %}">
       <a href="{{ oferta.url }}">
         <span class="chollo-foto" style="view-transition-name: foto-{{ oferta.fileSlug }};">
           {% imagen oferta.data.imagen_cabecera, "", "(min-width: 1040px) 360px, (min-width: 720px) 50vw, 100vw", [400, 800], false %}
@@ -139,6 +137,17 @@ bodyClass: home
 </section>
 
 <script>
+(function () {
+  // Ofertas con todas las fechas pasadas: se quitan de la lista al abrir la portada.
+  var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+  var lista = document.querySelectorAll('#chollos-lista .chollo');
+  var vivos = 0;
+  lista.forEach(function (li) {
+    if (li.dataset.caduca && new Date(li.dataset.caduca + 'T23:59:59') < hoy) li.remove(); else vivos++;
+  });
+  var vacio = document.getElementById('chollos-vacio');
+  if (vacio && lista.length && !vivos) vacio.hidden = false;
+})();
 (function () {
   document.querySelectorAll('[data-fecha]').forEach(function (el) {
     var inicioHoy = new Date(); inicioHoy.setHours(0, 0, 0, 0);
