@@ -7,6 +7,7 @@ imagen_cabecera: "/img/budapest-mercadillo-hero.jpg"
 proveedor: "Skyscanner"
 proveedor_hotel: "Trivago"
 tipo: "vuelo"
+galeria: ["/img/budapest-vorosmarty.jpg", "/img/budapest-puesto.jpg", "/img/budapest-basilica-noche.jpg", "/img/budapest-basilica-arbol.jpg", "/img/budapest-basilica-arco.jpg"]
 etiquetas: ["Vuelo directo", "2 noches", "Hotel 4 estrellas", "Valoración del hotel 9,2/10"]
 consejo_reserva: "El vuelo y el hotel se reservan por separado. Pulsa el botón de tu ciudad para abrir Skyscanner con la búsqueda a Budapest del 14 al 16 de diciembre, para 2 adultos y solo vuelos directos, y ordena por precio. Cuando lo comprobé, el vuelo directo de ida y vuelta costaba esto para los dos: Madrid 211 € (Ryanair a las 18:15, vuelta con Buzz a las 6:10) y Alicante 232 € (Ryanair a las 15:55, vuelta con Wizz Air a las 5:30). Son aerolíneas de bajo coste y las vueltas salen de madrugada. En Trivago verás el TG Hotel Apartments Budapest: elige el precio más bajo para esas noches (era 202 € la habitación doble las 2 noches, en CHECK24)."
 opciones:
@@ -29,4 +30,4 @@ Escapada a los mercadillos navideños de Budapest desde Madrid o Alicante: vuelo
 
 El precio por persona sale de dividir entre 2: el vuelo (211 € los dos desde Madrid, 232 € desde Alicante) más 101 € del hotel (202 € la habitación doble, 2 noches). Comprobado el 27 de octubre para el 14-16 de diciembre de 2026, de lunes a miércoles.
 
-Foto: mercadillo de Vörösmarty tér, Budapest, de Elekes Andor ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), vía [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:V%C3%B6r%C3%B6smarty_Christmas_Fair_2023_(28).jpg)).
+Fotos de los mercadillos de Budapest, de Wikimedia Commons: [cabecera y Vörösmarty tér](https://commons.wikimedia.org/wiki/File:V%C3%B6r%C3%B6smarty_Christmas_Fair_2023_(28).jpg) y [puesto de comida](https://commons.wikimedia.org/wiki/File:V%C3%B6r%C3%B6smarty_Christmas_Fair_2023_(8).jpg), de Elekes Andor (CC BY 4.0); [Vörösmarty tér con árbol](https://commons.wikimedia.org/wiki/File:V%C3%B6r%C3%B6smarty_Christmas_Fair_2023_(22).jpg), también de Elekes Andor (CC BY 4.0); [arco de luces ante la basílica](https://commons.wikimedia.org/wiki/File:Weihnachtsmarkt_vor_der_St._Stephans_Basilika,_2013_Budapest_6389.jpg), de Karl Gruber (CC BY-SA 3.0); [árbol ante la basílica](https://commons.wikimedia.org/wiki/File:St.-Stephans-Platz-Weihnachtsmarkt,_Weihnachtsbaum,_2024_Lip%C3%B3tv%C3%A1ros.jpg), de Globetrotter19 (CC BY-SA 4.0); [arco nevado y basílica](https://commons.wikimedia.org/wiki/File:20231225.Weihnachtsmarkt.St.-Stephans-Basilika.-039.jpg), de Bybbisch94 (CC BY 4.0).
