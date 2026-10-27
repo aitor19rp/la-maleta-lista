@@ -1,3 +1,5 @@
+const { masBarata } = require('../filters.js');
+
 const BASE_WEB = 'https://la-maleta-lista.pages.dev';
 
 function escaparHtml(texto) {
@@ -15,18 +17,37 @@ function urlFoto(imagen, base = BASE_WEB) {
 // Texto del post para el canal. Telegram limita el pie de una foto a 1024 caracteres.
 function construirMensaje(oferta, slug, base = BASE_WEB) {
   const titulo = [oferta.emoji, `<b>${escaparHtml(oferta.destino)}</b>`].filter(Boolean).join(' ');
-  const lineas = [oferta.subtitulo ? `${titulo} — ${escaparHtml(oferta.subtitulo)}` : titulo, ''];
+  const esHotel = oferta.tipo === 'hotel';
+  const gancho = esHotel ? '🚨🏨 ¡CHOLLAZO! 🏨🚨' : '🚨✈️ ¡CHOLLAZO! ✈️🚨';
+  const lineas = [gancho, '', oferta.subtitulo ? `${titulo} — ${escaparHtml(oferta.subtitulo)}` : titulo, ''];
 
-  for (const op of oferta.opciones || []) {
-    const partes = [op.salida, op.fecha, op.precio].filter(Boolean).map(escaparHtml);
-    lineas.push(`• ${partes.join(' · ')}`);
-    if (op.nota) lineas.push(`   ${escaparHtml(op.nota)}`);
+  // En vuelos, `salida` es la ciudad de origen y no se pone en el post; en hoteles es el nombre del hotel.
+  // Sin la ciudad, varias salidas con las mismas fechas serían líneas idénticas: se deja solo la más barata.
+  let opciones = oferta.opciones || [];
+  if (oferta.tipo !== 'hotel') {
+    const fechas = [...new Set(opciones.map((op) => op.fecha))];
+    opciones = fechas.map((fecha) => masBarata(opciones.filter((op) => op.fecha === fecha)) || opciones.find((op) => op.fecha === fecha));
+  }
+
+  for (const op of opciones) {
+    const partes = [
+      esHotel && op.salida ? `🏨 ${escaparHtml(op.salida)}` : '',
+      op.fecha ? `📅 ${escaparHtml(op.fecha)}` : '',
+      op.precio ? `💰 ${escaparHtml(op.precio)}` : ''
+    ].filter(Boolean);
+    lineas.push(partes.join(' · '));
+    // La nota se omite si ya está dicha en el subtítulo (p. ej. «Vuelo directo + 2 noches de hotel»).
+    const subtitulo = (oferta.subtitulo || '').toLowerCase();
+    if (op.nota && !subtitulo.includes(op.nota.toLowerCase())) lineas.push(`✨ ${escaparHtml(op.nota)}`);
   }
 
   if (oferta.precio_verificado) {
-    lineas.push('', `Precio comprobado el ${escaparHtml(oferta.precio_verificado)}.`);
+    lineas.push('', `✅ Precio comprobado el ${escaparHtml(oferta.precio_verificado)}.`);
   }
-  lineas.push('', `Ver la oferta: ${urlOferta(slug, base)}`);
+  // En la web los vuelos traen el buscador de Skyscanner (otras fechas y otros orígenes) y los hoteles, botones de otras fechas.
+  if (!esHotel) lineas.push('', '🔎 En la web tienes más fechas y orígenes para buscar');
+  else if ((oferta.otras_fechas || []).length) lineas.push('', '🔎 En la web tienes más fechas para este hotel');
+  lineas.push('', '🧳 ¡Corre, que estos precios vuelan! 🛫', '', `👉 Ver la oferta: ${urlOferta(slug, base)}`);
 
   return lineas.join('\n');
 }

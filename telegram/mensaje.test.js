@@ -38,3 +38,47 @@ test('sin foto devuelve cadena vacía y con foto devuelve la URL completa', () =
 test('la URL de la oferta usa el nombre del archivo', () => {
   assert.strictEqual(urlOferta('milan-diciembre'), 'https://la-maleta-lista.pages.dev/ofertas/milan-diciembre/');
 });
+
+test('en vuelos no se pone la ciudad de salida; en hoteles sí el nombre del hotel', () => {
+  const vuelo = { ...oferta, tipo: 'vuelo', opciones: [{ salida: 'Barcelona', fecha: '28-30 noviembre', precio: 'Desde 121€/persona' }] };
+  assert.doesNotMatch(construirMensaje(vuelo, 'sofia'), /Barcelona/);
+  assert.match(construirMensaje({ ...oferta, tipo: 'hotel' }, 'roma'), /🏨 Hotel Fontana · 📅 22-23 noviembre/);
+});
+
+test('en vuelos con varias salidas y las mismas fechas, el post deja solo la más barata', () => {
+  const vuelo = {
+    ...oferta,
+    tipo: 'vuelo',
+    opciones: [
+      { salida: 'Madrid', fecha: '16-18 enero', precio: 'Desde 165€/persona' },
+      { salida: 'Bilbao', fecha: '16-18 enero', precio: 'Desde 181€/persona' }
+    ]
+  };
+  const texto = construirMensaje(vuelo, 'roma');
+  assert.match(texto, /📅 16-18 enero · 💰 Desde 165€\/persona/);
+  assert.doesNotMatch(texto, /181/);
+  assert.doesNotMatch(texto, /Madrid|Bilbao/);
+});
+
+test('el post es más divertido: gancho con emojis y cierre animado, y el enlace sigue al final', () => {
+  const texto = construirMensaje({ ...oferta, tipo: 'vuelo' }, 'roma');
+  assert.match(texto, /^🚨✈️ ¡CHOLLAZO!/);
+  assert.match(texto, /📅 22-23 noviembre/);
+  assert.match(texto, /✅ Precio comprobado/);
+  assert.match(texto, /🧳 ¡Corre/);
+  assert.match(texto, /👉 Ver la oferta: https:\/\/\S+$/);
+});
+
+test('la nota no se repite si ya está en el subtítulo, y sí se pone si aporta algo', () => {
+  const repetida = { ...oferta, tipo: 'vuelo', subtitulo: 'Vuelo directo + 2 noches de hotel', opciones: [{ salida: 'Madrid', fecha: '16-18 enero', precio: 'Desde 165€/persona', nota: 'Vuelo directo + 2 noches de hotel' }] };
+  assert.doesNotMatch(construirMensaje(repetida, 'roma'), /✨/);
+  assert.match(construirMensaje(oferta, 'roma'), /✨ 1 noche con desayuno/);
+});
+
+test('avisa de que en la web hay más fechas y orígenes (vuelos) o más fechas (hoteles con otras_fechas)', () => {
+  assert.match(construirMensaje({ ...oferta, tipo: 'vuelo' }, 'roma'), /🔎 En la web tienes más fechas y orígenes/);
+  assert.doesNotMatch(construirMensaje({ ...oferta, tipo: 'hotel' }, 'roma'), /🔎/);
+  const conFechas = construirMensaje({ ...oferta, tipo: 'hotel', otras_fechas: [{ desde: '2026-12-01', hasta: '2026-12-02' }] }, 'roma');
+  assert.match(conFechas, /🔎 En la web tienes más fechas para este hotel/);
+  assert.doesNotMatch(conFechas, /orígenes/);
+});
