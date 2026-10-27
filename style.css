@@ -620,3 +620,13 @@ html { scroll-behavior: smooth; }
 .of-widget-hoteles { text-align: center; }
 .of-widget-hoteles iframe { display: block; max-width: 100%; margin: 0 auto; border: 0; background: var(--blanco); border-radius: 12px; }
 .of-widget-hoteles p a { display: inline-block; padding: 12px 4px; color: var(--azul-vuelo); font-weight: 600; text-underline-offset: 3px; }
+
+.guia { max-width: 720px; margin: 0 auto; padding: 24px 20px 40px; }
+.guia h1 { font-family: var(--font-titulares); color: var(--azul-vuelo); font-size: clamp(28px, 6vw, 38px); line-height: 1.15; margin: 8px 0 12px; }
+.guia h2 { font-family: var(--font-titulares); color: var(--azul-vuelo); font-size: 22px; margin: 32px 0 12px; }
+.guia h3 { font-size: 17px; margin: 18px 0 4px; }
+.guia p, .guia li { max-width: 60ch; line-height: 1.55; }
+.guia-intro { font-size: 18px; color: var(--suave); }
+.guia-migas { margin: 0; font-size: 15px; }
+.guia ul { padding-left: 20px; }
+.guia-cierre { margin-top: 32px; }
