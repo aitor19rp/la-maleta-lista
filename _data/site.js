@@ -7,6 +7,13 @@ module.exports = {
     tiktok: "https://www.tiktok.com/@lamaletalistachollos"
   },
   telegram: "https://t.me/lamaletalista",
+  // Enlaces de invitación por sitio, para saber desde dónde se une la gente (Telegram > estadísticas del canal).
+  telegramInvitacion: {
+    portada: "https://t.me/+uPlgMZ_CyQliMmY0",
+    ficha: "https://t.me/+CoBC3hCoTaA1ZDg0",
+    tiktok: "https://t.me/+Ruuu6G1avtwyNDM8",
+    guia: "https://t.me/+IHfzWgSxRQQxYTA0"
+  },
   whatsapp: "34623799102",
   clarityId: "",
   gaId: "G-DC7HPFJ7EG"
