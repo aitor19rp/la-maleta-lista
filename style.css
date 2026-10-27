@@ -630,3 +630,16 @@ html { scroll-behavior: smooth; }
 .guia-migas { margin: 0; font-size: 15px; }
 .guia ul { padding-left: 20px; }
 .guia-cierre { margin-top: 32px; }
+
+/* Portada: Telegram destacado y cabecera compacta en móvil */
+.btn-blanco { background: var(--blanco); color: var(--azul-vuelo); }
+.btn-blanco:hover { background: var(--arena-calida); }
+.portada-enlace { display: inline-flex; align-items: center; min-height: 44px; color: var(--blanco); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-shadow: 0 1px 10px rgba(10,22,32,.5); }
+@media (max-width: 719px) {
+  .portada-contenido { padding: 24px 20px 24px; gap: 22px; }
+  .portada h1 { font-size: clamp(1.9rem, 8.5vw, 2.4rem); margin-bottom: 10px; max-width: 14ch; }
+  .portada-sub { font-size: 1rem; margin-bottom: 16px; }
+  .portada-acciones { gap: 10px; }
+  .portada-acciones .btn { min-height: 48px; flex: 1 1 100%; }
+  .portada-acciones .portada-enlace { flex: 1 1 100%; justify-content: center; min-height: 40px; }
+}
