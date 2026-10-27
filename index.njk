@@ -29,7 +29,7 @@ bodyClass: home
       <span class="ultimo-datos">
         <span class="ultimo-destino">{{ ultima.data.destino }}</span>
         {% if ultima.data.subtitulo %}<span class="ultimo-sub">{{ ultima.data.subtitulo }}</span>{% endif %}
-        {% if ultimaOpcion %}<span class="ultimo-fecha">{% if ultimaEsHotel %}Solo hotel{% else %}Sale de {{ ultimaOpcion.salida }}{% endif %} · {{ ultimaOpcion.fecha }}</span>{% endif %}
+        {% if ultimaOpcion %}<span class="ultimo-fecha">{% if ultimaEsHotel %}Solo hotel · {% endif %}{{ ultimaOpcion.fecha }}</span>{% endif %}
       </span>
       <span class="ultimo-comprobado" data-fecha="{{ ultima.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ ultima.data.precio_verificado }}<b class="hace"></b></span>
       {% if ultimaOpcion %}<span class="ultimo-precio">{{ ultimaOpcion.precio | precioCorto }}</span>{% endif %}
@@ -89,7 +89,7 @@ bodyClass: home
           <span class="chollo-destino">{{ oferta.data.destino }}</span>
           {% if oferta.data.subtitulo %}<span class="chollo-sub">{{ oferta.data.subtitulo }}</span>{% endif %}
           {% if primera %}
-          <span class="chollo-datos">{% if esHotel %}Solo hotel{% else %}Sale de {{ primera.salida }}{% endif %} · {{ primera.fecha }}{% if opciones.length > 1 %} <em>+{{ opciones.length - 1 }} salida{% if opciones.length > 2 %}s{% endif %}</em>{% endif %}</span>
+          <span class="chollo-datos">{% if esHotel %}Solo hotel · {% endif %}{{ primera.fecha }}{% if opciones.length > 1 %} <em>+{{ opciones.length - 1 }} salida{% if opciones.length > 2 %}s{% endif %}</em>{% endif %}</span>
           {% endif %}
           <span class="chollo-comprobado" data-fecha="{{ oferta.date.toISOString() | truncate(10, true, '') }}">Publicado el {{ oferta.data.precio_verificado }}<b class="hace"></b></span>
         </span>
