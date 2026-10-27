@@ -65,7 +65,10 @@ bodyClass: home
 <section class="chollos" id="chollos">
   <div class="chollos-cabecera">
     <h2>Chollos activos</h2>
-    <div class="filtros" id="filtros" role="group" aria-label="Filtrar por ciudad de salida" hidden></div>
+    <div class="filtros-caja" id="filtros-caja" hidden>
+      <span class="filtros-etiqueta" id="filtros-etiqueta">Filtrar por origen:</span>
+      <div class="filtros" id="filtros" role="group" aria-labelledby="filtros-etiqueta"></div>
+    </div>
   </div>
 
   <div class="chollos-vacio" id="chollos-vacio"{% if ultima %} hidden{% endif %}>
@@ -186,12 +189,12 @@ bodyClass: home
   [''].concat(ciudades).forEach(function (c) {
     var b = document.createElement('button');
     b.type = 'button';
-    b.textContent = c || 'Todas';
+    b.textContent = c || 'Todos';
     b.dataset.ciudad = c;
     b.addEventListener('click', function () { pintar(c, true); });
     cont.appendChild(b);
   });
-  cont.hidden = false;
+  document.getElementById('filtros-caja').hidden = false;
   pintar('');
 })();
 (function () {

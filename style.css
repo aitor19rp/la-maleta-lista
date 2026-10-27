@@ -480,8 +480,10 @@ html { scroll-behavior: smooth; }
 .chollos { max-width: 1120px; margin: 0 auto; padding: 56px 20px 24px; }
 .chollos-cabecera { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-bottom: 24px; }
 .chollos h2, .metodo h2 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.1; letter-spacing: -0.01em; }
+.filtros-caja { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.filtros-caja[hidden] { display: none; }
+.filtros-etiqueta { font-weight: 600; font-size: 15px; color: var(--suave); }
 .filtros { display: flex; flex-wrap: wrap; gap: 8px; }
-.filtros[hidden] { display: none; }
 .filtros button {
   min-height: 44px; padding: 0 18px;
   border-radius: 999px;
