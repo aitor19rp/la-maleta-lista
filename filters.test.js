@@ -50,6 +50,11 @@ test('clickrefLink leaves the URL untouched when it already has a clickref param
   );
 });
 
+test('clickrefLink leaves an Impact link with subId1 untouched', () => {
+  const url = 'https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=roma-mad&u=https%3A%2F%2Fwww.skyscanner.es%2F&partnerpropertyid=6361569';
+  assert.strictEqual(clickrefLink(url, 'Roma'), url);
+});
+
 test('sidLink appends sid with ? when base has no query string', () => {
   assert.strictEqual(
     sidLink('https://www.booking.com', 'Praga'),

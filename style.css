@@ -211,6 +211,8 @@ h2 {
 .of-fecha-desde { font-family: var(--font-cuerpo); font-weight: 600; font-size: 14px; color: var(--suave); }
 .of-fecha-fecha { font-weight: 600; color: var(--azul-vuelo); }
 .of-fecha-salida { font-size: 15px; color: var(--suave); }
+.of-fecha-ir { align-self: flex-start; min-height: 40px; margin-top: 10px; padding: 0 20px; font-size: 15px; }
+.of-fechas li.barata .of-fecha-ir { background: var(--blanco); }
 .of-fecha-precio { display: flex; flex-direction: column; align-items: flex-end; text-align: right; font-family: var(--font-titulares); font-weight: 700; font-size: 1.25rem; color: var(--azul-vuelo); }
 .of-fecha-precio em { font-family: var(--font-cuerpo); font-style: normal; font-size: 14px; font-weight: 600; color: var(--verde-profundo); }
 .of-sujeto { margin: 12px 0 0; font-size: 15px; color: var(--suave); }

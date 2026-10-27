@@ -8,6 +8,7 @@ eleventyComputed:
 {% set validas = opciones | opcionesValidas %}
 {% set barata = validas | masBarata %}
 {% set precio_barra = barata or (validas | first) %}
+{% set conLink = validas | selectattr("link") %}
 {% set enlace = link_afiliado | clickrefLink(destino) %}
 {% set hotelBase = link_hotel or (link_afiliado if (tipo == "hotel") else "") %}
 {% set esHotel = (tipo == "hotel") or (not tipo and validas.length and ("Hotel" in (validas | first).salida)) %}
@@ -87,6 +88,7 @@ eleventyComputed:
             <span class="of-fecha-origen"><span class="of-fecha-desde">Sale de</span> {{ opcion.salida }}</span>
             <span class="of-fecha-fecha">{{ opcion.fecha }}</span>
             {% if opcion.nota %}<span class="of-fecha-salida">{{ opcion.nota }}</span>{% endif %}
+            {% if opcion.link %}<a href="{{ opcion.link }}" class="btn btn-borde of-fecha-ir" target="_blank" rel="noopener sponsored">Ver el vuelo<span class="solo-lectores"> desde {{ opcion.salida }} en {{ proveedor }} (se abre en una pestaña nueva)</span></a>{% endif %}
             {% endif %}
           </span>
           <span class="of-fecha-precio">{{ opcion.precio }}{% if opcion == barata and validas.length > 1 %}<em>La más barata</em>{% endif %}</span>
@@ -98,7 +100,9 @@ eleventyComputed:
       {% endif %}
       <p class="of-sujeto">El precio puede haber cambiado. Confírmalo al reservar.</p>
       {% if consejo_reserva %}<p class="of-consejo"><strong>En esta oferta:</strong> {{ consejo_reserva }}</p>{% endif %}
+      {% if not (not esHotel and conLink.length > 1) %}
       <a href="{{ enlace }}" class="btn btn-coral of-cta" target="_blank" rel="noopener sponsored">{% if link_hotel %}Ver el vuelo en {{ proveedor }}{% else %}Ver oferta{% endif %}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      {% endif %}
       {% if link_hotel %}<a href="{{ link_hotel }}" class="btn btn-borde of-cta of-cta-hotel" target="_blank" rel="noopener sponsored">Ver el hotel en {{ proveedor_hotel }}<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>{% endif %}
       <a href="#of-pasos" class="btn btn-borde of-cta of-cta-hotel">Cómo reservar</a>
     </section>
@@ -146,9 +150,9 @@ eleventyComputed:
     <section aria-labelledby="of-otras">
       <h2 id="of-otras">¿Otras fechas u otro origen?</h2>
       <p class="of-pasos-intro">Busca vuelos desde tu ciudad y para tus fechas.</p>
-      <button type="button" class="btn btn-borde" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
-      <div class="of-widget" id="widget-kiwi" hidden></div>
-      <p class="of-afiliado">Carga el buscador de Kiwi.com, con sus propias cookies.</p>
+      <button type="button" class="btn btn-borde" id="widget-abrir" aria-expanded="false" aria-controls="widget-vuelos">Abrir el buscador de vuelos</button>
+      <div class="of-widget" id="widget-vuelos" hidden></div>
+      <p class="of-afiliado">Carga el buscador de Skyscanner, con sus propias cookies.</p>
     </section>
     {% endif %}
 
@@ -310,14 +314,27 @@ eleventyComputed:
     actualizar();
   }
   var abrir = document.getElementById('widget-abrir');
-  var contenedor = document.getElementById('widget-kiwi');
+  var contenedor = document.getElementById('widget-vuelos');
   if (abrir && contenedor) {
     abrir.addEventListener('click', function () {
       if (!contenedor.hasChildNodes()) {
+        var w = document.createElement('div');
+        w.setAttribute('data-skyscanner-widget', 'FlightSearchWidget');
+        w.setAttribute('data-locale', 'es-ES');
+        w.setAttribute('data-market', 'ES');
+        w.setAttribute('data-currency', 'EUR');
+        w.setAttribute('data-associate-id', 'AFF_TRA_19354_00001');
+        w.setAttribute('data-utm-term', '{{ page.fileSlug | replace("-", "") }}');
+        w.setAttribute('data-hide-powered-by', 'true');
+        w.setAttribute('data-button-colour', '#E9502D');
+        w.setAttribute('data-responsive', 'true');
+        w.setAttribute('data-flights-cabin-classes', 'false');
+        w.setAttribute('data-direct-flights-is-checked', 'true');
+        w.setAttribute('data-flight-type', 'return');
+        contenedor.appendChild(w);
         var s = document.createElement('script');
         s.async = true;
-        s.charset = 'utf-8';
-        s.src = 'https://tpemb.com/content?currency=eur&trs=588032&shmarker=772596.widget-{{ page.fileSlug }}&locale=es&stops=0&show_hotels=false&powered_by=true&border_radius=0&plain=true&color_button=%231B4B66ff&color_button_text=%23ffffff&promo_id=3414&campaign_id=111';
+        s.src = 'https://widgets.skyscanner.net/widget-server/js/loader.js';
         contenedor.appendChild(s);
       }
       var visible = contenedor.hidden;

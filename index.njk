@@ -107,10 +107,10 @@ bodyClass: home
   <div class="buscar-tarjetas">
     <div class="buscar-tarjeta">
       <h3>Vuelos</h3>
-      <p>Busca vuelos desde tu ciudad con el buscador de Kiwi.com.</p>
-      <button type="button" class="btn btn-coral" id="widget-abrir" aria-expanded="false" aria-controls="widget-kiwi">Abrir el buscador de vuelos</button>
-      <div class="of-widget" id="widget-kiwi" hidden></div>
-      <a class="buscar-enlace" href="{{ afiliados.kiwi }}" target="_blank" rel="noopener sponsored">O ve directamente a Kiwi.com<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+      <p>Busca vuelos desde tu ciudad con el buscador de Skyscanner.</p>
+      <button type="button" class="btn btn-coral" id="widget-abrir" aria-expanded="false" aria-controls="widget-vuelos">Abrir el buscador de vuelos</button>
+      <div class="of-widget" id="widget-vuelos" hidden></div>
+      <a class="buscar-enlace" href="{{ afiliados.skyscanner }}" target="_blank" rel="noopener sponsored">O ve directamente a Skyscanner<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
     </div>
     <div class="buscar-tarjeta">
       <h3>Hoteles</h3>
@@ -120,7 +120,7 @@ bodyClass: home
       <a class="buscar-enlace" href="{{ afiliados.trivago }}" target="_blank" rel="noopener sponsored">O ve directamente a Trivago<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
     </div>
   </div>
-  <p class="buscar-nota">Al abrir los buscadores se cargan Kiwi.com o Trivago, que pueden usar sus propias cookies.</p>
+  <p class="buscar-nota">Al abrir los buscadores se cargan Skyscanner o Trivago, que pueden usar sus propias cookies.</p>
 </section>
 
 <section class="metodo">
@@ -188,14 +188,27 @@ bodyClass: home
 })();
 (function () {
   var abrir = document.getElementById('widget-abrir');
-  var contenedor = document.getElementById('widget-kiwi');
+  var contenedor = document.getElementById('widget-vuelos');
   if (!abrir || !contenedor) return;
   abrir.addEventListener('click', function () {
     if (!contenedor.hasChildNodes()) {
+      var w = document.createElement('div');
+      w.setAttribute('data-skyscanner-widget', 'FlightSearchWidget');
+      w.setAttribute('data-locale', 'es-ES');
+      w.setAttribute('data-market', 'ES');
+      w.setAttribute('data-currency', 'EUR');
+      w.setAttribute('data-associate-id', 'AFF_TRA_19354_00001');
+      w.setAttribute('data-utm-term', 'portada');
+      w.setAttribute('data-hide-powered-by', 'true');
+      w.setAttribute('data-button-colour', '#E9502D');
+      w.setAttribute('data-responsive', 'true');
+      w.setAttribute('data-flights-cabin-classes', 'false');
+      w.setAttribute('data-direct-flights-is-checked', 'true');
+      w.setAttribute('data-flight-type', 'return');
+      contenedor.appendChild(w);
       var s = document.createElement('script');
       s.async = true;
-      s.charset = 'utf-8';
-      s.src = 'https://tpemb.com/content?currency=eur&trs=588032&shmarker=772596.widget-portada&locale=es&stops=0&show_hotels=false&powered_by=true&border_radius=0&plain=true&color_button=%231B4B66ff&color_button_text=%23ffffff&promo_id=3414&campaign_id=111';
+      s.src = 'https://widgets.skyscanner.net/widget-server/js/loader.js';
       contenedor.appendChild(s);
     }
     var visible = contenedor.hidden;
