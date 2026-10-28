@@ -161,6 +161,16 @@ eleventyComputed:
     </section>
     {% endif %}
 
+    {% if link_hotel %}
+    <section aria-labelledby="of-otros-hoteles">
+      <h2 id="of-otros-hoteles">¿Otro hotel u otras noches?</h2>
+      <p class="of-pasos-intro">Compara el precio de un mismo hotel en Booking y otras webs con Trivago.</p>
+      <button type="button" class="btn btn-borde" id="widget-hoteles-abrir" aria-expanded="false" aria-controls="widget-hoteles">Abrir el buscador de hoteles</button>
+      <div class="of-widget of-widget-hoteles" id="widget-hoteles" hidden></div>
+      <p class="of-afiliado">Carga el buscador de Trivago, con sus propias cookies.</p>
+    </section>
+    {% endif %}
+
     {% if content %}
     <section class="of-info" aria-labelledby="of-info">
       <h2 id="of-info">Sobre la oferta</h2>
@@ -367,6 +377,37 @@ eleventyComputed:
       contenedor.hidden = !visible;
       abrir.setAttribute('aria-expanded', visible ? 'true' : 'false');
       abrir.textContent = visible ? 'Cerrar el buscador' : 'Abrir el buscador de vuelos';
+    });
+  }
+  var abrirH = document.getElementById('widget-hoteles-abrir');
+  var cajaH = document.getElementById('widget-hoteles');
+  if (abrirH && cajaH) {
+    abrirH.addEventListener('click', function () {
+      if (!cajaH.hasChildNodes()) {
+        var f = document.createElement('iframe');
+        f.src = 'https://ti.tradetracker.net/?c=14416&m=2432403&a=478638&r={{ page.fileSlug }}-hoteles&t=custom';
+        f.title = 'Buscador de hoteles de Trivago';
+        f.width = '300';
+        f.height = '450';
+        f.loading = 'lazy';
+        f.setAttribute('scrolling', 'no');
+        cajaH.appendChild(f);
+        var aviso = document.createElement('p');
+        aviso.className = 'of-sujeto';
+        aviso.appendChild(document.createTextNode('¿No se ve? '));
+        var enl = document.createElement('a');
+        enl.href = f.src;
+        enl.target = '_blank';
+        enl.rel = 'noopener sponsored';
+        enl.textContent = 'Ábrelo en otra pestaña';
+        aviso.appendChild(enl);
+        aviso.appendChild(document.createTextNode('.'));
+        cajaH.appendChild(aviso);
+      }
+      var visibleH = cajaH.hidden;
+      cajaH.hidden = !visibleH;
+      abrirH.setAttribute('aria-expanded', visibleH ? 'true' : 'false');
+      abrirH.textContent = visibleH ? 'Cerrar el buscador' : 'Abrir el buscador de hoteles';
     });
   }
   var btn = document.getElementById('compartir');

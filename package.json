@@ -6,7 +6,8 @@
     "build": "eleventy",
     "serve": "eleventy --serve",
     "test": "node --test",
-    "telegram": "node telegram/publicar.js"
+    "telegram": "node telegram/publicar.js",
+    "whatsapp": "node telegram/whatsapp.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.0",

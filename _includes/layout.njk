@@ -43,9 +43,9 @@
   </section>
 
   <section class="telegram-cta">
-    <h2>Recibe el próximo chollo en Telegram</h2>
+    <h2>Recibe el próximo chollo en {% if site.whatsappCanal %}Telegram o WhatsApp{% else %}Telegram{% endif %}</h2>
     <p>Canal gratis: te aviso con precio y fechas comprobados en cuanto sale una oferta.</p>
-    <a href="{% if page.url == '/' %}{{ site.telegramInvitacion.portada }}{% elif '/guia/' in page.url %}{{ site.telegramInvitacion.guia }}{% else %}{{ site.telegramInvitacion.ficha }}{% endif %}" class="boton-cta" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 18.7 19.2c-.24 1.06-.87 1.32-1.76.82l-4.86-3.58-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.95 9-8.13c.39-.35-.09-.54-.6-.19L6.37 12.9 1.58 11.4c-1.04-.33-1.06-1.04.22-1.54L20.5 2.6c.87-.32 1.63.2 1.4 1.5Z"/></svg>Recibe el próximo chollo gratis<span class="solo-lectores"> en Telegram (se abre en una pestaña nueva)</span></a>
+    {% set canalClase = 'boton-cta' %}{% set canalTexto = 'Recibe el próximo chollo gratis' %}{% set canalTg = (site.telegramInvitacion.portada if page.url == '/' else (site.telegramInvitacion.guia if '/guia/' in page.url else site.telegramInvitacion.ficha)) %}{% include 'canales.njk' %}
   </section>
 
   <footer class="site-footer">
