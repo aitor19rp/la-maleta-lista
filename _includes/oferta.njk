@@ -27,6 +27,7 @@ eleventyComputed:
     </button>
     <span class="of-estado" id="compartir-estado" role="status" aria-live="polite"></span>
     <div class="of-titulo">
+      {% if badge %}<span class="badge-oferta badge-oferta-of">{{ badge }}</span>{% endif %}
       <h1>{{ destino }}</h1>
       {% if subtitulo %}<p>{{ subtitulo }}</p>{% endif %}
     </div>

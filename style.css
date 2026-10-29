@@ -650,3 +650,9 @@ html { scroll-behavior: smooth; }
 .of-chip { min-height: 44px; padding: 0 16px; border: 1.5px solid var(--linea-fuerte); border-radius: 999px; background: transparent; color: var(--azul-vuelo); font: inherit; font-weight: 600; cursor: pointer; }
 .of-chip[aria-pressed="true"] { background: var(--azul-vuelo); border-color: var(--azul-vuelo); color: var(--blanco); }
 .of-fechas > li[hidden] { display: none !important; }
+
+/* Etiqueta destacada de una oferta (por ejemplo, "Puente de diciembre") */
+.badge-oferta { display: inline-block; padding: 6px 14px; border-radius: 10px; background: #F7C85A; color: #5a3a00; font-weight: 600; font-size: .9rem; line-height: 1.2; }
+.chollo-foto .badge-oferta { position: absolute; left: 12px; top: 12px; z-index: 1; }
+.badge-oferta-of { margin-bottom: 10px; }
+.ultimo .badge-oferta-ultimo { align-self: flex-start; padding: 3px 10px; border-radius: 8px; font-size: .78rem; margin-bottom: 4px; }

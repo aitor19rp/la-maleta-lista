@@ -26,6 +26,7 @@ bodyClass: home
       <span class="ultimo-etiqueta">Último chollo publicado</span>
       <span class="ultimo-foto">{% imagen ultima.data.imagen_cabecera, "", "96px", [96, 192], false %}</span>
       <span class="ultimo-datos">
+        {% if ultima.data.badge %}<span class="badge-oferta badge-oferta-ultimo">{{ ultima.data.badge }}</span>{% endif %}
         <span class="ultimo-destino">{{ ultima.data.destino }}</span>
         {% if ultima.data.subtitulo %}<span class="ultimo-sub">{{ ultima.data.subtitulo }}</span>{% endif %}
         {% if ultimaOpcion %}<span class="ultimo-fecha">{{ ultimaOpcion.fecha }}</span>{% endif %}
@@ -86,6 +87,7 @@ bodyClass: home
         <span class="chollo-foto" style="view-transition-name: foto-{{ oferta.fileSlug }};">
           {% imagen oferta.data.imagen_cabecera, "", "(min-width: 1040px) 360px, (min-width: 720px) 50vw, 100vw", [400, 800], false %}
           {% if primera %}<span class="chollo-precio">{{ primera.precio | precioCorto }}</span>{% endif %}
+          {% if oferta.data.badge %}<span class="badge-oferta">{{ oferta.data.badge }}</span>{% endif %}
         </span>
         <span class="chollo-cuerpo">
           <span class="chollo-destino">{{ oferta.data.destino }}</span>

@@ -2,6 +2,7 @@
 date: 2026-10-29
 destino: "Londres"
 emoji: "🇬🇧"
+badge: "Puente de diciembre"
 subtitulo: "Vuelo directo + 2 noches de hotel junto al metro"
 imagen_cabecera: "/img/londres-navidad.jpg"
 proveedor: "Skyscanner"
