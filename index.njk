@@ -16,7 +16,7 @@ bodyClass: home
       <p class="portada-sub">Chollos de vuelos y escapadas desde España. Compruebo el precio a mano antes de publicarlo.</p>
       <div class="portada-acciones">
         <a href="#chollos" class="btn btn-coral">Ver los chollos</a>
-        {% set canalClase = 'btn btn-blanco btn-tg' %}{% set canalTexto = 'Recibe el próximo chollo' %}{% set canalTg = site.telegramInvitacion.portada %}{% include 'canales.njk' %}
+        {% set canalClase = 'btn btn-blanco btn-tg' %}{% set canalTexto = 'Chollos antes que en redes' %}{% set canalTg = site.telegramInvitacion.portada %}{% include 'boton-telegram.njk' %}
         <a href="#buscar" class="portada-enlace">Buscar otro destino</a>
       </div>
     </div>
@@ -73,7 +73,7 @@ bodyClass: home
 
   <div class="chollos-vacio" id="chollos-vacio"{% if ultima %} hidden{% endif %}>
     <p>Ahora mismo no hay chollos activos. Únete al canal de Telegram y te aviso en cuanto salga el siguiente.</p>
-    {% set canalClase = 'btn btn-tg' %}{% set canalTexto = 'Recibe el próximo chollo gratis' %}{% set canalTg = site.telegramInvitacion.portada %}{% include 'canales.njk' %}
+    {% set canalClase = 'btn btn-tg' %}{% set canalTexto = 'Recibe los chollos antes que en redes' %}{% set canalTg = site.telegramInvitacion.portada %}{% include 'boton-telegram.njk' %}
   </div>
 
   <ul class="chollos-lista{% if ofertasOrdenadas.length < 3 %} pocas{% endif %}" id="chollos-lista">

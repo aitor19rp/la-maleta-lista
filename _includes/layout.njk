@@ -43,9 +43,9 @@
   </section>
 
   <section class="telegram-cta">
-    <h2>Recibe el próximo chollo en {% if site.whatsappCanal %}Telegram o WhatsApp{% else %}Telegram{% endif %}</h2>
-    <p>Canal gratis: te aviso con precio y fechas comprobados en cuanto sale una oferta.</p>
-    {% set canalClase = 'boton-cta' %}{% set canalTexto = 'Recibe el próximo chollo gratis' %}{% set canalTg = (site.telegramInvitacion.portada if page.url == '/' else (site.telegramInvitacion.guia if '/guia/' in page.url else site.telegramInvitacion.ficha)) %}{% include 'canales.njk' %}
+    <h2>Recibe los chollos antes que en las redes</h2>
+    <p>Canal gratis de Telegram: te aviso con precio y fechas comprobados en cuanto sale una oferta, antes de subirla a las redes.</p>
+    {% set canalClase = 'boton-cta' %}{% set canalTexto = 'Recibe los chollos antes que en redes' %}{% set canalTg = (site.telegramInvitacion.portada if page.url == '/' else (site.telegramInvitacion.guia if '/guia/' in page.url else site.telegramInvitacion.ficha)) %}{% include 'boton-telegram.njk' %}
   </section>
 
   <footer class="site-footer">

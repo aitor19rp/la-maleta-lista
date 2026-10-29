@@ -15,8 +15,6 @@ module.exports = {
     guia: "https://t.me/+IHfzWgSxRQQxYTA0"
   },
   whatsapp: "34623799102",
-  // Enlace de invitación a la comunidad de WhatsApp. Vacío = solo se ofrece Telegram.
-  whatsappCanal: "https://chat.whatsapp.com/L87T1qlbG5wE1cRljo4hwa",
   clarityId: "",
   gaId: "G-DC7HPFJ7EG"
 };

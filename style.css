@@ -234,7 +234,6 @@ html { scroll-behavior: smooth; }
 .of-info p:last-child { margin-bottom: 0; }
 
 .of-pasos-intro { margin: 0 0 14px; max-width: 60ch; }
-.of-consejo { margin: 0 0 16px; padding: 12px 14px; border-radius: 14px; background: var(--menta); color: var(--verde-profundo); }
 .of-pasos { margin: 0 0 16px; padding: 0; list-style: none; counter-reset: paso; display: grid; gap: 10px; }
 .of-pasos li { counter-increment: paso; position: relative; display: flex; flex-direction: column; gap: 2px; padding: 14px 16px 14px 62px; background: var(--papel); border-radius: 14px; }
 .of-pasos li strong { color: var(--azul-vuelo); }
@@ -642,16 +641,12 @@ html { scroll-behavior: smooth; }
   .portada-sub { font-size: 1rem; margin-bottom: 16px; }
   .portada-acciones { gap: 10px; }
   .portada-acciones .btn { min-height: 48px; flex: 1 1 100%; }
-  .portada-acciones .canales { flex: 1 1 100%; display: block; }
   .portada-acciones .portada-enlace { flex: 1 1 100%; justify-content: center; min-height: 40px; }
 }
 
-/* Botón con elección de canal (Telegram o WhatsApp) */
-.canales { position: relative; display: inline-block; }
-.canales summary { list-style: none; cursor: pointer; gap: 8px; width: 100%; box-sizing: border-box; }
-.canales summary::-webkit-details-marker { display: none; }
-.canales summary::after { content: ""; width: 7px; height: 7px; margin-left: 4px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); }
-.canales[open] summary::after { transform: rotate(-135deg) translateY(-2px); }
-.canales-menu { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20; display: grid; gap: 4px; min-width: 220px; padding: 6px; background: var(--blanco); border: 1.5px solid var(--linea-fuerte); border-radius: 16px; box-shadow: 0 8px 24px rgba(0, 0, 0, .15); }
-.canales-menu a { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 14px; border-radius: 12px; color: var(--azul-vuelo); font-weight: 600; text-decoration: none; }
-.canales-menu a:hover, .canales-menu a:focus-visible { background: var(--menta); }
+/* Filtro por ciudad de salida en las páginas de oferta */
+.of-filtro { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.of-filtro[hidden] { display: none; }
+.of-chip { min-height: 44px; padding: 0 16px; border: 1.5px solid var(--linea-fuerte); border-radius: 999px; background: transparent; color: var(--azul-vuelo); font: inherit; font-weight: 600; cursor: pointer; }
+.of-chip[aria-pressed="true"] { background: var(--azul-vuelo); border-color: var(--azul-vuelo); color: var(--blanco); }
+.of-fechas > li[hidden] { display: none !important; }
