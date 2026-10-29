@@ -22,11 +22,11 @@ function construirMensaje(oferta, slug, base = BASE_WEB) {
   const lineas = [gancho, '', oferta.subtitulo ? `${titulo} — ${escaparHtml(oferta.subtitulo)}` : titulo, ''];
 
   // En vuelos, `salida` es la ciudad de origen y no se pone en el post; en hoteles es el nombre del hotel.
-  // Sin la ciudad, varias salidas con las mismas fechas serían líneas idénticas: se deja solo la más barata.
   let opciones = oferta.opciones || [];
-  if (oferta.tipo !== 'hotel') {
-    const fechas = [...new Set(opciones.map((op) => op.fecha))];
-    opciones = fechas.map((fecha) => masBarata(opciones.filter((op) => op.fecha === fecha)) || opciones.find((op) => op.fecha === fecha));
+  // Sin la ciudad, varias salidas con las mismas fechas serían líneas idénticas, y listar todas las fechas alarga el post:
+  // en vuelos se deja solo la opción más barata (el resto está en la web).
+  if (oferta.tipo !== 'hotel' && opciones.length) {
+    opciones = [masBarata(opciones) || opciones[0]];
   }
 
   for (const op of opciones) {

@@ -60,6 +60,21 @@ test('en vuelos con varias salidas y las mismas fechas, el post deja solo la má
   assert.doesNotMatch(texto, /Madrid|Bilbao/);
 });
 
+test('en vuelos con varias fechas distintas, el post deja solo la opción más barata', () => {
+  const vuelo = {
+    ...oferta,
+    tipo: 'vuelo',
+    opciones: [
+      { salida: 'Valencia', fecha: '15-17 enero', precio: 'Desde 85€/persona' },
+      { salida: 'Valencia', fecha: '8-10 enero', precio: 'Desde 78€/persona' },
+      { salida: 'Madrid', fecha: '22-24 enero', precio: 'Desde 86€/persona' }
+    ]
+  };
+  const texto = construirMensaje(vuelo, 'mallorca');
+  assert.match(texto, /📅 8-10 enero · 💰 Desde 78€\/persona/);
+  assert.doesNotMatch(texto, /15-17|22-24|85|86/);
+});
+
 test('el post es más divertido: gancho con emojis y cierre animado, y el enlace sigue al final', () => {
   const texto = construirMensaje({ ...oferta, tipo: 'vuelo' }, 'roma');
   assert.match(texto, /^🚨✈️ ¡CHOLLAZO!/);
