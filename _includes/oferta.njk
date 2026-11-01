@@ -100,11 +100,15 @@ eleventyComputed:
             <span class="of-fecha-origen"><span class="of-fecha-desde">Sale de</span> {{ opcion.salida }}</span>
             <span class="of-fecha-fecha">{{ opcion.fecha }}</span>
             {% if opcion.nota %}<span class="of-fecha-salida">{{ opcion.nota }}</span>{% endif %}
-            {% if opcion.link %}<a href="{{ opcion.link }}" class="btn btn-borde of-fecha-ir" target="_blank" rel="noopener sponsored">Ver el vuelo<span class="solo-lectores"> desde {{ opcion.salida }} en {{ proveedor }} (se abre en una pestaña nueva)</span></a>{% endif %}
-            {% if opcion.link_hotel %}<a href="{{ opcion.link_hotel }}" class="btn btn-borde of-fecha-ir" target="_blank" rel="noopener sponsored">Ver el hotel<span class="solo-lectores"> de {{ opcion.salida }} en {{ proveedor_hotel }} (se abre en una pestaña nueva)</span></a>{% endif %}
             {% endif %}
           </span>
-          <span class="of-fecha-precio">{{ opcion.precio }}{% if opcion == barata and validas.length > 1 %}<em>La más barata</em>{% endif %}</span>
+          <span class="of-fecha-lado">
+            <span class="of-fecha-precio">{{ opcion.precio }}{% if opcion == barata and validas.length > 1 %}<em>La más barata</em>{% endif %}</span>
+            {% if not esHotel %}
+            {% if opcion.link %}<a href="{{ opcion.link }}" class="btn btn-coral of-fecha-ir" target="_blank" rel="noopener sponsored">Ver el vuelo<span class="solo-lectores"> desde {{ opcion.salida }} en {{ proveedor }} (se abre en una pestaña nueva)</span></a>{% endif %}
+            {% if opcion.link_hotel %}<a href="{{ opcion.link_hotel }}" class="btn btn-coral of-fecha-ir" target="_blank" rel="noopener sponsored">Ver el hotel<span class="solo-lectores"> de {{ opcion.salida }} en {{ proveedor_hotel }} (se abre en una pestaña nueva)</span></a>{% endif %}
+            {% endif %}
+          </span>
         </li>
         {% endfor %}
       </ul>
