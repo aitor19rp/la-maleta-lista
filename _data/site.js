@@ -4,7 +4,8 @@ module.exports = {
   descripcion: "Chollos de vuelos y escapadas que salen de España, con el precio comprobado y la fecha a la vista.",
   tagline: "Cada semana busco las mejores ofertas de vuelos, hoteles y escapadas por Europa para que tú solo tengas que hacer la maleta.",
   redes: {
-    tiktok: "https://www.tiktok.com/@lamaletalistachollos"
+    tiktok: "https://www.tiktok.com/@lamaletalistachollos",
+    youtube: "https://www.youtube.com/@Lamaletalista"
   },
   telegram: "https://t.me/lamaletalista",
   // Enlaces de invitación por sitio, para saber desde dónde se une la gente (Telegram > estadísticas del canal).

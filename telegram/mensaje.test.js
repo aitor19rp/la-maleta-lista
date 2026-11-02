@@ -97,3 +97,10 @@ test('avisa de que en la web hay más fechas y orígenes (vuelos) o más fechas 
   assert.match(conFechas, /🔎 En la web tienes más fechas para este hotel/);
   assert.doesNotMatch(conFechas, /orígenes/);
 });
+
+test('el post enlaza el vídeo de la oferta si lo tiene y, si no, el canal de YouTube', () => {
+  assert.match(construirMensaje(oferta, 'roma'), /🎬 Más chollos en vídeo: https:\/\/www\.youtube\.com\/@Lamaletalista/);
+  const conVideo = construirMensaje({ ...oferta, youtube: 'https://youtu.be/abc' }, 'roma');
+  assert.match(conVideo, /🎬 Míralo en vídeo: https:\/\/youtu\.be\/abc/);
+  assert.doesNotMatch(conVideo, /@Lamaletalista/);
+});

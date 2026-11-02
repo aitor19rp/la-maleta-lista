@@ -1,6 +1,7 @@
 const { masBarata } = require('../filters.js');
 
 const BASE_WEB = 'https://lamaletalista.site';
+const YOUTUBE_CANAL = 'https://www.youtube.com/@Lamaletalista';
 
 function escaparHtml(texto) {
   return String(texto).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -47,6 +48,8 @@ function construirMensaje(oferta, slug, base = BASE_WEB) {
   // En la web los vuelos traen el buscador de Skyscanner (otras fechas y otros orígenes) y los hoteles, botones de otras fechas.
   if (!esHotel) lineas.push('', '🔎 En la web tienes más fechas y orígenes para buscar');
   else if ((oferta.otras_fechas || []).length) lineas.push('', '🔎 En la web tienes más fechas para este hotel');
+  // Si la oferta tiene su vídeo se enlaza; si no, el canal de YouTube.
+  lineas.push('', oferta.youtube ? `🎬 Míralo en vídeo: ${oferta.youtube}` : `🎬 Más chollos en vídeo: ${YOUTUBE_CANAL}`);
   lineas.push('', '🧳 ¡Corre, que estos precios vuelan! 🛫', '', `👉 Ver la oferta: ${urlOferta(slug, base)}`);
 
   return lineas.join('\n');
