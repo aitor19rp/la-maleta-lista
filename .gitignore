@@ -4,3 +4,5 @@ _site/
 .env
 tokeduffel.txt
 tokenduffel.txt
+
+.playwright-mcp/
