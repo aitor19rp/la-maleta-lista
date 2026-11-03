@@ -1,0 +1,62 @@
+---
+date: 2026-11-03
+destino: "Nueva York"
+emoji: "🗽"
+badge: "Solo vuelo"
+subtitulo: "Vuelo ida y vuelta a Nueva York en enero, desde 348€"
+imagen_cabecera: "/img/nuevayork-hero.jpg"
+proveedor: "Skyscanner"
+tipo: "vuelo"
+galeria: ["/img/nuevayork-central-park.jpg", "/img/nuevayork-puente.jpg", "/img/nuevayork-times-square.jpg"]
+etiquetas: ["Ida y vuelta", "Enero 2027", "Aeropuerto JFK"]
+consejo_reserva: ""
+opciones:
+  - salida: "Barcelona"
+    fecha: "12 - 16 enero"
+    precio: "Desde 348€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-bcn-0112&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fbcn%2Fjfk%2F270112%2F270116%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+  - salida: "Barcelona"
+    fecha: "14 - 18 enero"
+    precio: "Desde 359€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-bcn-0114&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fbcn%2Fjfk%2F270114%2F270118%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+  - salida: "Barcelona"
+    fecha: "19 - 25 enero"
+    precio: "Desde 359€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-bcn-0119&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fbcn%2Fjfk%2F270119%2F270125%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+  - salida: "Barcelona"
+    fecha: "21 - 25 enero"
+    precio: "Desde 359€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-bcn-0121&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fbcn%2Fjfk%2F270121%2F270125%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+  - salida: "Madrid"
+    fecha: "13 - 18 enero"
+    precio: "Desde 369€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-mad-0113&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fmad%2Fjfk%2F270113%2F270118%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+  - salida: "Madrid"
+    fecha: "14 - 18 enero"
+    precio: "Desde 377€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-mad-0114&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fmad%2Fjfk%2F270114%2F270118%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+  - salida: "Madrid"
+    fecha: "15 - 19 enero"
+    precio: "Desde 391€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-mad-0115&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fmad%2Fjfk%2F270115%2F270119%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+  - salida: "Madrid"
+    fecha: "16 - 20 enero"
+    precio: "Desde 391€/persona"
+    nota: "Vuelo de ida y vuelta a Nueva York (JFK)"
+    link: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-mad-0116&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fmad%2Fjfk%2F270116%2F270120%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+precio_verificado: "3 de noviembre de 2026"
+link_afiliado: "https://skyscanner.pxf.io/c/5754733/1027991/13416?subId1=nuevayork-bcn-0112&u=https%3A%2F%2Fwww.skyscanner.es%2Ftransporte%2Fvuelos%2Fbcn%2Fjfk%2F270112%2F270116%2F%3Fadultsv2%3D1%26cabinclass%3Deconomy%26rtn%3D1%26preferdirects%3Dtrue&partnerpropertyid=6361569"
+civitatis_url: ""
+---
+Vuelo de ida y vuelta a Nueva York (aeropuerto JFK) en enero de 2027 desde Barcelona y Madrid. El más barato sale de Barcelona del 12 al 16 de enero por 348 € por persona; desde Madrid, el mejor precio es de 369 € del 13 al 18 de enero.
+
+Son los precios más bajos que mostraba Skyscanner el 3 de noviembre para cada fecha, para 1 adulto en clase turista, y cambian a diario. Es solo el vuelo: el alojamiento lo eliges tú aparte.
+
+Pulsa en la fecha que te encaje y se abre Skyscanner con esa búsqueda ya preparada. Si tus fechas son otras, cámbialas allí.
