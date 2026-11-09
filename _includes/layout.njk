@@ -45,7 +45,7 @@
   <section class="telegram-cta">
     <h2>Sé el primero en enterarte de los chollos</h2>
     <p>Únete a nuestro canal gratis de Telegram: te aviso con precio y fechas comprobados en cuanto sale una oferta.</p>
-    {% set canalClase = 'boton-cta' %}{% set canalTexto = 'Únete y sé el primero en enterarte' %}{% set canalTg = (site.telegramInvitacion.portada if page.url == '/' else (site.telegramInvitacion.guia if '/guia/' in page.url else site.telegramInvitacion.ficha)) %}{% include 'boton-telegram.njk' %}
+    {% set canalClase = 'boton-cta' %}{% set canalTexto = 'Únete al canal y no te pierdas ningún chollo' %}{% set canalTg = (site.telegramInvitacion.portada if page.url == '/' else (site.telegramInvitacion.guia if '/guia/' in page.url else site.telegramInvitacion.ficha)) %}{% include 'boton-telegram.njk' %}
     <p class="cta-youtube">¿Prefieres vídeo? <a href="{{ site.redes.youtube }}" target="_blank" rel="noopener">Mira el canal de YouTube<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a></p>
   </section>
 
