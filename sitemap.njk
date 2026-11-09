@@ -1,0 +1,12 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ site.url }}/</loc></url>
+  <url><loc>{{ site.url }}/guia/reservar-vuelo-y-hotel-por-separado/</loc></url>
+{%- for o in collections.ofertas %}
+  <url><loc>{{ site.url }}{{ o.url }}</loc><lastmod>{{ o.date.toISOString().slice(0, 10) }}</lastmod></url>
+{%- endfor %}
+</urlset>
