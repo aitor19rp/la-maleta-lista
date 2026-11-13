@@ -25,18 +25,54 @@
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
   <a href="#contenido" class="saltar">Saltar al contenido</a>
 
-  <aside class="banner-tg" id="banner-tg" aria-label="Canal de Telegram">
-    <a href="{{ site.telegramInvitacion.banner or site.telegramInvitacion.portada }}" class="banner-tg-enlace" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M21.9 4.1 18.7 19.2c-.24 1.06-.87 1.32-1.76.82l-4.86-3.58-2.35 2.26c-.26.26-.48.48-.98.48l.35-4.95 9-8.13c.39-.35-.09-.54-.6-.19L6.37 12.9 1.58 11.4c-1.04-.33-1.06-1.04.22-1.54L20.5 2.6c.87-.32 1.63.2 1.4 1.5Z"/></svg><span>Chollos antes que nadie: únete al canal gratis de Telegram</span><span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
-    <button type="button" class="banner-tg-cerrar" id="banner-tg-cerrar" aria-label="Cerrar aviso">&times;</button>
-  </aside>
+  <div class="popup-tg" id="popup-tg" role="dialog" aria-modal="true" aria-labelledby="popup-tg-titulo" hidden>
+    <div class="popup-tg-caja">
+      <button type="button" class="popup-tg-cerrar" id="popup-tg-cerrar" aria-label="Cerrar">&times;</button>
+      <p class="popup-tg-emoji" aria-hidden="true">🚨</p>
+      <h2 id="popup-tg-titulo">No te pierdas el próximo chollo</h2>
+      <p>Te aviso por Telegram en cuanto sale una oferta, con el precio y las fechas comprobados. Gratis y sin spam.</p>
+      {% set canalClase = 'btn btn-coral popup-tg-boton' %}{% set canalTexto = 'Unirme al canal' %}{% set canalTg = site.telegramInvitacion.popup or site.telegramInvitacion.banner or site.telegramInvitacion.portada %}{% include 'boton-telegram.njk' %}
+      <button type="button" class="popup-tg-luego" id="popup-tg-luego">Ahora no</button>
+    </div>
+  </div>
   <script>
   (function () {
-    var b = document.getElementById('banner-tg');
-    try { if (localStorage.getItem('banner-tg') === 'cerrado') b.hidden = true; } catch (e) {}
-    document.getElementById('banner-tg-cerrar').addEventListener('click', function () {
-      b.hidden = true;
-      try { localStorage.setItem('banner-tg', 'cerrado'); } catch (e) {}
-    });
+    var p = document.getElementById('popup-tg');
+    var clave = 'popup-tg';
+    var DIAS = 86400000;
+    function recordar(dias) { try { localStorage.setItem(clave, String(Date.now() + dias * DIAS)); } catch (e) {} }
+    try { var hasta = Number(localStorage.getItem(clave)); if (hasta && Date.now() < hasta) return; } catch (e) {}
+
+    var abierto = false, previo = null;
+    function cerrar(dias) {
+      p.hidden = true; abierto = false; recordar(dias);
+      document.removeEventListener('keydown', teclas);
+      if (previo && previo.focus) previo.focus();
+    }
+    function teclas(e) { if (e.key === 'Escape') cerrar(7); }
+    function abrir() {
+      if (abierto) return;
+      var c = document.getElementById('cookies');
+      if (c && !c.hidden) return; // no se apila sobre el aviso de cookies
+      abierto = true; previo = document.activeElement;
+      p.hidden = false;
+      document.addEventListener('keydown', teclas);
+      var enlace = p.querySelector('.popup-tg-boton'); if (enlace) enlace.focus();
+    }
+    p.addEventListener('click', function (e) { if (e.target === p) cerrar(7); });
+    document.getElementById('popup-tg-cerrar').addEventListener('click', function () { cerrar(7); });
+    document.getElementById('popup-tg-luego').addEventListener('click', function () { cerrar(7); });
+    p.querySelector('.popup-tg-boton').addEventListener('click', function () { recordar(90); p.hidden = true; abierto = false; document.removeEventListener('keydown', teclas); });
+
+    // Aparece a los 15 s o al bajar un poco la página (lo primero que pase), nunca nada más entrar.
+    var inicio = Date.now();
+    var reloj = setInterval(function () {
+      var scroll = (window.scrollY || 0) > 400;
+      if (Date.now() - inicio > 15000 || (scroll && Date.now() - inicio > 6000)) {
+        abrir();
+        if (abierto) clearInterval(reloj);
+      }
+    }, 1000);
   })();
   </script>
 

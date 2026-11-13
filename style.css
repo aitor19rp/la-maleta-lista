@@ -669,12 +669,21 @@ html { scroll-behavior: smooth; }
 .of-video { margin: 0 0 12px; }
 .of-video a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
-/* Banner superior para unirse al canal de Telegram (se puede cerrar) */
-.banner-tg { display: flex; align-items: center; background: var(--azul-vuelo); color: var(--blanco); }
-.banner-tg[hidden] { display: none; }
-.banner-tg-enlace { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 8px 10px 20px; color: var(--blanco); font-size: 14px; font-weight: 500; line-height: 1.3; text-decoration: none; text-align: left; min-height: 44px; }
-.banner-tg-enlace:hover span:not(.solo-lectores) { text-decoration: underline; }
-.banner-tg-enlace svg { flex: none; }
-.banner-tg-cerrar { flex: none; width: 44px; height: 44px; border: 0; background: transparent; color: var(--blanco); font-size: 26px; line-height: 1; cursor: pointer; }
-.banner-tg-cerrar:hover { background: rgba(255, 255, 255, 0.12); }
-.banner-tg a:focus-visible, .banner-tg button:focus-visible { outline: 3px solid var(--blanco); outline-offset: -3px; }
+/* Ventana emergente para unirse al canal de Telegram: aparece tras unos segundos, una vez cada 7 días */
+.popup-tg { position: fixed; inset: 0; z-index: 40; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(27, 36, 48, 0.55); animation: popup-tg-fondo 0.25s ease-out; }
+.popup-tg[hidden] { display: none; }
+.popup-tg-caja { position: relative; width: 100%; max-width: 420px; padding: 32px 24px 22px; background: var(--arena-calida); border-radius: 24px; text-align: center; box-shadow: 0 16px 48px rgba(20, 45, 62, 0.35); animation: popup-tg-sube 0.3s ease-out; }
+.popup-tg-emoji { margin: 0 0 4px; font-size: 40px; line-height: 1; }
+.popup-tg-caja h2 { margin: 0 0 10px; font-family: var(--font-titulares); font-size: 1.6rem; line-height: 1.2; color: var(--azul-vuelo); }
+.popup-tg-caja p { margin: 0 0 18px; font-size: 16px; color: var(--suave); }
+.popup-tg-caja .popup-tg-emoji { margin: 0 0 4px; }
+.popup-tg-boton { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 52px; padding: 12px 20px; border-radius: 999px; font-weight: 600; font-size: 17px; text-decoration: none; }
+.popup-tg-boton svg { flex: none; }
+.popup-tg-luego { margin-top: 10px; min-height: 44px; padding: 8px 16px; border: 0; background: transparent; color: var(--suave); font: inherit; font-size: 15px; text-decoration: underline; cursor: pointer; }
+.popup-tg-cerrar { position: absolute; top: 6px; right: 6px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--suave); font-size: 28px; line-height: 1; cursor: pointer; }
+.popup-tg-cerrar:hover { background: rgba(27, 36, 48, 0.08); }
+.popup-tg-boton:focus-visible, .popup-tg-luego:focus-visible, .popup-tg-cerrar:focus-visible { outline: 3px solid var(--azul-vuelo); outline-offset: 2px; }
+@keyframes popup-tg-fondo { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popup-tg-sube { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (min-width: 600px) { .popup-tg { align-items: center; } }
+@media (prefers-reduced-motion: reduce) { .popup-tg, .popup-tg-caja { animation: none; } }

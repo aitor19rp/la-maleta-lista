@@ -13,8 +13,8 @@ module.exports = {
     portada: "https://t.me/+uPlgMZ_CyQliMmY0",
     ficha: "https://t.me/+CoBC3hCoTaA1ZDg0",
     tiktok: "https://t.me/+Ruuu6G1avtwyNDM8",
-    guia: "https://t.me/+IHfzWgSxRQQxYTA0"
-    // banner: crear un enlace de invitación propio para el banner superior y ponerlo aquí (si falta, usa el de la portada).
+    guia: "https://t.me/+IHfzWgSxRQQxYTA0",
+    popup: "https://t.me/+NYGPFQUXJ4E1NzI8"
   },
   whatsapp: "34623799102",
   clarityId: "",
