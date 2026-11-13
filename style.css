@@ -668,3 +668,13 @@ html { scroll-behavior: smooth; }
 .cta-youtube a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 .of-video { margin: 0 0 12px; }
 .of-video a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Banner superior para unirse al canal de Telegram (se puede cerrar) */
+.banner-tg { display: flex; align-items: center; background: var(--azul-vuelo); color: var(--blanco); }
+.banner-tg[hidden] { display: none; }
+.banner-tg-enlace { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 8px 10px 20px; color: var(--blanco); font-size: 14px; font-weight: 500; line-height: 1.3; text-decoration: none; text-align: left; min-height: 44px; }
+.banner-tg-enlace:hover span:not(.solo-lectores) { text-decoration: underline; }
+.banner-tg-enlace svg { flex: none; }
+.banner-tg-cerrar { flex: none; width: 44px; height: 44px; border: 0; background: transparent; color: var(--blanco); font-size: 26px; line-height: 1; cursor: pointer; }
+.banner-tg-cerrar:hover { background: rgba(255, 255, 255, 0.12); }
+.banner-tg a:focus-visible, .banner-tg button:focus-visible { outline: 3px solid var(--blanco); outline-offset: -3px; }
