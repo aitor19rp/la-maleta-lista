@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f2e9">
+  <meta name="description" content="Accede a los mejores chollos de La Maleta Lista desde TikTok.">
+  <title>Abre La Maleta Lista</title>
+  <style>
+    :root { --cream: #f7f2e9; --navy: #073b5b; --orange: #f04f2e; --ink: #172b35; --muted: #61717a; }
+    * { box-sizing: border-box; }
+    html { background: var(--cream); }
+    body {
+      margin: 0; min-height: 100vh; min-height: 100dvh;
+      padding: 34px 13px 10px;
+      background: var(--cream); color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    main { max-width: 500px; margin: 0 auto; }
+    .brand {
+      margin: 0 0 12px; display: flex; align-items: center; justify-content: center; gap: 8px;
+      font: bold 22px Georgia, "Times New Roman", serif; color: var(--navy);
+    }
+    .brand .emoji { font: 24px system-ui, sans-serif; }
+    .panel { border-radius: 21px; padding: 17px 17px 14px; background: #fff; box-shadow: 0 8px 28px rgba(7,59,91,.07); }
+    .eyebrow { margin: 0 0 5px; color: var(--orange); font-size: 10px; line-height: 1.3; letter-spacing: .13em; font-weight: 800; text-transform: uppercase; }
+    h1 { margin: 0 0 8px; font: bold 31px/1.08 Georgia, "Times New Roman", serif; letter-spacing: -.02em; color: var(--navy); }
+    .intro { margin: 0 0 13px; font-size: 14px; line-height: 1.4; color: var(--muted); }
+    .steps { display: grid; gap: 8px; margin: 0 0 12px; }
+    .step { display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 10px; align-items: start;
+      border: 1px solid #e4e7e9; border-radius: 13px; padding: 10px 10px; }
+    .number { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #eaf2f5; color: var(--navy); font-size: 14px; font-weight: 800; }
+    .step p { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.38; }
+    strong { color: var(--navy); font-weight: 800; }
+    .button { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 47px; padding: 10px 15px;
+      border-radius: 999px; border: none; font: 800 15px/1.2 -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      text-align: center; text-decoration: none; cursor: pointer; }
+    .primary { background: var(--orange); color: #fff; }
+    .secondary { margin-top: 8px; background: white; border: 2px solid #dae3e7; color: var(--navy); }
+    .telegram-cta { margin-top: 11px; padding: 11px 12px 12px; border: 1px solid #b8e3fa; border-radius: 15px; background: #eaf7ff; text-align: center; }
+    .telegram-title { margin: 0 0 4px; color: #075985; font: 800 17px/1.15 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+    .telegram-copy { margin: 0 0 9px; color: #334155; font-size: 12px; line-height: 1.3; }
+    .telegram-button { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 43px; padding: 9px 12px; border-radius: 11px; background: #229ed9; color: #fff; text-decoration: none; font: 800 14px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+    .telegram-button svg { flex: 0 0 auto; width: 19px; height: 19px; fill: currentColor; }
+    .status { min-height: 0; margin: 0; text-align: center; color: var(--navy); font-size: 12px; line-height: 1.3; }
+    .status:not(:empty) { margin: 8px 0 0; }
+    .arrow-to-real-menu {
+      position: fixed; top: 10px; right: 7px; width: 60px; height: 88px;
+      pointer-events: none; z-index: 99; filter: drop-shadow(0 1px 0 rgba(255,255,255,.25));
+    }
+    .arrow-to-real-menu .upper { stroke: #1269f5; stroke-width: 5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .arrow-to-real-menu .lower { stroke: #84b6fc; stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    @media (min-width: 701px) {
+      body { max-width: 720px; margin: auto; padding-top: 130px; }
+      .arrow-to-real-menu { right: 22px; }
+      .brand { font-size: 26px; margin-bottom: 16px; }
+      .panel { padding: 26px 28px 22px; }
+      h1 { font-size: 38px; }
+      .intro, .step p { font-size: 16px; }
+    }
+    /* Smaller in-app browser viewports: prioritize seeing the CTA without scrolling. */
+    @media (max-width: 700px) and (max-height: 695px) {
+      body { padding-top: 30px; padding-bottom: 5px; }
+      .brand { margin-bottom: 8px; font-size: 20px; }
+      .brand .emoji { font-size: 21px; }
+      .panel { padding: 12px 14px 10px; }
+      h1 { font-size: 27px; margin-bottom: 6px; }
+      .intro { font-size: 13px; margin-bottom: 9px; line-height: 1.32; }
+      .step { padding: 7px 9px; gap: 8px; }
+      .step p { font-size: 13px; line-height: 1.31; }
+      .steps { gap: 6px; margin-bottom: 9px; }
+      .button { min-height: 41px; font-size: 13px; padding: 7px 10px; }
+      .secondary { margin-top: 5px; }
+      .telegram-cta { margin-top: 8px; padding: 8px 9px 9px; }
+      .telegram-title { font-size: 15px; margin-bottom: 3px; }
+      .telegram-copy { font-size: 11px; margin-bottom: 6px; }
+      .telegram-button { min-height: 39px; font-size: 13px; padding: 7px 10px; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .arrow-to-real-menu { animation: indicate-up 2.2s ease-in-out infinite; }
+      @keyframes indicate-up { 0%, 100% { transform: translateY(4px); } 50% { transform: translateY(-2px); } }
+    }
+  </style>
+</head>
+<body>
+  <svg class="arrow-to-real-menu" role="img" aria-label="Flechas que señalan los tres puntos superiores de TikTok" viewBox="0 0 60 88">
+    <path class="upper" d="M 6 37 L 30 13 L 54 37"/>
+    <path class="lower" d="M 6 76 L 30 52 L 54 76"/>
+  </svg>
+  <main>
+    <div class="brand"><span class="emoji" aria-hidden="true">🧳</span><span>La Maleta Lista</span></div>
+    <section class="panel" aria-labelledby="titulo">
+      <p class="eyebrow">Un momento y listo</p>
+      <h1 id="titulo">¿No se abre el enlace?</h1>
+      <p class="intro">Para abrir La Maleta Lista fuera de TikTok, sigue estos pasos:</p>
+      <div class="steps">
+        <div class="step"><span class="number">1</span><p>Toca los <strong>tres puntos (•••)</strong> de la esquina superior derecha.</p></div>
+        <div class="step"><span class="number">2</span><p>Elige <strong>«Abrir en el navegador»</strong> para continuar en Safari o Chrome.</p></div>
+        <div class="step"><span class="number">3</span><p>Si no aparece esa opción, pulsa <strong>«Copiar enlace»</strong> y pégalo en Safari o Chrome.</p></div>
+      </div>
+      <button class="button secondary" id="copyBtn" type="button">Copiar enlace de La Maleta Lista</button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <section class="telegram-cta" aria-label="Canal de Telegram">
+        <p class="telegram-title">¡Los chollos llegan antes a Telegram!</p>
+        <p class="telegram-copy">Entérate de las ofertas antes de que las publiquemos en TikTok.</p>
+        <a class="telegram-button" href="https://t.me/+Ruuu6G1avtwyNDM8" target="_blank" rel="noopener noreferrer" aria-label="Unirme al canal de Telegram La Maleta Lista">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.8 4.2c.3-1.3-.5-1.8-1.6-1.4L2.7 9.5c-1.2.5-1.2 1.2-.2 1.5l4.5 1.4 1.7 5.3c.2.7.1 1 .8 1 .5 0 .7-.2 1-.5l2.2-2.1 4.6 3.4c.9.5 1.5.2 1.7-.8L21.8 4.2zM8 12.1l9.1-5.7c.5-.3.9-.1.5.2l-7.5 6.8-.3 3.4L8 12.1z"/></svg>
+          UNIRME AL CANAL
+        </a>
+      </section>
+    </section>
+  </main>
+  <script>
+    (function () {
+      const destino = 'https://lamaletalista.site/?utm_source=tiktok&utm_medium=social&utm_campaign=bio';
+      const ua = navigator.userAgent || '';
+      const dentroDeTikTok = /TikTok|musical_ly|BytedanceWebview/i.test(ua);
+      const esMovil = /iPhone|iPad|iPod|Android/i.test(ua);
+
+      // Keep the instructions inside TikTok. If the same URL is opened in
+      // Safari/Chrome on a phone, send the visitor straight to the main site.
+      if (!dentroDeTikTok && esMovil) {
+        window.location.replace(destino);
+        return;
+      }
+
+      const boton = document.getElementById('copyBtn');
+      const estado = document.getElementById('status');
+      boton.addEventListener('click', async function () {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(destino);
+          } else {
+            const auxiliar = document.createElement('textarea');
+            auxiliar.value = destino;
+            auxiliar.setAttribute('readonly', '');
+            auxiliar.style.position = 'fixed';
+            auxiliar.style.opacity = '0';
+            document.body.appendChild(auxiliar);
+            auxiliar.select();
+            const copiado = document.execCommand('copy');
+            auxiliar.remove();
+            if (!copiado) throw new Error('No se pudo copiar');
+          }
+          boton.textContent = '¡Enlace copiado!';
+          estado.textContent = 'Pégalo en Safari o Chrome.';
+        } catch (error) {
+          estado.textContent = 'Copia esta dirección: ' + destino;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
