@@ -30,7 +30,7 @@
       <button type="button" class="popup-tg-cerrar" id="popup-tg-cerrar" aria-label="Cerrar">&times;</button>
       <p class="popup-tg-emoji" aria-hidden="true">🚨</p>
       <h2 id="popup-tg-titulo">No te pierdas el próximo chollo</h2>
-      <p>Te aviso por Telegram en cuanto sale una oferta, con el precio y las fechas comprobados. Gratis y sin spam.</p>
+      <p>Los chollos salen antes en el canal de Telegram, con el precio y las fechas comprobados. Es gratis.</p>
       {% set canalClase = 'btn btn-coral popup-tg-boton' %}{% set canalTexto = 'Unirme al canal' %}{% set canalTg = site.telegramInvitacion.popup or site.telegramInvitacion.banner or site.telegramInvitacion.portada %}{% include 'boton-telegram.njk' %}
       <button type="button" class="popup-tg-luego" id="popup-tg-luego">Ahora no</button>
     </div>
@@ -41,6 +41,9 @@
     var clave = 'popup-tg';
     var DIAS = 86400000;
     function recordar(dias) { try { localStorage.setItem(clave, String(Date.now() + dias * DIAS)); } catch (e) {} }
+    // Quien llega desde Telegram (enlace con utm_source=telegram o referencia de t.me) ya está en el canal: no se le muestra, ni en esta visita ni en las siguientes.
+    var deTelegram = /[?&]utm_source=telegram(&|$)/i.test(location.search) || /^https?:\/\/(t\.me|telegram\.me|web\.telegram\.org)\//i.test(document.referrer || '');
+    if (deTelegram) { recordar(90); return; }
     try { var hasta = Number(localStorage.getItem(clave)); if (hasta && Date.now() < hasta) return; } catch (e) {}
 
     var abierto = false, previo = null;
