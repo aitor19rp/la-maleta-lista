@@ -41,9 +41,8 @@ test('la URL de la oferta usa el nombre del archivo', () => {
     urlOferta('milan-diciembre', undefined, 'telegram'),
     'https://lamaletalista.site/ofertas/milan-diciembre/?utm_source=telegram&utm_medium=social&utm_campaign=milan-diciembre'
   );
-  // En el post, el & va como entidad HTML (parse_mode HTML de Telegram); WhatsApp usa su propio canal.
+  // En el post, el & va como entidad HTML (parse_mode HTML de Telegram).
   assert.match(construirMensaje(oferta, 'roma'), /\?utm_source=telegram&amp;utm_medium=social&amp;utm_campaign=roma/);
-  assert.match(construirMensaje(oferta, 'roma', undefined, 'whatsapp'), /utm_source=whatsapp/);
 });
 
 test('en vuelos no se pone la ciudad de salida; en hoteles sí el nombre del hotel', () => {

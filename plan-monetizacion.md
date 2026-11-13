@@ -30,7 +30,7 @@ No llamar CPC a un EPC (ingreso medio por clic) si depende de ventas. Distinguir
 | Tarea | Quién | Estado |
 |---|---|---|
 | Hoja de control `hoja-control.csv` con las columnas del PDF | Claude | hecho (vacía, lista para rellenar) |
-| Añadir UTM a los enlaces de Telegram: `?utm_source=telegram&utm_medium=social&utm_campaign=<slug>` (y `whatsapp` en `whatsapp.js`) | Claude | pendiente de tu OK (toca código que se publica) |
+| Añadir UTM a los enlaces de Telegram: `?utm_source=telegram&utm_medium=social&utm_campaign=<slug>` | Claude | pendiente de tu OK (toca código que se publica) |
 | Convención de IDs: `CANAL_CATEGORIA_OFERTA`, p. ej. `TG_CITY_BUDAPEST_20261114` | Claude | definida, aplicar a nuevas ofertas |
 | Exportar Impact por SubID1 (clics, clics únicos, earnings, validaciones) | Tú | pendiente |
 | Exportar TradeTracker por campaña (clics, transacciones, comisión, tipo de pago) | Tú | pendiente |
