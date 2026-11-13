@@ -7,8 +7,11 @@ function escaparHtml(texto) {
   return String(texto).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-function urlOferta(slug, base = BASE_WEB) {
-  return `${base}/ofertas/${slug}/`;
+// Con `canal` (telegram, whatsapp) el enlace lleva UTM para separar el origen de las visitas en GA4.
+function urlOferta(slug, base = BASE_WEB, canal = '') {
+  const url = `${base}/ofertas/${slug}/`;
+  if (!canal) return url;
+  return `${url}?utm_source=${canal}&utm_medium=social&utm_campaign=${encodeURIComponent(slug)}`;
 }
 
 function urlFoto(imagen, base = BASE_WEB) {
@@ -16,7 +19,7 @@ function urlFoto(imagen, base = BASE_WEB) {
 }
 
 // Texto del post para el canal. Telegram limita el pie de una foto a 1024 caracteres.
-function construirMensaje(oferta, slug, base = BASE_WEB) {
+function construirMensaje(oferta, slug, base = BASE_WEB, canal = 'telegram') {
   const titulo = [oferta.emoji, `<b>${escaparHtml(oferta.destino)}</b>`].filter(Boolean).join(' ');
   const esHotel = oferta.tipo === 'hotel';
   const gancho = esHotel ? '🚨🏨 ¡CHOLLAZO! 🏨🚨' : '🚨✈️ ¡CHOLLAZO! ✈️🚨';
@@ -50,7 +53,7 @@ function construirMensaje(oferta, slug, base = BASE_WEB) {
   else if ((oferta.otras_fechas || []).length) lineas.push('', '🔎 En la web tienes más fechas para este hotel');
   // Si la oferta tiene su vídeo se enlaza; si no, el canal de YouTube.
   lineas.push('', oferta.youtube ? `🎬 Míralo en vídeo: ${oferta.youtube}` : `🎬 Más chollos en vídeo: ${YOUTUBE_CANAL}`);
-  lineas.push('', '🧳 ¡Corre, que estos precios vuelan! 🛫', '', `👉 Ver la oferta: ${urlOferta(slug, base)}`);
+  lineas.push('', '🧳 ¡Corre, que estos precios vuelan! 🛫', '', `👉 Ver la oferta: ${escaparHtml(urlOferta(slug, base, canal))}`);
 
   return lineas.join('\n');
 }

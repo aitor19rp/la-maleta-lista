@@ -9,7 +9,7 @@ const { construirMensaje } = require('./mensaje.js');
 
 // Mismo mensaje que Telegram, con el formato de WhatsApp: negrita con *…* y sin entidades HTML.
 function mensajeWhatsapp(oferta, slug) {
-  return construirMensaje(oferta, slug)
+  return construirMensaje(oferta, slug, undefined, 'whatsapp')
     .replace(/<b>(.*?)<\/b>/g, '*$1*')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
