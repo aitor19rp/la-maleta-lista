@@ -2,12 +2,12 @@
 date: 2026-11-15
 destino: "Albufeira"
 emoji: "🏖️"
-badge: "Escapada de playa"
+badge: "Piscina climatizada"
 subtitulo: "Hotel frente al mar en el Algarve, desde 23,50€/persona"
-imagen_cabecera: "/img/albufeira-praia-aerea.jpg"
+imagen_cabecera: "/img/piscina-interior-climatizada.jpg"
 proveedor: "Trivago"
 tipo: "hotel"
-galeria: ["/img/albufeira-praia-pescadores.jpg", "/img/albufeira-peneco-pescadores.jpg"]
+galeria: ["/img/albufeira-praia-aerea.jpg", "/img/albufeira-praia-pescadores.jpg", "/img/albufeira-peneco-pescadores.jpg"]
 etiquetas: ["Piscina interior climatizada", "Desayuno incluido", "Valoración 7,6/10 (12k opiniones)", "Vistas al mar", "Cancelación gratuita", "1 noche"]
 consejo_reserva: "En Trivago elige la oferta de CHECK24 con desayuno incluido en el precio: la cancelación gratuita solo dura hasta las 23:59 del día en que reservas, así que no lo dejes para mañana."
 opciones:
