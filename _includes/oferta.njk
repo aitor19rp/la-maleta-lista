@@ -187,18 +187,18 @@ eleventyComputed:
     </section>
     {% endif %}
 
-    {% if content %}
-    <section class="of-info" aria-labelledby="of-info">
-      <h2 id="of-info">Sobre la oferta</h2>
-      <div>{{ content | safe }}</div>
-    </section>
-    {% endif %}
-
     {% if colaboracion_url %}
     <section class="of-colaboracion" aria-labelledby="of-colaboracion">
       <h2 id="of-colaboracion">Guía gratis de {{ destino }}</h2>
       <p class="of-pasos-intro">PDF gratuito con el itinerario día a día, mapas y consejos{% if colaboracion_nombre %}, de {{ colaboracion_nombre }}{% endif %}.</p>
       <a href="{{ colaboracion_url }}" class="btn btn-borde of-cta" target="_blank" rel="noopener">Descargar la guía<span class="solo-lectores"> (se abre en una pestaña nueva)</span></a>
+    </section>
+    {% endif %}
+
+    {% if content %}
+    <section class="of-info" aria-labelledby="of-info">
+      <h2 id="of-info">Sobre la oferta</h2>
+      <div>{{ content | safe }}</div>
     </section>
     {% endif %}
 
